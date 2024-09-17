@@ -23,16 +23,25 @@ export class CanvasComponent {
     this.canvas.width = 2560
     this.canvas.height = 1440
     
+    const img = new Image();
+    img.src = this.currentFrame(1);
+
+    //this is cooked
+    let self = this
+    img.onload = function() {
+      self.updateImage(1)
+    }
+    
     setTimeout(()=>this.updateImage(1), 500);
   }
   
   @HostListener('window:resize', ['$event'])
   onResize(event:any) {
-    this.coverImg(this.img);
+    this.coverWindow(this.img);
   }
 
   currentFrame(index: number){
-    return `assets/jpgs-small/frame_${(index-1).toString()}.jpg`
+    return `assets/jpgs-tiny/frame_${(index-1).toString()}.jpg`
   }
   
   constructor() {
@@ -65,7 +74,7 @@ export class CanvasComponent {
   updateImage(index: number) {
     this.img.src = this.currentFrame(index);
     if(this.context) {
-      this.coverImg(this.img)
+      this.coverWindow(this.img)
     }
   }
 
@@ -76,7 +85,7 @@ export class CanvasComponent {
     }
   }
 
-  coverImg(img: any) {
+  coverWindow(img: any) {
     const imgRatio = img.height / img.width
     const winRatio = window.innerHeight / window.innerWidth
     if (imgRatio > winRatio) {
