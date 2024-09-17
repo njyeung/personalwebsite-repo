@@ -32,15 +32,16 @@ export class CanvasComponent {
   }
 
   currentFrame(index: number){
-    return `../../assets/jpgs/frame_${(index-1).toString()}.jpg`
+    return `assets/jpgs-small/frame_${(index-1).toString()}.jpg`
   }
   
   constructor() {
-    this.preloadImages()
-
     document.addEventListener('scroll', () => {
       this.play();
     })
+
+    this.preloadImages()
+
   }
   
   ngOnInit() {

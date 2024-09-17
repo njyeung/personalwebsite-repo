@@ -1,11 +1,7 @@
-main {
+.main {
     height: 250vh;
-    background: #599e2c;
-    width: auto;
+    width: 90vw;
     min-height: 100%;
-    display: flex;
-    box-sizing: inherit;
-    position: relative;
 }
 
 canvas {
