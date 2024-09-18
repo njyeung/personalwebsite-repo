@@ -24,7 +24,7 @@ export class NavbarComponent {
 
     anime.timeline({loop: false})
     .add({
-      delay: 500
+      duration: 500
     })
     .add({
       targets: '.an-1 .letter',
@@ -32,32 +32,32 @@ export class NavbarComponent {
       opacity: [0,1],
       translateZ: 0,
       easing: "easeOutExpo",
-      duration: 300,
-      delay: (el:any , i:number) => 70*i
+      duration: 500,
+      delay: (el:any , i:number) => 60*i
     }).add({
       targets: '.an-2 .letter',
       scale: [4,1],
       opacity: [0,1],
       translateZ: 0,
       easing: "easeOutExpo",
-      duration: 300,
-      delay: (el:any , i:number) => 70*i
+      duration: 500,
+      delay: (el:any , i:number) => 60*i
     }).add({
       targets: '.an-3 .letter',
       scale: [4,1],
       opacity: [0,1],
       translateZ: 0,
       easing: "easeOutExpo",
-      duration: 300,
-      delay: (el:any , i:number) => 70*i
+      duration: 500,
+      delay: (el:any , i:number) => 60*i
     }).add({
       targets: '.an-4 .letter',
       scale: [4,1],
       opacity: [0,1],
       translateZ: 0,
       easing: "easeOutExpo",
-      duration: 300,
-      delay: (el:any , i:number) => 70*i
+      duration: 500,
+      delay: (el:any , i:number) => 60*i
     }).add({
       // for some reason you need this or the last one doesn't work
     });

@@ -13,8 +13,10 @@ export class CanvasComponent {
   canvas: any
   context: CanvasRenderingContext2D | null | undefined
   html = document.documentElement;
-  frameCount = 73;
+  frameCount = 124;
   img = new Image()
+
+  folder = 'jpgs-small'
 
   ngAfterViewInit() {
     this.context = this.canvas?.nativeElement.getContext('2d')
@@ -29,10 +31,8 @@ export class CanvasComponent {
     //this is cooked
     let self = this
     img.onload = function() {
-      self.updateImage(1)
+      setTimeout(()=>self.updateImage(1), 500);
     }
-    
-    setTimeout(()=>this.updateImage(1), 500);
   }
   
   @HostListener('window:resize', ['$event'])
@@ -41,22 +41,38 @@ export class CanvasComponent {
   }
 
   currentFrame(index: number){
-    return `assets/jpgs-tiny/frame_${(index-1).toString()}.jpg`
+    return `assets/${this.folder}/frame_${(index-1).toString()}.jpg`
   }
   
   constructor() {
+
+    // check which folder to use
+    if(window.innerHeight>window.innerWidth) {
+      // mobile
+      this.folder = 'NONE'
+    }
+    if(window.innerHeight<=window.innerWidth) {
+      // desktop
+      if(window.innerWidth > 2560 + 20) {
+        this.folder = 'jpgs'
+      }
+      else if(window.innerWidth > 1920 + 20) {
+        this.folder = 'jpgs-small'
+      }
+      else {
+        this.folder = 'jpgs-tiny'
+      }
+    }
+
     document.addEventListener('scroll', () => {
       this.play();
     })
 
-    this.preloadImages()
-
-  }
-  
-  ngOnInit() {
     setTimeout(()=>{
       window.scrollTo(0,0)
     }, 500)
+
+    this.preloadImages()
   }
 
   play() {
