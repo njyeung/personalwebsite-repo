@@ -35,3 +35,7 @@
     50% { opacity: 0 }
     100% { opacity: 1; }
 }
+.test {
+    height: 200vh;
+    background-color: white;
+}

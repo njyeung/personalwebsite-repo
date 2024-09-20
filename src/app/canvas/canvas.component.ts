@@ -9,11 +9,11 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './canvas.component.css'
 })
 export class CanvasComponent {
-  @ViewChild('canvas')
-  canvas: any
+  @ViewChild('main') main: any
+  @ViewChild('canvas') canvas: any
   context: CanvasRenderingContext2D | null | undefined
   html = document.documentElement;
-  frameCount = 124;
+  frameCount = 67;
   img = new Image()
 
   folder = 'jpgs-small'
@@ -49,14 +49,11 @@ export class CanvasComponent {
     // check which folder to use
     if(window.innerHeight>window.innerWidth) {
       // mobile
-      this.folder = 'NONE'
+      this.folder = 'jpgs-mobile'
     }
     if(window.innerHeight<=window.innerWidth) {
       // desktop
-      if(window.innerWidth > 2560 + 20) {
-        this.folder = 'jpgs'
-      }
-      else if(window.innerWidth > 1920 + 20) {
+      if(window.innerWidth > 1920 + 20) {
         this.folder = 'jpgs-small'
       }
       else {
@@ -68,23 +65,26 @@ export class CanvasComponent {
       this.play();
     })
 
-    setTimeout(()=>{
-      window.scrollTo(0,0)
-    }, 500)
-
     this.preloadImages()
   }
 
   play() {
+    const height = window.innerHeight * 2.5 // yes im hard coding this
+    const totalPageHeight = document.body.scrollHeight;
     const scrollTop = this.html.scrollTop;
-    const maxScrollTop = this.html.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollTop / maxScrollTop;
-    const frameIndex = Math.min(
-      this.frameCount - 1,
-      Math.ceil(scrollFraction * this.frameCount)
-    );
+    const maxScrollTop = height - window.innerHeight;
     
-    requestAnimationFrame(() => this.updateImage(frameIndex + 1))
+
+    if(scrollTop <= maxScrollTop) {
+      const scrollFraction = scrollTop / maxScrollTop;
+      const frameIndex = Math.min(
+        this.frameCount - 1,
+        Math.ceil(scrollFraction * this.frameCount)
+      );
+
+      requestAnimationFrame(() => this.updateImage(frameIndex + 1))
+    }
+
   }
 
   updateImage(index: number) {

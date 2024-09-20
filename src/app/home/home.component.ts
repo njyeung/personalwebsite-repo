@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent {
 
+  @ViewChild('intro') intro : any
+
   html = document.documentElement;
   headerStyle = {
     'opacity': 1,
@@ -33,19 +35,24 @@ export class HomeComponent {
   }
 
   animation() {
+    const height = window.innerHeight *2.5 // yes im hard coding this
+    const totalPageHeight = document.body.scrollHeight;
     const scrollTop = this.html.scrollTop;
-    const maxScrollTop = this.html.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollTop / maxScrollTop;
+    const maxScrollTop = height - window.innerHeight;
     
-    // this.headerStyle['opacity'] = Math.cos(scrollFraction*Math.PI/2)
-    // this.headerStyle['font-size'] = `${(17 + (scrollFraction * 3))}vw`
 
-    // if(scrollFraction < 0.4) {
-    //   this.backgroundStyle['opacity'] = 1
-    // }
-    // else{
-    //   this.backgroundStyle['opacity'] = 1.3*Math.cos(scrollFraction*2.5 - 0.9)
-    // }
+    if(scrollTop <= maxScrollTop) {
+      const scrollFraction = scrollTop / maxScrollTop;
+      this.headerStyle['opacity'] = Math.cos(scrollFraction*Math.PI/2)
+      this.headerStyle['font-size'] = `${(17 + (scrollFraction * 3))}vw`
+
+      if(scrollFraction < 0.4) {
+        this.backgroundStyle['opacity'] = 1
+      }
+      else{
+        this.backgroundStyle['opacity'] = 1.3*Math.cos(scrollFraction*2.5 - 0.9)
+      }
+    }
   }
 
   mouseOverHeader() {
