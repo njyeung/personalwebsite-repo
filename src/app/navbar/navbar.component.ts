@@ -10,8 +10,29 @@ declare var anime: any;
 })
 export class NavbarComponent {
 
-  ngAfterViewInit() {
+  page = 'home'
 
+  tab(goTo:string) {
+    switch(goTo) {
+      case 'home':
+        this.page = 'home'
+        break;
+      case 'projects':
+        this.page = 'projects'
+        break;
+      case 'resume':
+        // popup resume
+        break;
+      case 'github':
+        // popup github
+        window.open('https://github.com/njyeung')
+        break;
+      default:
+        //do nothing
+    }
+  }
+
+  ngAfterViewInit() {
     // wrap everything in spans
     const textWrapper1 = document.querySelector('.an-1');
     textWrapper1!.innerHTML = textWrapper1!.textContent!.replace(/\S/g, "<span class='letter'>$&</span>");

@@ -14,7 +14,7 @@ export class HomeComponent {
   @ViewChild('intro') intro : any
   @ViewChild('keyboard') keyboard : any
 
-  playing = false;
+  videoPlaying = false;
   
   html = document.documentElement;
   headerStyle = {
@@ -30,8 +30,8 @@ export class HomeComponent {
       this.animation();
 
       // wait until user interacts with site to save cpu use
-      if(this.playing == false) {
-        this.playing = true;
+      if(this.videoPlaying == false) {
+        this.videoPlaying = true;
         this.keyboard.nativeElement.muted = true // you need this line cuz angular is weird
         this.keyboard.nativeElement.play();
       }
@@ -66,14 +66,6 @@ export class HomeComponent {
       this.headerStyle['opacity'] = 0
       this.backgroundStyle['opacity'] = 0
     }
-  }
-
-  mouseOverHeader() {
-
-  }
-
-  mouseOutHeader() {
-
   }
 
   getHeaderStyle() {
