@@ -11,19 +11,12 @@
     z-index: -1;
     animation: fadeIn 1s;
 }
-.wrapper{
-    position:absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
 .header {
     color: #FFFDD0;
     font-weight: bold;
     max-width: 100%;
     max-height: 100%;
-    z-index: 1;
+
     position: fixed;
     top: 25%;
     left: 50%;
@@ -36,6 +29,21 @@
     100% { opacity: 1; }
 }
 .test {
-    height: 200vh;
-    background-color: white;
+    position: relative;
 }
+.video-container {
+    width: 100%;
+    height: 100vh; 
+    overflow: hidden;
+    object-fit: cover;
+    z-index: 5;
+}
+.video-container video {
+    /* Make video to at least 100% wide and tall */
+    min-width: 100%; 
+    min-height: 100%; 
+  
+    /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+    width: auto;
+    height: auto;
+  }

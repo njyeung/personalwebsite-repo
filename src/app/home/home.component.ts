@@ -12,7 +12,10 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent {
 
   @ViewChild('intro') intro : any
+  @ViewChild('keyboard') keyboard : any
 
+  playing = false;
+  
   html = document.documentElement;
   headerStyle = {
     'opacity': 1,
@@ -25,9 +28,16 @@ export class HomeComponent {
   constructor() {
     document.addEventListener('scroll', () => {
       this.animation();
+
+      // wait until user interacts with site to save cpu use
+      if(this.playing == false) {
+        this.playing = true;
+        this.keyboard.nativeElement.muted = true // you need this line cuz angular is weird
+        this.keyboard.nativeElement.play();
+      }
     })
   }
-  
+
   ngOnInit() {
     setTimeout(()=>{
       window.scrollTo(0,0)
@@ -35,11 +45,10 @@ export class HomeComponent {
   }
 
   animation() {
-    const height = window.innerHeight *2.5 // yes im hard coding this
+    const height = window.innerHeight * 2.5 // yes im hard coding this
     const totalPageHeight = document.body.scrollHeight;
     const scrollTop = this.html.scrollTop;
     const maxScrollTop = height - window.innerHeight;
-    
 
     if(scrollTop <= maxScrollTop) {
       const scrollFraction = scrollTop / maxScrollTop;
@@ -52,6 +61,10 @@ export class HomeComponent {
       else{
         this.backgroundStyle['opacity'] = 1.3*Math.cos(scrollFraction*2.5 - 0.9)
       }
+    }
+    else {
+      this.headerStyle['opacity'] = 0
+      this.backgroundStyle['opacity'] = 0
     }
   }
 
