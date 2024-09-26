@@ -28,7 +28,8 @@ export class NavbarComponent {
         window.open('https://github.com/njyeung')
         break;
       default:
-        //do nothing
+        this.page.emit('')
+        break;
     }
   }
 
