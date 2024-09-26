@@ -51,7 +51,6 @@ export class CanvasComponent {
   }
 
   currentFrame(index: number){
-    console.log(`assets/${this.folder}/frame_${(index-1).toString()}.jpg`)
     return `assets/${this.folder}/frame_${(index-1).toString()}.jpg`
   }
   

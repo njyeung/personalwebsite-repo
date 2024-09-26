@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 declare var anime: any;
 
 @Component({
@@ -10,15 +10,15 @@ declare var anime: any;
 })
 export class NavbarComponent {
 
-  page = 'home'
+  @Output() page = new EventEmitter<String>
 
   tab(goTo:string) {
     switch(goTo) {
       case 'home':
-        this.page = 'home'
+        this.page.emit('home')
         break;
       case 'projects':
-        this.page = 'projects'
+        this.page.emit('projects')
         break;
       case 'resume':
         // popup resume

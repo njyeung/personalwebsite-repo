@@ -24,6 +24,9 @@ export class HomeComponent {
   backgroundStyle = {
     'opacity' : 1
   }
+  bodyStyle = {
+    'opacity': 1
+  }
 
   constructor() {
     document.addEventListener('scroll', () => {
@@ -74,5 +77,9 @@ export class HomeComponent {
 
   getBackgroundStyle() {
     return this.backgroundStyle
+  }
+
+  getBodyStyle() {
+    return this.bodyStyle
   }
 }

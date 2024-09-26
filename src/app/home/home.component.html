@@ -1,7 +1,11 @@
 <div>
     <app-canvas #intro [ngStyle]="getBackgroundStyle()" class="background"></app-canvas>
-    <div class="header">
+    <div class="header text">
         <h1 [ngStyle]="getHeaderStyle()">hi,&nbsp;i'm&nbsp;nick</h1>
+    </div>
+    <div class="body text">
+        <h1 [ngStyle]="getBodyStyle()">aspiring&nbsp;programmer</h1>
+        <p [ngStyle]="getBodyStyle()">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
     </div>
     <video #keyboard class="video-container" playsinline autoplay muted="muted" loop>
         <source src="assets/keyboard.mp4" type="video/mp4">
