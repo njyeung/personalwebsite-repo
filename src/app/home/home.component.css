@@ -13,7 +13,6 @@
 }
 .header {
     color: #FFFDD0;
-    font-weight: bold;
     max-width: 100%;
     max-height: 100%;
     position: fixed;
@@ -21,6 +20,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
     animation: fadeIn 1s;
+
+    font-family: "nicholas", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+
 }
 @keyframes fadeIn {
     0% { opacity: 0; }
@@ -28,23 +32,37 @@
     100% { opacity: 1; }
 }
 .body {
+
     color: #FFFDD0;
-    position: absolute;
-    top: 310%;
-    left: 15%;
     margin: 1rem;
+
+    font-family: "nicholas", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3rem;
+
+    text-shadow: 0 0 20px rgb(48, 48, 48);
 }
-.body h1 {
-    font-size: 4rem;
+.body-1 {
+    z-index: 5;
+    position: absolute;
+    top: 330%;
+    left: 10%;
+}
+a:link {
+    color: #fcfbe8;
+}
+a:visited {
+    color: #a3a28a;
 }
 @media(max-width: 1080px) {
     .body {
         left: auto;
+        font-size: 2rem;
     }
     .body h1 {
         font-size: 2rem;
     }
-    
 }
 .video-container {
     width: 100%;
@@ -52,6 +70,7 @@
     overflow: hidden;
     object-fit: cover;
     z-index: 5;
+
 }
 .video-container video {
     /* Make video to at least 100% wide and tall */
@@ -60,5 +79,5 @@
   
     /* Setting width & height to auto prevents the browser from stretching or squishing the video */
     width: auto;
-    height: auto;
-  }
+    height: auto;   
+}

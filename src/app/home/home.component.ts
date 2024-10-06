@@ -1,7 +1,8 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CanvasComponent } from "../canvas/canvas.component";
 import { AppComponent } from '../app.component';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-home',
   standalone: true,

@@ -16,7 +16,7 @@ export class CanvasComponent {
   frameCount = 67;
   img = new Image()
 
-  folder = 'jpgs-small'
+  folder = 'jpgs-tiny'
 
   ngAfterViewInit() {
     this.context = this.canvas?.nativeElement.getContext('2d')
@@ -41,7 +41,11 @@ export class CanvasComponent {
     //this is cooked
     let self = this
     img.onload = function() {
-      setTimeout(()=>self.updateImage(1), 500);
+      // graceful animation to load image before fade-in
+      setTimeout(()=>{self.updateImage(1); console.log("FIRST LOAD")}, 500);
+      
+      // sometimes it doesn't load though (might be internet or cache???), try again after fade-in animation
+      setTimeout(()=>{self.updateImage(1); console.log("SECOND LOAD")}, 2000);
     }
   }
   
@@ -100,6 +104,9 @@ export class CanvasComponent {
     this.img.src = this.currentFrame(index);
     if(this.context) {
       this.coverWindow(this.img)
+    }
+    else{
+      console.log("NO CONTEXT YET")
     }
   }
 

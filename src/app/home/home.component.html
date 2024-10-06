@@ -1,11 +1,14 @@
 <div>
     <app-canvas #intro [ngStyle]="getBackgroundStyle()" class="background"></app-canvas>
-    <div class="header text">
+    <div class="header">
         <h1 [ngStyle]="getHeaderStyle()">hi,&nbsp;i'm&nbsp;nick</h1>
     </div>
-    <div class="body text">
-        <h1 [ngStyle]="getBodyStyle()">aspiring&nbsp;programmer</h1>
-        <p [ngStyle]="getBodyStyle()">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <div class="body">
+        <div class="body-1">
+            <h2 [ngStyle]="getBodyStyle()">aspiring&nbsp;programmer</h2>
+            <p [ngStyle]="getBodyStyle()">see my <a href="/projects">projects</a></p>
+        </div>
+        
     </div>
     <video #keyboard class="video-container" playsinline autoplay muted="muted" loop>
         <source src="assets/keyboard.mp4" type="video/mp4">
