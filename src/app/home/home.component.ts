@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { CanvasComponent } from "../canvas/canvas.component";
 import { AppComponent } from '../app.component';
 import { CommonModule } from '@angular/common';
+import { last } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,17 @@ export class HomeComponent {
 
   @ViewChild('intro') intro : any
   @ViewChild('keyboard') keyboard : any
+  @ViewChildren('fadein') fadein : any
+
+  observer = new IntersectionObserver((entries)=> {
+    entries.forEach((entry=> {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('show');
+      } else {
+        entry.target.classList.remove('show')
+      }
+    }))
+  })
 
   videoPlaying = false;
   
@@ -24,9 +36,6 @@ export class HomeComponent {
   }
   backgroundStyle = {
     'opacity' : 1
-  }
-  bodyStyle = {
-    'opacity': 1
   }
 
   constructor() {
@@ -40,6 +49,54 @@ export class HomeComponent {
         this.keyboard.nativeElement.play();
       }
     })
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      let dragging: any;
+      let startY: number;
+      let scrollDown: number;
+
+      document.addEventListener('mousedown', (e:any)=> {
+        e.preventDefault();
+        dragging = true;
+        startY = e.pageY
+        scrollDown = this.html.scrollTop
+      })
+
+      document.addEventListener('mouseup', ()=> {
+        dragging = false;
+      })
+      
+      document.addEventListener('mouseleave', ()=> {
+        dragging = false;
+      })
+
+      document.addEventListener('mousemove', (e:any)=> {
+        if(dragging == true) {
+          e.preventDefault();
+
+          const y = e.pageY
+          const walk = y - startY
+
+          if(walk > 0) {
+            window.scrollBy(0,-10)
+          }
+          else{
+            window.scrollBy(0,10)
+          }
+
+          if(this.html.scrollTop < 0) {
+            this.html.scrollTop = 0
+          }
+          if(this.html.scrollTop > document.body.scrollHeight) {
+            this.html.scrollTop = document.body.scrollHeight
+          }
+        }
+      })
+      
+      
+
+    });
   }
 
   ngOnInit() {
@@ -48,9 +105,12 @@ export class HomeComponent {
     }, 1000)
   }
 
+  ngAfterViewInit() {
+    this.fadein.toArray().forEach((el:any)=>{this.observer.observe(el.nativeElement)})
+  }
+
   animation() {
     const height = window.innerHeight * 2.5 // yes im hard coding this
-    const totalPageHeight = document.body.scrollHeight;
     const scrollTop = this.html.scrollTop;
     const maxScrollTop = height - window.innerHeight;
 
@@ -78,9 +138,5 @@ export class HomeComponent {
 
   getBackgroundStyle() {
     return this.backgroundStyle
-  }
-
-  getBodyStyle() {
-    return this.bodyStyle
   }
 }

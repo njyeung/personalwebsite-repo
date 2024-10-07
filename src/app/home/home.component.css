@@ -32,7 +32,6 @@
     100% { opacity: 1; }
 }
 .body {
-
     color: #FFFDD0;
     margin: 1rem;
 
@@ -60,10 +59,14 @@ a:visited {
         left: auto;
         font-size: 2rem;
     }
-    .body h1 {
-        font-size: 2rem;
+}
+@media(max-width: 500px) {
+    .body {
+        left: auto;
+        font-size: 1.3rem;
     }
 }
+
 .video-container {
     width: 100%;
     height: 100vh; 
@@ -80,4 +83,21 @@ a:visited {
     /* Setting width & height to auto prevents the browser from stretching or squishing the video */
     width: auto;
     height: auto;   
+}
+
+.hidden {
+    opacity: 0;
+    filter: blur(10px);
+    transition: all 1s;
+}
+.show {
+    filter: blur(0px);
+    opacity: 1;
+}
+
+.draggable:hover {
+    cursor: grab;
+}
+.draggable:active {
+    cursor: grabbing;
 }

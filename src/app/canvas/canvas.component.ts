@@ -42,10 +42,11 @@ export class CanvasComponent {
     let self = this
     img.onload = function() {
       // graceful animation to load image before fade-in
-      setTimeout(()=>{self.updateImage(1); console.log("FIRST LOAD")}, 500);
+      setTimeout(()=>{self.updateImage(1); console.log("INITIAL LOAD")}, 500);
       
       // sometimes it doesn't load though (might be internet or cache???), try again after fade-in animation
-      setTimeout(()=>{self.updateImage(1); console.log("SECOND LOAD")}, 2000);
+      setTimeout(()=>{self.updateImage(1); console.log("SECOND LOAD")}, 1000);
+      setTimeout(()=>{self.updateImage(1); console.log("THIRD LOAD")}, 2000);
     }
   }
   

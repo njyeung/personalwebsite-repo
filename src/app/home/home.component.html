@@ -1,12 +1,12 @@
-<div>
+<div class="draggable">
     <app-canvas #intro [ngStyle]="getBackgroundStyle()" class="background"></app-canvas>
     <div class="header">
         <h1 [ngStyle]="getHeaderStyle()">hi,&nbsp;i'm&nbsp;nick</h1>
     </div>
     <div class="body">
         <div class="body-1">
-            <h2 [ngStyle]="getBodyStyle()">aspiring&nbsp;programmer</h2>
-            <p [ngStyle]="getBodyStyle()">see my <a href="/projects">projects</a></p>
+            <h2 #fadein class="hidden">aspiring&nbsp;programmer</h2>
+            <p #fadein class="hidden">see my <a href="/projects">projects</a></p>
         </div>
         
     </div>
