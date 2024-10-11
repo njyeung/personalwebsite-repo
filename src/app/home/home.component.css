@@ -40,12 +40,18 @@
     font-style: normal;
     font-size: 3rem;
 
-    text-shadow: 0 0 20px rgb(48, 48, 48);
+    text-shadow: 0 0 20px rgb(26, 26, 26);
 }
 .body-1 {
     z-index: 5;
     position: absolute;
-    top: 330%;
+    top: 310%;
+    left: 10%;
+}
+.body-2 {
+    z-index: 6;
+    position: absolute;
+    top: 370%;
     left: 10%;
 }
 a:link {
@@ -82,13 +88,13 @@ a:visited {
   
     /* Setting width & height to auto prevents the browser from stretching or squishing the video */
     width: auto;
-    height: auto;   
+    height: auto; 
 }
 
 .hidden {
     opacity: 0;
     filter: blur(10px);
-    transition: all 1s;
+    transition: all 1.2s;
 }
 .show {
     filter: blur(0px);

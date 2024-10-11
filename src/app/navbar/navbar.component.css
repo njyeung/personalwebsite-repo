@@ -21,6 +21,16 @@
     font-weight: 400;
     font-style: normal;
 }
+@media(max-width: 1080px) {
+    .nav-item {
+        font-size: 1rem;
+    }
+}
+@media(max-width: 500px) {
+    .nav-item {
+        font-size: 0.7rem;
+    }
+}
 .link {
     text-decoration: underline;
 }

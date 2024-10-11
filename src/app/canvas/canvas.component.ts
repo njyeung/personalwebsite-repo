@@ -84,7 +84,6 @@ export class CanvasComponent {
 
   play() {
     const height = window.innerHeight * 2.5 // yes im hard coding this
-    const totalPageHeight = document.body.scrollHeight;
     const scrollTop = this.html.scrollTop;
     const maxScrollTop = height - window.innerHeight;
     
@@ -105,9 +104,6 @@ export class CanvasComponent {
     this.img.src = this.currentFrame(index);
     if(this.context) {
       this.coverWindow(this.img)
-    }
-    else{
-      console.log("NO CONTEXT YET")
     }
   }
 
