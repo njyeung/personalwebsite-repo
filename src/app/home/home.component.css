@@ -79,7 +79,6 @@ a:visited {
     overflow: hidden;
     object-fit: cover;
     z-index: 5;
-
 }
 .video-container video {
     /* Make video to at least 100% wide and tall */
@@ -101,9 +100,23 @@ a:visited {
     opacity: 1;
 }
 
+
+/* custom cursor */
 .draggable:hover {
-    cursor: grab;
+    cursor: url("https://cdn.custom-cursor.com/128/assets/arrows/32/Translucent_Pixel_Cursor.png"), auto;
 }
 .draggable:active {
-    cursor: grabbing;
+    cursor: url("https://cdn.custom-cursor.com/128/assets/pointers/32/Translucent_Pixel_Cursor.png"), auto;
+}
+
+a:hover {
+    cursor: url("https://cdn.custom-cursor.com/128/assets/pointers/32/Translucent_Pixel_Cursor.png"), auto;
+}
+
+/* prevent flashing back to default cursor */
+.draggable {
+    cursor:none;
+}
+a {
+    cursor: none;
 }

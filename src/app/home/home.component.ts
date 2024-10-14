@@ -17,6 +17,8 @@ export class HomeComponent {
   @ViewChild('keyboard') keyboard : any
   @ViewChildren('fadein') fadein : any
 
+  keyboardSrc = 'assets/keyboard-tiny.mp4'
+
   observer = new IntersectionObserver((entries)=> {
     entries.forEach((entry=> {
       if(entry.isIntersecting) {
@@ -39,6 +41,21 @@ export class HomeComponent {
   }
 
   constructor() {
+
+    if(window.innerHeight>window.innerWidth) {
+      // mobile
+      this.keyboardSrc = 'assets/keyboard-tiny.mp4'
+    }
+    if(window.innerHeight<=window.innerWidth) {
+      // desktop
+      if(window.innerWidth > 1920 + 20) {
+        this.keyboardSrc = 'assets/keyboard-small.mp4'
+      }
+      else {
+        this.keyboardSrc = 'assets/keyboard-tiny.mp4'
+      }
+    }
+
     document.addEventListener('scroll', () => {
       this.animation();
 
