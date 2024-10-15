@@ -26,25 +26,8 @@
 }
 
 .card {
-    height: 700px;
-    width: 900px;
-    background: #FFFDD0;
-    padding: 0.5rem;
-    transition: 1s ease-in-out;
+    position: absolute;
+    top: 20%;
+    left: 20%;
 }
-.card h1 {
-    font-family: "nicholas", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 2rem;
-}
-.card p {
-    font-family: "nicholas", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 1rem;
-}
-.card iframe {
-    width: 100%;
-    height: 80%
-}
+

@@ -1,0 +1,59 @@
+.card {
+    background-image: url('../../../assets/yellow-texture.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1rem;
+    border-radius: 15px;
+    border: 2px rgb(186, 186, 186) solid;
+    transition: 1s ease-in-out;
+    display: block
+}
+.card h1 {
+    font-family:"nicholas", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 2.5rem;
+
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 1rem;
+}
+.card p {
+    font-family: "Gill Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+.card iframe {
+    width: 100%;
+    box-sizing: border-box;
+    height: 300px;
+    border: silver 5px solid;
+    border-radius: 5px 5px 0px 0px;
+    box-shadow: 2px 0px 2px gray;
+}
+.bottom-frame {
+    margin-top: -4px;
+    margin-right: -7px;
+    margin-left: -7px;
+    border-radius: 10px;
+    background: rgb(220, 220, 220);
+    font-family: "Gill Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 0.7rem;
+    text-align: center;
+    height: 1rem;
+    border: 2px solid silver;
+}
+.card-container {
+    display: flex;
+    width: 500px;
+    height: 700px;
+    background: rgb(192,192,192);
+    background: linear-gradient(135deg, rgba(192,192,192,1) 10%, rgba(235,235,235,1) 30%, rgba(192,192,192,1) 50%, rgba(218,218,218,1) 78%, rgba(192,192,192,1) 95%);
+    z-index: 2;
+    padding: 25px;
+    border-radius: 30px;
+}
