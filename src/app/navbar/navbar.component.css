@@ -4,7 +4,7 @@
     top: 0;
     background: rgb(0,0,0);
     background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.804359243697479) 50%, rgba(0,0,0,0.6026785714285714) 69%, rgba(0,0,0,0) 100%);
-    z-index: 100;
+    z-index: 9999;
     padding-bottom: 2em;
 }
 .container {
