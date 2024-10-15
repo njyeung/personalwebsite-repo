@@ -1,7 +1,9 @@
 .container {
+    display: flex;
     width: 100vw;
     height: 100vh;
     background: rgb(4, 116, 21);
+    perspective: 2000px;
 }
 .cover {
     position: absolute;
@@ -26,8 +28,10 @@
 }
 
 .card {
-    position: absolute;
-    top: 20%;
-    left: 20%;
+    position: fixed;
+    top: 25vh;
+    left: 40vw;
+    box-shadow: 2px 10px 50px rgb(47, 47, 47);
+    transform: scale(70%) rotateX(30deg) rotateY(17deg) rotateZ(-30deg)
 }
 
