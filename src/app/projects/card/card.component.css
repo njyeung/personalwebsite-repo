@@ -2,28 +2,60 @@
     background-image: url('../../../assets/yellow-texture.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 1rem;
+    padding: 0.3rem 1rem;
     border-radius: 10px;
     border: 2px rgb(186, 186, 186) solid;
     transition: 1s ease-in-out;
     display: block
 }
 .card h1 {
-    font-family:"nicholas", sans-serif;
-    font-weight: 900;
+    font-family: "haboro-soft", sans-serif;
+    font-weight: 800;
     font-style: normal;
-    font-size: 2.5rem;
 
-    margin-left: 0px;
-    margin-right: 0px;
+    font-size: 2rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    
     margin-top: 0px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.3rem;
 }
 .card p {
-    font-family: "Gill Sans", sans-serif;
+    font-family: "haboro-soft", sans-serif;
     font-weight: 500;
     font-style: normal;
+
+    font-size: 1rem;
+    text-align: justify;
+
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.card h2 {
+    text-align: center;
+
+    font-family: "haboro-soft", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+
     font-size: 1.5rem;
+
+    margin-bottom: 0;
+}
+.card b {
+    font-family: "haboro-soft", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+.card a {
+    text-decoration: none;
+    color: black;
+}
+.card a:visited {
+    color: black;
+}
+.card a:hover {
+    color: gray;
 }
 .card iframe {
     width: 100%;
@@ -37,6 +69,8 @@
     margin-top: -4px;
     margin-right: -7px;
     margin-left: -7px;
+    margin-bottom: 2rem;
+
     border-radius: 10px;
     background: rgb(220, 220, 220);
     font-family: "Gill Sans", sans-serif;

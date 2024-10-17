@@ -9,5 +9,5 @@ import { CardComponent } from './card/card.component';
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent {
-
+  deskSrc : string = 'assets/desk/desk-light.jpg'
 }
