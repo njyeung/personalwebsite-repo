@@ -10,15 +10,14 @@
 }
 .plane {
     display: block;
-    position: relative;
-
+    position: fixed;
     
     z-index: 5;
 
     width: 2560px;
     height: 1440px;
     opacity: 100%;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.217);
     transform: rotateX(42deg) rotateY(0deg) rotateZ(-32deg)
 
 }
@@ -46,17 +45,8 @@
 
 .card {
     position: absolute;
-    top: 20%;
-    left: 10%;
-    transform: scale(50%);
-    
-}
-
-.card2 {
-    position: absolute;
-    bottom: -30rem;
-    left: 60%;
-    transform: scale(50%);
+    transform: scale(45%) translate(-60%, -60%);
+    cursor: grab;
 }
 
 .desk {
