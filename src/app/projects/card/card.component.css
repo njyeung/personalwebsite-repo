@@ -90,4 +90,5 @@
     z-index: 2;
     padding: 20px;
     border-radius: 30px;
+    box-shadow: -15px 5px 30px rgb(95, 66, 30);
 }
