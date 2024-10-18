@@ -41,7 +41,7 @@ export class HomeComponent {
   }
 
   constructor() {
-
+    
     if(window.innerHeight>window.innerWidth) {
       // mobile
       this.keyboardSrc = 'assets/keyboard-tiny.mp4'
@@ -110,9 +110,9 @@ export class HomeComponent {
           }
         }
       })
-      
-      
 
+
+      
     });
   }
 

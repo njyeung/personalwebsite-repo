@@ -6,7 +6,8 @@
     border-radius: 10px;
     border: 2px rgb(186, 186, 186) solid;
     transition: 1s ease-in-out;
-    display: block
+    display: flex;
+    flex-direction: column;
 }
 .card h1 {
     font-family: "haboro-soft", sans-serif;
@@ -17,7 +18,7 @@
     padding-left: 0.3rem;
     padding-right: 0.3rem;
     
-    margin-top: 0px;
+    margin-top: 0.2rem;
     margin-bottom: 0.3rem;
 }
 .card p {
@@ -90,4 +91,14 @@
     z-index: 2;
     padding: 20px;
     border-radius: 30px;
+}
+.footer {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    bottom: 10%;
+    border-top: gray 2px solid;
+    opacity: 1;
+    padding-top: 0.2rem;
 }
