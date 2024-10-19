@@ -13,13 +13,10 @@
     position: fixed;
     
     z-index: 5;
-
     width: 2560px;
     height: 1440px;
     opacity: 100%;
-    background-color: rgba(255, 255, 255, 0.217);
-    transform: rotateX(42deg) rotateY(0deg) rotateZ(-32deg)
-
+    transform: rotateX(42deg) rotateY(0deg) rotateZ(-32deg);
 }
 .cover {
     position: absolute;
@@ -45,16 +42,65 @@
 
 .card {
     position: absolute;
-    transform: scale(45%) translate(-60%, -60%);
+    transform: scale(45%) translate(-55%, -55%);
     cursor: grab;
+    opacity: 0;
+    animation: cardsFadeIn 200ms ease forwards;
+    transition: transform 0.5s
 }
-
+@media(max-width: 800px) {
+    .card {
+        transform: scale(30%) translate(-110%, -100%);
+    }
+}
+@media(max-height: 800px) {
+    .card {
+        transform: scale(30%) translate(-110%, -100%);
+    }
+}
+.card:nth-child(1) {
+    animation-delay: 1000ms;
+}
+.card:nth-child(2) {
+    animation-delay: 1100ms;
+}
+.card:nth-child(3) {
+    animation-delay: 1200ms;
+}
+.card:nth-child(4) {
+    animation-delay: 1300ms;
+}
+.card:nth-child(5) {
+    animation-delay: 1400ms;
+}
+.card:nth-child(6) {
+    animation-delay: 1500ms;
+}
+.card:nth-child(7) {
+    animation-delay: 1600ms;
+}
+.card:nth-child(8) {
+    animation-delay: 1700ms;
+}
+@keyframes cardsFadeIn {
+    to {
+        opacity: 1;
+    }
+}
 .desk {
     position: fixed;
-    top:0;
-    left:0;
     width: 100vw;
     height: 100vh;
     z-index: -1;
     object-fit: cover;
+}
+
+.desk-layer {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 900;
+    object-fit: cover;
+    pointer-events: none;
+    filter: blur(1px);
 }

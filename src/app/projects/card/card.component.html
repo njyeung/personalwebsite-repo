@@ -2,7 +2,10 @@
 <div #card class="card-container">
     <div class="card">
         <h1>Sakura Sushi & Grill</h1>
-        <iframe src="http://localhost:4200" frameborder="0"></iframe>
+        <div class="frame">
+            <div [hidden]="!hideiframe" #cover class="cover"></div>
+            <iframe #frame src="http://eatsakura.com" frameborder="0"></iframe>
+        </div>
         <div class="bottom-frame">NO. 001 Angular | .NET | Github Pages | Bootstrap | Twilio | SQLite | Azure</div>
         <h2>Online Menu</h2>
         <p>Responsive online menu designed to facilitate placing pickup orders and displaying relevant information for the family restaurant. <b>Angular</b> frontend hosted on <b>GitHub Pages</b> and <b>.NET</b> backend hosted on <b>Azure</b>.</p>
@@ -10,7 +13,7 @@
         <p>Github repo for frontend: <a href="https://github.com/njyeung/Sakura-Repo">https://github.com/njyeung/Sakura-Repo</a>, live website: <a href="https://eatsakura.com">https://eatsakura.com</a>, backend: undisclosed</p>
         <div class="footer">
             <p>May 2023</p>
-            <p>May 2023</p>
+            <p>Nicholas Yeung</p>
         </div>
     </div>
 </div>
