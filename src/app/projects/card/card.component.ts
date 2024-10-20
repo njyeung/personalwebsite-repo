@@ -1,14 +1,42 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-
+import { Component, ElementRef, Input, NgModule, ViewChild } from '@angular/core';
+import { CardData } from '../CardData';
+import { SafePipe } from '../../safe.pipe';
+import { UpperCasePipe } from '@angular/common';
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [],
+  imports: [SafePipe, UpperCasePipe],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
 export class CardComponent {
+  
   @ViewChild('frame') frame? : ElementRef
   @Input() hideiframe: boolean = false;
+  @Input() data: CardData | null = null
 
+  id?: string
+  name?: string
+  url?: string
+  date?: string
+  h1?: string
+  p1?: string
+  h2?: string
+  p2?: string
+  frameworks?: string
+
+  ngOnInit() {
+    this.id = String(this.data?.id).padStart(3, '0')
+    this.name = this.data?.name
+    this.url = this.data?.url
+    this.date = this.data?.date
+    this.h1 = this.data?.h1
+    this.p1 = this.data?.p1
+    this.h2 = this.data?.h2
+    this.p2 = this.data?.p2
+    console.log(this.url)
+    this.frameworks = this.data?.frameworks?.join(" | ")
+  }
+
+  //"Github repo for frontend: <a href='https://github.com/njyeung/Sakura-Repo'>https://github.com/njyeung/Sakura-Repo</a>, live website: <a href='https://eatsakura.com'>https://eatsakura.com</a>, backend: undisclosed",
 }

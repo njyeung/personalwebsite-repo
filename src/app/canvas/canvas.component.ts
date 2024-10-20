@@ -22,19 +22,23 @@ export class CanvasComponent {
     this.context = this.canvas?.nativeElement.getContext('2d')
     this.canvas = this.canvas?.nativeElement
     
-    if(this.folder == 'jpgs-mobile') {
-      this.canvas.width = 1080
-      this.canvas.height = 1920
-    }
-    else if(this.folder == 'jpgs-tiny') {
-      this.canvas.width = 1920
-      this.canvas.height = 1080
-    }
-    else {
-      this.canvas.width = 2560
-      this.canvas.height = 1440
-    }
+    // if(this.folder == 'jpgs-mobile') {
+    //   this.canvas.width = 1080
+    //   this.canvas.height = 1920
+    // }
+    // else if(this.folder == 'jpgs-tiny') {
+    //   this.canvas.width = 1920
+    //   this.canvas.height = 1080
+    // }
+    // else {
+    //   this.canvas.width = 2560
+    //   this.canvas.height = 1440
+    // }
     
+    // yeah this works better for some reason
+    this.canvas.height = 8000
+    this.canvas.width = 8000
+
     const img = new Image();
     img.src = this.currentFrame(1);
 

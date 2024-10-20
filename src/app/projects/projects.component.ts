@@ -1,5 +1,7 @@
-import { asNativeElements, Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CardComponent } from './card/card.component';
+import { CardData } from './CardData';
+import json from '../../assets/data.json'
 
 @Component({
   selector: 'app-projects',
@@ -11,11 +13,31 @@ import { CardComponent } from './card/card.component';
 export class ProjectsComponent {
   deskSrc : string = 'assets/desk/desk-light.jpg'
   deskLayerSrc : string = 'assets/desk/desk-light-layer.png'
+  
   @ViewChildren(CardComponent, {read: ElementRef}) cards!: QueryList<ElementRef>;
   @ViewChild('plane') plane? : ElementRef;
-
-  hideiframe:boolean = false;
+  hideiframe: boolean = false;
   
+  data: CardData[] = []
+
+  ngOnInit() {
+    var values = Object.values(json)
+    values.forEach((value:any)=> {
+      var card: CardData = {
+        id: value.id,
+        name: value.name,
+        url: value.url,
+        date: value.date,
+        h1: value.h1,
+        p1: value.p1,
+        h2: value.h2,
+        p2: value.p2,
+        frameworks: value.frameworks
+      }
+      this.data.push(card)
+    })
+  }
+
   ngAfterViewInit() {
     var initialTop = '40%';
     var initialLeft = '50%';
@@ -71,6 +93,7 @@ export class ProjectsComponent {
             console.log("CLICK")
           }
         }
+        this.hideiframe = false;
         isDragging = false;
         card.style.cursor = 'grab';
       });
@@ -79,10 +102,6 @@ export class ProjectsComponent {
   
   moveCard(card: any, mouseX: number, mouseY: number, offsetX: number, offsetY: number) {
     const { x, y } = this.getTransformedCoordinates(mouseX, mouseY);
-    
-
-    console.log(window.innerWidth/2, window.innerHeight/4)
-    console.log(x, y)
 
     // boundary calculation
     var left = x/2560<2/5

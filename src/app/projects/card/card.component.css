@@ -1,5 +1,5 @@
 .card {
-    background-image: url('../../../assets/yellow-texture.jpg');
+    background-image: url('/assets/yellow-texture.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     padding: 0.3rem 1rem;
@@ -107,12 +107,12 @@
     box-shadow: -15px 5px 30px rgb(69, 53, 36);
 }
 .footer {
-    margin-top: 2rem;
+    margin-top: auto;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    bottom: 10%;
     border-top: gray 2px solid;
     opacity: 1;
-    padding-top: 0.2rem;
+    padding-top: 0.5rem;
 }
