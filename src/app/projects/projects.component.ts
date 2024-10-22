@@ -17,11 +17,12 @@ export class ProjectsComponent {
   @ViewChildren(CardComponent, {read: ElementRef}) cards!: QueryList<ElementRef>;
   @ViewChild('plane') plane? : ElementRef;
   hideiframe: boolean = false;
-  
+
   data: CardData[] = []
 
   ngOnInit() {
     var values = Object.values(json)
+
     values.forEach((value:any)=> {
       var card: CardData = {
         id: value.id,
@@ -73,12 +74,17 @@ export class ProjectsComponent {
         for(let i=0;i<zIndexList.length;i++) {
           zIndexList[i].style.zIndex = String(i + 10)
         }
-
+        
         isDragging = true;
         prev = card.getBoundingClientRect();
         offsetX = event.clientX - card.getBoundingClientRect().left;
         offsetY = event.clientY - card.getBoundingClientRect().top;
         card.style.cursor = 'grabbing';
+
+        // must move before adding float btw
+        this.moveCard(card,event.clientX, event.clientY, offsetX, offsetY);
+        card.parentElement.classList.add('float')
+        card.firstChild.classList.add('shadow-float')
       });
 
       document.addEventListener('mousemove', (event: MouseEvent) => {
@@ -93,6 +99,9 @@ export class ProjectsComponent {
             console.log("CLICK")
           }
         }
+        
+        card.parentElement.classList.remove('float')
+        card.firstChild.classList.remove('shadow-float')
         this.hideiframe = false;
         isDragging = false;
         card.style.cursor = 'grab';

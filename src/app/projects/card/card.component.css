@@ -106,6 +106,20 @@
     border-radius: 30px;
     box-shadow: -15px 5px 30px rgb(69, 53, 36);
 }
+.shadow-float {
+    animation: float 2s ease-in-out infinite;
+}
+@keyframes float {
+    0% {
+        box-shadow: -15px 5px 30px rgb(69, 53, 36);
+    }
+    50% {
+        box-shadow: -30px 20px 80px rgb(77, 60, 43);
+    }
+    100% {
+        box-shadow: -15px 5px 30px rgb(69, 53, 36);
+    }
+}
 .footer {
     margin-top: auto;
     margin-bottom: 1rem;

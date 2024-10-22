@@ -46,8 +46,25 @@
     cursor: grab;
     opacity: 0;
     animation: cardsFadeIn 200ms ease forwards;
-    transition: transform 0.5s
+    transition: transform 0.5s;
 }
+.float {
+    animation: float 2s ease-in-out infinite;
+}
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+
+    50% {
+        transform: translateY(-20px) translateX(10px);
+    }
+
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
 @media(max-width: 800px) {
     .card {
         transform: scale(30%) translate(-110%, -100%);
@@ -83,7 +100,11 @@
     animation-delay: 1700ms;
 }
 @keyframes cardsFadeIn {
-    to {
+    0% {
+        opacity: 0;
+        left: 70%
+    }
+    100% {
         opacity: 1;
     }
 }
@@ -102,5 +123,5 @@
     z-index: 900;
     object-fit: cover;
     pointer-events: none;
-    filter: blur(1px);
+
 }

@@ -10,10 +10,11 @@ import { UpperCasePipe } from '@angular/common';
   styleUrl: './card.component.css'
 })
 export class CardComponent {
-  
+  @ViewChild('card') card?: ElementRef
   @ViewChild('frame') frame? : ElementRef
   @Input() hideiframe: boolean = false;
   @Input() data: CardData | null = null
+  @Input() floatShadow: boolean = false
 
   id?: string
   name?: string
@@ -24,6 +25,15 @@ export class CardComponent {
   h2?: string
   p2?: string
   frameworks?: string
+
+  ngOnChanges() {
+    if(this.floatShadow==true) {
+      this.card?.nativeElement.classList.add('float')
+    }
+    else {
+      this.card?.nativeElement.classList.remove('float')
+    }
+  }
 
   ngOnInit() {
     this.id = String(this.data?.id).padStart(3, '0')
@@ -37,6 +47,4 @@ export class CardComponent {
     console.log(this.url)
     this.frameworks = this.data?.frameworks?.join(" | ")
   }
-
-  //"Github repo for frontend: <a href='https://github.com/njyeung/Sakura-Repo'>https://github.com/njyeung/Sakura-Repo</a>, live website: <a href='https://eatsakura.com'>https://eatsakura.com</a>, backend: undisclosed",
 }
