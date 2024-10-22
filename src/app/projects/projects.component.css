@@ -45,32 +45,26 @@
     transform: scale(45%) translate(-55%, -55%);
     cursor: grab;
     opacity: 0;
-    animation: cardsFadeIn 200ms ease forwards;
     transition: transform 0.5s;
-}
-.float {
-    animation: float 2s ease-in-out infinite;
-}
-@keyframes float {
-    0% {
-        transform: translateY(0) translateX(0);
-    }
-
-    50% {
-        transform: translateY(-20px) translateX(10px);
-    }
-
-    100% {
-        transform: translateY(0) translateX(0);
-    }
+    animation: cardsFadeIn 200ms ease forwards;
 }
 
+@media( max-width: 1700px) {
+    .card {
+        transform: scale(35%) translate(-100%, -80%);
+    }
+}
+@media(max-height: 800px) {
+    .card {
+        transform: scale(35%) translate(-100%, -80%);
+    }
+}
 @media(max-width: 800px) {
     .card {
         transform: scale(30%) translate(-110%, -100%);
     }
 }
-@media(max-height: 800px) {
+@media(max-height: 500px) {
     .card {
         transform: scale(30%) translate(-110%, -100%);
     }
@@ -102,7 +96,7 @@
 @keyframes cardsFadeIn {
     0% {
         opacity: 0;
-        left: 70%
+        left: 70%;
     }
     100% {
         opacity: 1;

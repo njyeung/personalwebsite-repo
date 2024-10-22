@@ -83,7 +83,6 @@ export class ProjectsComponent {
 
         // must move before adding float btw
         this.moveCard(card,event.clientX, event.clientY, offsetX, offsetY);
-        card.parentElement.classList.add('float')
         card.firstChild.classList.add('shadow-float')
       });
 
@@ -95,12 +94,12 @@ export class ProjectsComponent {
 
       document.addEventListener('mouseup', () => {
         if(isDragging == true) {
-          if(card.getBoundingClientRect().x == prev.x && card.getBoundingClientRect().y == prev.y) {
-            console.log("CLICK")
-          }
+
+          // FIX THIS
+          // if(card.getBoundingClientRect().x == prev.x && card.getBoundingClientRect().y == prev.y) {
+          //   console.log("CLICK")
+          // }
         }
-        
-        card.parentElement.classList.remove('float')
         card.firstChild.classList.remove('shadow-float')
         this.hideiframe = false;
         isDragging = false;

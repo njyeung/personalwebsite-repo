@@ -111,12 +111,15 @@
 }
 @keyframes float {
     0% {
+        transform: translateY(0) translateX(0);
         box-shadow: -15px 5px 30px rgb(69, 53, 36);
     }
     50% {
+        transform: translateY(-20px) translateX(10px);
         box-shadow: -30px 20px 80px rgb(77, 60, 43);
     }
     100% {
+        transform: translateY(0) translateX(0);
         box-shadow: -15px 5px 30px rgb(69, 53, 36);
     }
 }
