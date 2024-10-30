@@ -2,11 +2,12 @@ import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angu
 import { CardComponent } from './card/card.component';
 import { CardData } from './CardData';
 import json from '../../assets/data.json'
+import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CardComponent],
+  imports: [CardComponent, NgFor, CommonModule],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
@@ -15,6 +16,7 @@ export class ProjectsComponent {
   deskLayerSrc : string = 'assets/desk/desk-light-layer.png'
   
   @ViewChildren(CardComponent, {read: ElementRef}) cards!: QueryList<ElementRef>;
+  @ViewChildren(CardComponent) cardComponents!: QueryList<CardComponent>;
   @ViewChild('plane') plane? : ElementRef;
   hideiframe: boolean = false;
 
@@ -79,26 +81,29 @@ export class ProjectsComponent {
         prev = card.getBoundingClientRect();
         offsetX = event.clientX - card.getBoundingClientRect().left;
         offsetY = event.clientY - card.getBoundingClientRect().top;
-        card.style.cursor = 'grabbing';
-
-        // must move before adding float btw
-        this.moveCard(card,event.clientX, event.clientY, offsetX, offsetY);
-        card.firstChild.classList.add('shadow-float')
+        card.style.cursor = 'grabbing'; 
       });
 
       document.addEventListener('mousemove', (event: MouseEvent) => {
       if (isDragging == true) {
         this.moveCard(card,event.clientX, event.clientY, offsetX, offsetY);
+        card.firstChild.classList.add('shadow-float')
       }
     });
 
       document.addEventListener('mouseup', () => {
         if(isDragging == true) {
+          if(card.getBoundingClientRect().x == prev.x && card.getBoundingClientRect().y == prev.y) {
+            // This gets the title of the clicked card... sorry
+            var title = card.firstChild.firstChild.firstChild.innerText
 
-          // FIX THIS
-          // if(card.getBoundingClientRect().x == prev.x && card.getBoundingClientRect().y == prev.y) {
-          //   console.log("CLICK")
-          // }
+            this.cardComponents.forEach((component)=> {
+              if(component.name == title) {
+                // lets hope we don't have 2 cards named the same thing
+                console.log(component)
+              }
+            })
+          }
         }
         card.firstChild.classList.remove('shadow-float')
         this.hideiframe = false;
