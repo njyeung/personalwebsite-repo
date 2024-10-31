@@ -8,6 +8,32 @@
     justify-content: center;
     align-items: center;
 }
+.showcard {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 900;
+}
+.showcard-background {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 60%;
+    z-index: 899;
+    animation: 0.5s ease-out showcard-bg;
+}
+@keyframes showcard-bg {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 60%;
+    }
+}
 .plane {
     display: block;
     position: fixed;
@@ -114,7 +140,7 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
-    z-index: 900;
+    z-index: 500;
     object-fit: cover;
     pointer-events: none;
 

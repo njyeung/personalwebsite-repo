@@ -1,10 +1,14 @@
 <div class="cover"></div>
 <img class="desk-layer" src={{deskLayerSrc}}>
-
+<div *ngIf="inspectcard!=null">
+    <app-card class="showcard" [data]="inspectcard.data" [hideiframe]="false" [inspectcard]="true"></app-card>
+    <div (click)="release()" class="showcard-background"></div>
+</div>
 <div class="container">
     <div #plane class="plane">
-        <app-card *ngFor="let d of data" [data]="d" [hideiframe]="hideiframe" class="card"></app-card>
+        <app-card *ngFor="let d of data" [data]="d" [hideiframe]="hideiframe" [inspectcard]="false" class="card"></app-card>
     </div>
 </div>
 
 <img class="desk" src={{deskSrc}} alt="image of desk">
+<!-- *ngIf="inspectcard?.data!=d" -->

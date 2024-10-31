@@ -15,12 +15,19 @@ export class ProjectsComponent {
   deskSrc : string = 'assets/desk/desk-light.jpg'
   deskLayerSrc : string = 'assets/desk/desk-light-layer.png'
   
+  inspectcard : CardComponent | null = null
+
   @ViewChildren(CardComponent, {read: ElementRef}) cards!: QueryList<ElementRef>;
   @ViewChildren(CardComponent) cardComponents!: QueryList<CardComponent>;
   @ViewChild('plane') plane? : ElementRef;
   hideiframe: boolean = false;
 
   data: CardData[] = []
+
+  release() {
+    console.log("RELEASE")
+    this.inspectcard=null;
+  }
 
   ngOnInit() {
     var values = Object.values(json)
@@ -35,6 +42,7 @@ export class ProjectsComponent {
         p1: value.p1,
         h2: value.h2,
         p2: value.p2,
+        bg: value.bg,
         frameworks: value.frameworks
       }
       this.data.push(card)
@@ -99,8 +107,7 @@ export class ProjectsComponent {
 
             this.cardComponents.forEach((component)=> {
               if(component.name == title) {
-                // lets hope we don't have 2 cards named the same thing
-                console.log(component)
+                this.inspectcard = component;
               }
             })
           }

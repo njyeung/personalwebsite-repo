@@ -1,7 +1,4 @@
 .card {
-    background-image: url('/assets/yellow-texture.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
     padding: 0.3rem 1rem;
     border-radius: 10px;
     border: 2px rgb(186, 186, 186) solid;
@@ -104,6 +101,8 @@
     z-index: 2;
     padding: 20px;
     border-radius: 30px;
+}
+.static-shadow {
     box-shadow: -15px 5px 30px rgb(69, 53, 36);
 }
 .shadow-float {
