@@ -25,8 +25,16 @@ export class ProjectsComponent {
   data: CardData[] = []
 
   release() {
-    console.log("RELEASE")
+
+    
+    this.cards.forEach((card)=> {
+      if(card.nativeElement.firstChild.firstChild.firstChild.innerText == this.inspectcard?.name) {
+        card.nativeElement.firstChild.classList.remove('lead-in')
+      }
+    })
+
     this.inspectcard=null;
+    
   }
 
   ngOnInit() {
@@ -107,7 +115,9 @@ export class ProjectsComponent {
 
             this.cardComponents.forEach((component)=> {
               if(component.name == title) {
+                
                 this.inspectcard = component;
+                card.firstChild.classList.add('lead-in')
               }
             })
           }

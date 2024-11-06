@@ -61,5 +61,8 @@ export class CardComponent {
     if(this.inspectcard == false) {
       this.card?.nativeElement.classList.add('static-shadow')
     }
+    else {
+      this.card?.nativeElement.classList.add('animation')
+    }
   }
 }

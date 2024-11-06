@@ -75,9 +75,12 @@
     animation: cardsFadeIn 200ms ease forwards;
 }
 
-@media( max-width: 1700px) {
+@media(max-width: 1700px) {
     .card {
         transform: scale(35%) translate(-100%, -80%);
+    }
+    .showcard {
+        transform: translate(-50%, -50%) scale(80%);
     }
 }
 @media(max-height: 800px) {
