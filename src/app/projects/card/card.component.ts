@@ -5,7 +5,7 @@ import { CommonModule, UpperCasePipe } from '@angular/common';
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [SafePipe, UpperCasePipe, CommonModule],
+  imports: [SafePipe, CommonModule],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })

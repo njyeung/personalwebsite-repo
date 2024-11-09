@@ -33,7 +33,7 @@
 }
 
 .lead-in {
-    animation: lead-in 0.2s ease-in forwards;
+    animation: lead-in 0.3s ease-in forwards;
 }
 @keyframes lead-in {
     0%{
