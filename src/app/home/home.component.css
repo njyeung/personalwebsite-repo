@@ -38,9 +38,23 @@
     font-family: "nicholas", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 3rem;
+    font-size: 3.2rem;
 
-    text-shadow: 0 0 2rem rgb(22, 22, 22);
+    text-shadow: 0 0 2.3rem rgb(18, 18, 18);
+}
+.footer {
+    z-index: 7;
+    position: relative;
+    height: 10rem;
+    background-color:rgb(0, 0, 0);
+    font-size: 2rem;
+    padding: 2rem;
+    transition: 1.2s ease-in-out;
+    text-align:end;
+    align-content:center;
+}
+.footer a:hover {
+    cursor: pointer;
 }
 .body-1 {
     z-index: 5;
@@ -64,18 +78,40 @@ a:link {
     color: #fcfbe8;
 }
 a:visited {
-    color: #a3a28a;
+    color: #c3c1a8;
 }
 @media(max-width: 1080px) {
     .body {
         left: auto;
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+    .body-1 {
+        left: 5%;
+    }
+    .body-2 {
+        right: 5%;
+    }
+    .footer {
+        font-size: 1.5rem;
+        height: 5rem;
     }
 }
 @media(max-width: 500px) {
     .body {
         left: auto;
         font-size: 1.3rem;
+    }
+    .body-1 {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    .body-2 {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    .footer {
+        font-size: 1rem;
+        height: 3rem;
     }
 }
 

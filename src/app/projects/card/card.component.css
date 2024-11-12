@@ -105,6 +105,7 @@
     border: silver 5px solid;
     border-radius: 5px 5px 0px 0px;
     box-shadow: 2px 0px 2px gray;
+    background-color: black;
 }
 .cover {
     position: absolute;
