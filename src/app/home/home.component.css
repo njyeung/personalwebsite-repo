@@ -40,20 +40,33 @@
     font-style: normal;
     font-size: 3.2rem;
 
-    text-shadow: 0 0 2.3rem rgb(18, 18, 18);
+    text-shadow: 0 0 1rem rgb(0, 0, 0);
 }
 .footer {
     z-index: 7;
     position: relative;
     height: 10rem;
     background-color:rgb(0, 0, 0);
-    font-size: 2rem;
+    color: white;
+    font-size: 1.5rem;
     padding: 2rem;
     transition: 1.2s ease-in-out;
-    text-align:end;
-    align-content:center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
-.footer a:hover {
+.footer p {
+    margin-right: 17rem;
+    margin-left: 2rem;
+}
+.back-to-top {
+    margin-right: 2rem;
+}
+.footer:hover {
+    cursor: default
+}
+.back-to-top a:hover {
     cursor: pointer;
 }
 .body-1 {
@@ -92,8 +105,15 @@ a:visited {
         right: 5%;
     }
     .footer {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         height: 5rem;
+    }
+    .footer p {
+        margin-left: 0.5rem;
+        margin-right: 1rem;
+    }
+    .back-to-top {
+        margin-right: 1rem;
     }
 }
 @media(max-width: 500px) {
