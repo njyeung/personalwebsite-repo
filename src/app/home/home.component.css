@@ -60,6 +60,9 @@
     margin-right: 17rem;
     margin-left: 2rem;
 }
+.footer a:hover {
+    cursor: pointer;
+}
 .back-to-top {
     margin-right: 2rem;
 }
