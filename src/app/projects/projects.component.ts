@@ -1,7 +1,6 @@
 import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CardComponent } from './card/card.component';
 import { CardData } from './CardData';
-import json from '../../assets/data.json'
 import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
@@ -194,12 +193,12 @@ export class ProjectsComponent {
     "Card 3" : {
         "id" : 3,
         "name" : "Personal Website",
-        "url" : "http://localhost:4200",
+        "url" : "https://njyeung.github.io/personalwebsite/",
         "date" : "October 2024",
         "h1" : "About Me",
         "p1" : "Showcases my <b>projects</b>, <b>resume</b>, and <b>github</b> all condensed in an aesthetic and fun layout. (p.s. you are here!)",
         "h2" : "Links",
-        "p2" : "Github repo: <a href='https://github.com/njyeung/personalwebsite-repo'>https://github.com/njyeung/personalwebsite-repo</a>, live website: <a href='https://eatsakura.com'>https://eatsakura.com</a>",
+        "p2" : "Github repo: <a href='https://github.com/njyeung/personalwebsite-repo'>https://github.com/njyeung/personalwebsite-repo</a>, live website: <a href='https://njyeung.github.io/personalwebsite/'>https://njyeung.github.io/personalwebsite/</a>",
         "bg": "assets/card-textures/yellow-texture.png",
         "frameworks" : ["Angular", "Github Pages", "Photoshop", "Premiere Pro"]
     },
