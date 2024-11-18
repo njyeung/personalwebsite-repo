@@ -2,8 +2,6 @@ import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { CanvasComponent } from "../canvas/canvas.component";
 import { AppComponent } from '../app.component';
 import { CommonModule } from '@angular/common';
-import { last } from 'rxjs';
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -128,6 +126,10 @@ export class HomeComponent {
     }, 1000)
   }
 
+  backtotop() {
+    window.scrollTo(0,0)
+  }
+  
   ngAfterViewInit() {
     this.fadein.toArray().forEach((el:any)=>{this.observer.observe(el.nativeElement)})
   }
