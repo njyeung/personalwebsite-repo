@@ -15,9 +15,11 @@ export class HomeComponent {
 
   @ViewChild('intro') intro : any
   @ViewChild('keyboard') keyboard : any
+  @ViewChild('madison') madison: any
   @ViewChildren('fadein') fadein : any
 
   keyboardSrc = 'assets/keyboard-tiny.mp4'
+  madisonSrc = 'assets/madison-tiny.mp4'
 
   observer = new IntersectionObserver((entries)=> {
     entries.forEach((entry=> {
@@ -41,18 +43,20 @@ export class HomeComponent {
   }
 
   constructor() {
-    
+    // mobile
     if(window.innerHeight>window.innerWidth) {
-      // mobile
       this.keyboardSrc = 'assets/keyboard-tiny.mp4'
+      this.madisonSrc = 'assets/madison-tiny.mp4'
     }
-    if(window.innerHeight<=window.innerWidth) {
-      // desktop
+    // desktop
+    else if(window.innerHeight<=window.innerWidth) {
       if(window.innerWidth > 1920 + 20) {
         this.keyboardSrc = 'assets/keyboard-small.mp4'
+        this.madisonSrc = 'assets/madison-small.mp4'
       }
       else {
         this.keyboardSrc = 'assets/keyboard-tiny.mp4'
+        this.madisonSrc = 'assets/madison-tiny.mp4'
       }
     }
 
@@ -63,7 +67,9 @@ export class HomeComponent {
       if(this.videoPlaying == false) {
         this.videoPlaying = true;
         this.keyboard.nativeElement.muted = true // you need this line cuz angular is weird
+        this.madison.nativeElement.muted = true
         this.keyboard.nativeElement.play();
+        this.madison.nativeElement.play();
       }
     })
 
