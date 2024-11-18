@@ -52,11 +52,13 @@ export class CardComponent {
     this.p2 = this.data?.p2
     this.bg = this.data?.bg
     this.frameworks = this.data?.frameworks?.join(" | ")
+
     this.backgroundUrl = `url(${this.bg})`
+
+    console.log(this.backgroundUrl)
   }
 
   ngAfterViewInit() {
-    console.log(this.card?.nativeElement.firstChild.style.background)
 
     if(this.inspectcard == false) {
       this.card?.nativeElement.classList.add('static-shadow')
