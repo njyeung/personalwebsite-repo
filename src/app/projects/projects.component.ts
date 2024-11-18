@@ -182,7 +182,7 @@ export class ProjectsComponent {
 
     const [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p] = matrixValues;
 
-    // I HAVE NO CLUE HOW THIS WORKS BUT IT DOES
+    // I HAVE NO CLUE HOW THIS WORKS BUT IT KINDA DOES
     const localX = (a * (mouseX - rect.left) + b * (mouseY - rect.top) + c * 0 + d) / (m * (mouseX - rect.left) + n * (mouseY - rect.top) + o * 0 + p);
     const localY = (e * (mouseX - rect.left) + f * (mouseY - rect.top) + g * 0 + h) / (m * (mouseX - rect.left) + n * (mouseY - rect.top) + o * 0 + p);
     
