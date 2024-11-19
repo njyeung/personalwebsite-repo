@@ -1,11 +1,10 @@
 import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { CanvasComponent } from "../canvas/canvas.component";
-import { AppComponent } from '../app.component';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AppComponent, CanvasComponent, CommonModule],
+  imports: [CanvasComponent, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -115,8 +114,6 @@ export class HomeComponent {
         }
       })
 
-
-      
     });
   }
 
@@ -124,10 +121,6 @@ export class HomeComponent {
     setTimeout(()=>{
       window.scrollTo(0,0)
     }, 1000)
-  }
-
-  backtotop() {
-    window.scrollTo(0,0)
   }
   
   ngAfterViewInit() {
