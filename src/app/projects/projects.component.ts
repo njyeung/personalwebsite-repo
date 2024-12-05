@@ -190,6 +190,18 @@ export class ProjectsComponent {
   }
 
   hardcoded = {
+    "Card 4": {
+        "id" :4,
+        "name" : "CS2 Nade Guide Helper",
+        "url" : "assets/nadeguide.mp4",
+        "date" : "November 2024",
+        "h1" : "A Tool For Creators",
+        "p1" : "Frontend GUI for easy creation of annotation maps in Counter Strike 2. Includes an editor that parses Valve's proprietary KV3 format into JSON, allows users to edit the annotations using a GUI, and converts back to a KV3 file to be loaded into the game.",
+        "h2" : "Links",
+        "p2" : "Github repo: <a href='https://github.com/njyeung/cs2-nade-guide'>https://github.com/njyeung/cs2-nade-guide</a>, website: <a href='https://njyeung.github.io/cs2-nade-guide/'>https://njyeung.github.io/cs2-nade-guide/</a>",
+        "bg": "assets/card-textures/purple-texture.png",
+        "frameworks" : ["React", "Github Pages", "React Bootstrap", "KV3"]
+    },
     "Card 3" : {
         "id" : 3,
         "name" : "Personal Website",
