@@ -193,7 +193,7 @@ export class ProjectsComponent {
     "Card 4": {
         "id" :4,
         "name" : "CS2 Nade Guide Helper",
-        "url" : "assets/nadeguide.mp4",
+        "url" : "assets/nade-guide-video.mp4",
         "date" : "November 2024",
         "h1" : "A Tool For Creators",
         "p1" : "Frontend GUI for easy creation of annotation maps in Counter Strike 2. Includes an editor that parses Valve's proprietary KV3 format into JSON, allows users to edit the annotations using a GUI, and converts back to a KV3 file to be loaded into the game.",
