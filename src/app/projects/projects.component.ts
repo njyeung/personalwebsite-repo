@@ -1,7 +1,6 @@
 import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CardComponent } from './card/card.component';
 import { CardData } from './CardData';
-import json from '../../assets/data.json'
 import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
@@ -34,9 +33,12 @@ export class ProjectsComponent {
   }
 
   ngOnInit() {
-    var values = Object.values(json)
+    var values = Object.values(this.hardcoded)
 
     values.forEach((value:any)=> {
+      // tricks github pages into appending /personalwebsite/ onto the link
+      var thismightwork = value.bg
+
       var card: CardData = {
         id: value.id,
         name: value.name,
@@ -46,7 +48,7 @@ export class ProjectsComponent {
         p1: value.p1,
         h2: value.h2,
         p2: value.p2,
-        bg: value.bg,
+        bg: thismightwork,
         frameworks: value.frameworks
       }
       this.data.push(card)
@@ -187,4 +189,54 @@ export class ProjectsComponent {
     return { x: localX + xOffset, y: localY + yOffset};
   }
 
+  hardcoded = {
+    "Card 4": {
+        "id" :4,
+        "name" : "CS2 Nade Guide Helper",
+        "url" : "assets/nadeguide-video.mp4",
+        "date" : "November 2024",
+        "h1" : "A Tool For Creators",
+        "p1" : "Frontend GUI for easy creation of annotation maps in Counter Strike 2. Includes an editor that parses Valve's proprietary KV3 format into JSON, allows users to edit the annotations using a GUI, and converts back to a KV3 file to be loaded into the game.",
+        "h2" : "Links",
+        "p2" : "Github repo: <a href='https://github.com/njyeung/cs2-nade-guide'>https://github.com/njyeung/cs2-nade-guide</a>, website: <a href='https://njyeung.github.io/cs2-nade-guide/'>https://njyeung.github.io/cs2-nade-guide/</a>",
+        "bg": "assets/card-textures/purple-texture.png",
+        "frameworks" : ["React", "Github Pages", "React Bootstrap", "KV3"]
+    },
+    "Card 3" : {
+        "id" : 3,
+        "name" : "Personal Website",
+        "url" : "https://njyeung.github.io/personalwebsite/",
+        "date" : "October 2024",
+        "h1" : "About Me",
+        "p1" : "Showcases my <b>projects</b>, <b>resume</b>, and <b>github</b> all condensed in an aesthetic and fun layout. (p.s. you are here!)",
+        "h2" : "Links",
+        "p2" : "Github repo: <a href='https://github.com/njyeung/personalwebsite-repo'>https://github.com/njyeung/personalwebsite-repo</a>, live website: <a href='https://njyeung.github.io/personalwebsite/'>https://njyeung.github.io/personalwebsite/</a>",
+        "bg": "assets/card-textures/yellow-texture.png",
+        "frameworks" : ["Angular", "Github Pages", "Photoshop", "Premiere Pro"]
+    },
+    "Card 2" : {
+        "id" : 2,
+        "name" : "Music Player",
+        "url" : "assets/musicplayer.jpg",
+        "date" : "January 2024",
+        "h1" : "Simple .Wav File Player",
+        "p1" : "Builds upon <b>Java</b>'s Clip class, providing <b>playlists</b>, <b>albums</b>, and a structured library for the user through a simple command line interface. Use youtube-dl to download audio files from youtube, or place your own wav files into the /music directory.",
+        "h2" : "Repository",
+        "p2" : "Github: <a href='http://github.com/njyeung/Music-Player'>http://github.com/njyeung/Music-Player</a>",
+        "bg": "assets/card-textures/blue-texture.png",
+        "frameworks" : ["Java", "PowerShell"]
+    },
+    "Card 1" : {
+        "id" : 1,
+        "name" : "Sakura Sushi & Grill",
+        "url" : "https://eatsakura.com",
+        "date" : "May 2024",
+        "h1" : "Online Menu",
+        "p1" : "Responsive online menu designed to facilitate placing pickup orders and displaying relevant information for the family restaurant. <b>Angular</b> frontend hosted on <b>GitHub Pages</b> and <b>.NET</b> backend hosted on <b>Azure</b>.",
+        "h2" : "Links",
+        "p2" : "Github repo for frontend: <a href='https://github.com/njyeung/Sakura-Repo'>https://github.com/njyeung/Sakura-Repo</a>, live website: <a href='https://eatsakura.com'>https://eatsakura.com</a>, backend: undisclosed",
+        "bg": "assets/card-textures/pink-texture.png",
+        "frameworks" : ["Angular", ".NET", "Github Pages", "Bootstrap", "Twilio", "SQLite", "Azure"]
+    }
+  }
 }

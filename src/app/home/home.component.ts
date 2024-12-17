@@ -1,13 +1,12 @@
 import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { CanvasComponent } from "../canvas/canvas.component";
-import { AppComponent } from '../app.component';
 import { CommonModule } from '@angular/common';
-import { last } from 'rxjs';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AppComponent, CanvasComponent, CommonModule],
+  imports: [CanvasComponent, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -18,6 +17,7 @@ export class HomeComponent {
   @ViewChild('madison') madison: any
   @ViewChildren('fadein') fadein : any
 
+  
   keyboardSrc = 'assets/keyboard-tiny.mp4'
   madisonSrc = 'assets/madison-tiny.mp4'
 
@@ -42,7 +42,16 @@ export class HomeComponent {
     'opacity' : 1
   }
 
-  constructor() {
+  nav(route: string) {
+    if(route == 'resume') {
+      window.open('https://docs.google.com/document/d/1ckMpXpyVCMkE-bBncIgqxDaanaWUCT9zNp8I4VvG92A/edit?usp=sharing')
+    }
+    else {
+      this.router.navigate([route])
+    }
+  }
+
+  constructor(private router: Router) {
     // mobile
     if(window.innerHeight>window.innerWidth) {
       this.keyboardSrc = 'assets/keyboard-tiny.mp4'
@@ -117,8 +126,6 @@ export class HomeComponent {
         }
       })
 
-
-      
     });
   }
 
@@ -127,7 +134,7 @@ export class HomeComponent {
       window.scrollTo(0,0)
     }, 1000)
   }
-
+  
   ngAfterViewInit() {
     this.fadein.toArray().forEach((el:any)=>{this.observer.observe(el.nativeElement)})
   }
