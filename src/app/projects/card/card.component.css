@@ -1,3 +1,4 @@
+
 .card {
     padding: 0.3rem 1rem;
     border-radius: 10px;
@@ -140,8 +141,6 @@
     z-index: 2;
     padding: 20px;
     border-radius: 30px;
-
-    perspective: 250cm;
 }
 .static-shadow {
     box-shadow: -15px 5px 30px rgb(69, 53, 36);
@@ -171,4 +170,7 @@
     justify-content: space-between;
     border-top: gray 2px solid;
     padding-top: 0.5rem;
+}
+.opac0 {
+    opacity: 0;
 }

@@ -14,6 +14,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 900;
+
+    perspective: 150cm; /* for when card is being inspected */
 }
 .showcard-background {
     position: absolute;

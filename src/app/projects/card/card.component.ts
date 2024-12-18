@@ -12,6 +12,7 @@ import { CommonModule, UpperCasePipe } from '@angular/common';
 export class CardComponent {
   @ViewChild('card') card?: ElementRef
   @ViewChild('frame') frame? : ElementRef
+  @ViewChild('backface') backface? : ElementRef 
   @Input() hideiframe: boolean = false;
   @Input() data: CardData | null = null;
   @Input() floatShadow: boolean = false;
@@ -30,6 +31,8 @@ export class CardComponent {
 
   backgroundUrl : string = ""
 
+  backfaceVisible: boolean = true
+
   ngOnChanges() {
     if(this.inspectcard == false) {
       if(this.floatShadow==true) {
@@ -39,6 +42,8 @@ export class CardComponent {
         this.card?.nativeElement.classList.remove('float')
       }
     }
+
+
   }
 
   ngOnInit() {
@@ -59,12 +64,40 @@ export class CardComponent {
   }
 
   ngAfterViewInit() {
-
     if(this.inspectcard == false) {
       this.card?.nativeElement.classList.add('static-shadow')
     }
     else {
       this.card?.nativeElement.classList.add('animation')
     }
+
+    if(this.inspectcard == true) {
+      
+      // make backface invisible after peekin animation
+      // and make the card follow the mouse
+      setTimeout(()=>{
+        this.backface?.nativeElement.classList.add('opac0')
+
+        this.card?.nativeElement.addEventListener('mousemove', (event: MouseEvent)=> {
+          
+          var transX = this.scale(0, 1, -30, 30, event.clientX/window.innerWidth)
+          var transY = this.scale(0, 1, -30, 30, event.clientY/window.innerHeight)
+
+          console.log(transX, transY)
+          this.card?.nativeElement.setAttribute('style', `transform: rotateX(${-transY}deg) rotateY(${transX}deg)`)
+        })
+      }, 1000)
+    }
+  }
+
+  scale(oldMin: number, oldMax: number, newMin: number, newMax: number, oldValue :number) {
+    var oldRange = (oldMax - oldMin)
+    if (oldRange == 0)
+        var newValue = newMin
+    else {
+        var newRange = (newMax - newMin)  
+        var newValue = (((oldValue - oldMin) * newRange) / oldRange) + newMin
+    }
+    return newValue
   }
 }

@@ -1,3 +1,4 @@
+
 <div #card class="card-container">
     <div class="card" [ngStyle]="{background: backgroundUrl, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}">
         <h1>{{name}}</h1>
@@ -16,7 +17,8 @@
         </div>
     </div>
 </div>
-<div *ngIf="inspectcard==true" class="card-container backface"></div>
+<div #backface *ngIf="inspectcard==true" class="card-container backface"></div>
+
 
 
 
