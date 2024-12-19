@@ -13,6 +13,7 @@ export class CardComponent {
   @ViewChild('card') card?: ElementRef
   @ViewChild('frame') frame? : ElementRef
   @ViewChild('backface') backface? : ElementRef 
+  @ViewChild('glare') glare? : ElementRef
   @Input() hideiframe: boolean = false;
   @Input() data: CardData | null = null;
   @Input() floatShadow: boolean = false;
@@ -42,8 +43,6 @@ export class CardComponent {
         this.card?.nativeElement.classList.remove('float')
       }
     }
-
-
   }
 
   ngOnInit() {
@@ -59,8 +58,6 @@ export class CardComponent {
     this.frameworks = this.data?.frameworks?.join(" | ")
 
     this.backgroundUrl = `url(${this.bg})`
-
-    console.log(this.backgroundUrl)
   }
 
   ngAfterViewInit() {
@@ -74,19 +71,24 @@ export class CardComponent {
     if(this.inspectcard == true) {
       
       // make backface invisible after peekin animation
-      // and make the card follow the mouse
+      // make the card rotateX and rotateY perspective follow the mouse
+      // add glare that also follows mouse
       setTimeout(()=>{
         this.backface?.nativeElement.classList.add('opac0')
 
         this.card?.nativeElement.addEventListener('mousemove', (event: MouseEvent)=> {
           
-          var transX = this.scale(0, 1, -30, 30, event.clientX/window.innerWidth)
-          var transY = this.scale(0, 1, -30, 30, event.clientY/window.innerHeight)
+          var pX = event.clientX/window.innerWidth
+          var pY = event.clientY/window.innerHeight
+          var transX = this.scale(0, 1, -30, 30, pX)
+          var transY = this.scale(0, 1, -30, 30, pY)
 
-          console.log(transX, transY)
           this.card?.nativeElement.setAttribute('style', `transform: rotateX(${-transY}deg) rotateY(${transX}deg)`)
+
+          this.glare?.nativeElement.setAttribute('style', `background: radial-gradient(circle at ${(1-pX)*100}% ${(1-pY)*100}%, rgba(255,255,255,0.2) 30%, transparent 80%)`)
         })
       }, 1000)
+
     }
   }
 
