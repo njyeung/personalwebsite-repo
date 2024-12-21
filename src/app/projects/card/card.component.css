@@ -136,12 +136,13 @@
     display: flex;
     width: 500px;
     height: 700px;
-    background: rgb(192,192,192);
-    background: linear-gradient(135deg, rgba(192,192,192,1) 10%, rgba(235,235,235,1) 30%, rgba(192,192,192,1) 50%, rgba(218,218,218,1) 78%, rgba(192,192,192,1) 95%);
+    background: linear-gradient(135deg, transparent -5%, rgba(255,255,255,0.5) 0%, transparent 5%, transparent 40%, rgba(255,255,255,1) 50%, transparent 60%, transparent 75%, rgba(255,255,255, 0.6) 80%, transparent 85%, transparent 100%, rgba(255,255,255, 0.8) 110%, transparent 120%),
+    linear-gradient(135deg, rgba(192,192,192,1) 10%, rgba(235,235,235,1) 30%, rgba(192,192,192,1) 50%, rgba(218,218,218,1) 78%, rgba(192,192,192,1) 95%);
     z-index: 2;
     padding: 20px;
     border-radius: 30px;
 }
+
 .static-shadow {
     box-shadow: -15px 5px 30px rgb(69, 53, 36);
 }
@@ -179,8 +180,9 @@
     left: 0%;
     z-index: 2;
     position:absolute;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 30%, transparent 80%);
+    background: radial-gradient(circle at 50% 60%, rgba(255,255,255,0.15) 30%, transparent 70%);
     height: 100%;
     width: 100%;
     border-radius: 30px;
+    pointer-events: none;
 }

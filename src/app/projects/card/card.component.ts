@@ -71,21 +71,28 @@ export class CardComponent {
     if(this.inspectcard == true) {
       
       // make backface invisible after peekin animation
-      // make the card rotateX and rotateY perspective follow the mouse
+      // make the card rotateX and rotateY follow the mouse
       // add glare that also follows mouse
+      // add card edge glare
       setTimeout(()=>{
         this.backface?.nativeElement.classList.add('opac0')
 
         this.card?.nativeElement.addEventListener('mousemove', (event: MouseEvent)=> {
-          
           var pX = event.clientX/window.innerWidth
           var pY = event.clientY/window.innerHeight
           var transX = this.scale(0, 1, -30, 30, pX)
           var transY = this.scale(0, 1, -30, 30, pY)
-
-          this.card?.nativeElement.setAttribute('style', `transform: rotateX(${-transY}deg) rotateY(${transX}deg)`)
-
-          this.glare?.nativeElement.setAttribute('style', `background: radial-gradient(circle at ${(1-pX)*100}% ${(1-pY)*100}%, rgba(255,255,255,0.2) 30%, transparent 80%)`)
+          
+          var c = pY * 100
+          var edgeGradient = `linear-gradient(135deg, 
+          transparent ${c-55}%, rgba(255,255,255,0.5) ${c-50}%, transparent ${c-45}%,
+          transparent ${c-10}%, rgba(255,255,255,1) ${c}%, transparent ${c+10}%,
+          transparent ${c+25}%, rgba(255,255,255, 0.6) ${c+30}%, transparent ${c+35}%,
+          transparent ${c+50}%, rgba(255,255,255, 0.8) ${c+60}%, transparent ${c+70}%)`
+          
+          this.card?.nativeElement.setAttribute('style', `transform: rotateX(${-transY}deg) rotateY(${transX}deg);
+            background: ${edgeGradient}, linear-gradient(135deg, rgba(192,192,192,1) 10%, rgba(235,235,235,1) 30%, rgba(192,192,192,1) 50%, rgba(218,218,218,1) 78%, rgba(192,192,192,1) 95%)`)
+          this.glare?.nativeElement.setAttribute('style', `background: radial-gradient(circle at ${(1-pX)*100}% ${(1-pY)*100+10}%, rgba(255,255,255,0.15) 30%, transparent 70%)`)
         })
       }, 1000)
 

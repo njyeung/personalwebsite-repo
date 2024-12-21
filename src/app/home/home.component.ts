@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, ViewChild, ViewChildren } from '@angular/core';
 import { CanvasComponent } from "../canvas/canvas.component";
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router'
@@ -17,7 +17,6 @@ export class HomeComponent {
   @ViewChild('madison') madison: any
   @ViewChildren('fadein') fadein : any
 
-  
   keyboardSrc = 'assets/keyboard-tiny.mp4'
   madisonSrc = 'assets/madison-tiny.mp4'
 
