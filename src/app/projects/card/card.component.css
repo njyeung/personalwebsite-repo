@@ -12,6 +12,9 @@
     transform-style: preserve-3d;
     animation: popup 2s ease-out;
     backface-visibility: hidden;
+
+    -webkit-backface-visibility: hidden;
+    /* One day Safari will fix this and you will no longer see iframe on the card lol */
 }
 .backface {
     transform: rotateY(180deg);
@@ -38,7 +41,7 @@
 }
 @keyframes lead-in {
     0%{
-        
+
     }
     100% {
         transform: scale(200%);
@@ -53,7 +56,7 @@
     font-size: 2rem;
     padding-left: 0.3rem;
     padding-right: 0.3rem;
-    
+
     margin-top: 0.2rem;
     margin-bottom: 0.3rem;
 }
@@ -107,6 +110,7 @@
     border-radius: 5px 5px 0px 0px;
     box-shadow: 2px 0px 2px gray;
     background-color: black;
+    pointer-events: all;
 }
 .cover {
     position: absolute;

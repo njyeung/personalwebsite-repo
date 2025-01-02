@@ -12,7 +12,7 @@ import { CommonModule, UpperCasePipe } from '@angular/common';
 export class CardComponent {
   @ViewChild('card') card?: ElementRef
   @ViewChild('frame') frame? : ElementRef
-  @ViewChild('backface') backface? : ElementRef 
+  @ViewChild('backface') backface? : ElementRef
   @ViewChild('glare') glare? : ElementRef
   @Input() hideiframe: boolean = false;
   @Input() data: CardData | null = null;
@@ -31,8 +31,6 @@ export class CardComponent {
   frameworks?: string
 
   backgroundUrl : string = ""
-
-  backfaceVisible: boolean = true
 
   ngOnChanges() {
     if(this.inspectcard == false) {
@@ -69,7 +67,7 @@ export class CardComponent {
     }
 
     if(this.inspectcard == true) {
-      
+
       // make backface invisible after peekin animation
       // make the card rotateX and rotateY follow the mouse
       // add glare that also follows mouse
@@ -82,14 +80,14 @@ export class CardComponent {
           var pY = event.clientY/window.innerHeight
           var transX = this.scale(0, 1, -30, 30, pX)
           var transY = this.scale(0, 1, -30, 30, pY)
-          
+
           var c = pY * 100
-          var edgeGradient = `linear-gradient(135deg, 
+          var edgeGradient = `linear-gradient(135deg,
           transparent ${c-55}%, rgba(255,255,255,0.5) ${c-50}%, transparent ${c-45}%,
           transparent ${c-10}%, rgba(255,255,255,1) ${c}%, transparent ${c+10}%,
           transparent ${c+25}%, rgba(255,255,255, 0.6) ${c+30}%, transparent ${c+35}%,
           transparent ${c+50}%, rgba(255,255,255, 0.8) ${c+60}%, transparent ${c+70}%)`
-          
+
           this.card?.nativeElement.setAttribute('style', `transform: rotateX(${-transY}deg) rotateY(${transX}deg);
             background: ${edgeGradient}, linear-gradient(135deg, rgba(192,192,192,1) 10%, rgba(235,235,235,1) 30%, rgba(192,192,192,1) 50%, rgba(218,218,218,1) 78%, rgba(192,192,192,1) 95%)`)
           this.glare?.nativeElement.setAttribute('style', `background: radial-gradient(circle at ${(1-pX)*100}% ${(1-pY)*100+10}%, rgba(255,255,255,0.15) 30%, transparent 70%)`)
@@ -104,7 +102,7 @@ export class CardComponent {
     if (oldRange == 0)
         var newValue = newMin
     else {
-        var newRange = (newMax - newMin)  
+        var newRange = (newMax - newMin)
         var newValue = (((oldValue - oldMin) * newRange) / oldRange) + newMin
     }
     return newValue

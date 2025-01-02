@@ -12,7 +12,6 @@ import { Router } from '@angular/router'
 })
 export class HomeComponent {
 
-  @ViewChild('intro') intro : any
   @ViewChild('keyboard') keyboard : any
   @ViewChild('madison') madison: any
   @ViewChildren('fadein') fadein : any
@@ -31,7 +30,7 @@ export class HomeComponent {
   })
 
   videoPlaying = false;
-  
+
   html = document.documentElement;
   headerStyle = {
     'opacity': 1,
@@ -97,7 +96,7 @@ export class HomeComponent {
       document.addEventListener('mouseup', ()=> {
         dragging = false;
       })
-      
+
       document.addEventListener('mouseleave', ()=> {
         dragging = false;
       })
@@ -133,7 +132,7 @@ export class HomeComponent {
       window.scrollTo(0,0)
     }, 1000)
   }
-  
+
   ngAfterViewInit() {
     this.fadein.toArray().forEach((el:any)=>{this.observer.observe(el.nativeElement)})
   }
@@ -148,11 +147,12 @@ export class HomeComponent {
       this.headerStyle['opacity'] = Math.cos(scrollFraction*Math.PI/2)
       this.headerStyle['font-size'] = `${(17 + (scrollFraction * 3))}vw`
 
+      this.backgroundStyle['opacity'] = 0;
       if(scrollFraction < 0.4) {
         this.backgroundStyle['opacity'] = 1
       }
       else{
-        this.backgroundStyle['opacity'] = 1.3*Math.cos(scrollFraction*2.5 - 0.9)
+        this.backgroundStyle['opacity'] = 1.3*Math.cos(scrollFraction*2.5 - 0.9);
       }
     }
     else {

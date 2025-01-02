@@ -60,7 +60,8 @@ export class CanvasComponent {
   }
 
   currentFrame(index: number){
-    return `assets/${this.folder}/frame_${(index-1).toString()}.jpg`
+
+    return `assets/${this.folder}/frame_${(Math.max(1, index-1)).toString()}.jpg`
   }
   
   constructor() {
