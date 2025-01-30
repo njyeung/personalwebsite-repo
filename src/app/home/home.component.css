@@ -90,10 +90,10 @@
     margin-right: 2rem;
 }
 a:link {
-    color: #fcfbe8;
+    color: #0dab07;
 }
 a:visited {
-    color: #c3c1a8;
+    color: #077e02;
 }
 @media(max-width: 1080px) {
     .body {

@@ -99,7 +99,7 @@ export class CardComponent {
 
           this.card?.nativeElement.setAttribute('style', `transform: rotateX(${-transY}deg) rotateY(${transX}deg);
             background: ${edgeGradient}, linear-gradient(135deg, rgba(192,192,192,1) 10%, rgba(235,235,235,1) 30%, rgba(192,192,192,1) 50%, rgba(218,218,218,1) 78%, rgba(192,192,192,1) 95%)`)
-          this.glare?.nativeElement.setAttribute('style', `background: radial-gradient(circle at ${(1-pX)*100}% ${(1-pY)*100+10}%, rgba(255,255,255,0.15) 30%, transparent 70%)`)
+          this.glare?.nativeElement.setAttribute('style', `background: radial-gradient(circle at ${(1-pX)*100}% ${(1-pY)*100+10}%, rgba(255,255,255,0.2) 30%, transparent 70%)`)
         })
       }, 1000)
 
