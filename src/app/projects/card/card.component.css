@@ -112,6 +112,17 @@
     background-color: black;
     pointer-events: all;
 }
+.video {
+    width: 100%;
+    box-sizing: border-box;
+    height: 300px;
+    border: silver 5px solid;
+    border-radius: 5px 5px 0px 0px;
+    box-shadow: 2px 0px 2px gray;
+    background-color: black;
+    pointer-events: all;
+    object-fit: cover;
+}
 .cover {
     position: absolute;
     box-sizing: border-box;

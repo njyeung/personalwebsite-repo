@@ -4,7 +4,8 @@
         <h1>{{name}}</h1>
         <div class="frame">
             <div [hidden]="!hideiframe" #cover class="cover"></div>
-            <iframe #frame [src]="url | safe:'resourceUrl'" frameborder="0"></iframe>
+            <video [hidden]="!isVideo" play loop="true" class="video" #frame autoplay="true" [src]="url | safe:'resourceUrl'"></video>
+            <iframe #frame [hidden]="isVideo" [src]="url | safe:'resourceUrl'" frameborder="0"></iframe>
         </div>
         <div class="bottom-frame">NO. {{id}} | {{frameworks}}</div>
         <h2>{{h1}}</h2>

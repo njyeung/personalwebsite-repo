@@ -19,6 +19,8 @@ export class CardComponent {
   @Input() floatShadow: boolean = false;
   @Input() inspectcard: boolean = false;
 
+  isVideo = false;
+
   id?: string
   name?: string
   url?: string
@@ -56,6 +58,13 @@ export class CardComponent {
     this.frameworks = this.data?.frameworks?.join(" | ")
 
     this.backgroundUrl = `url(${this.bg})`
+
+    if(this.url?.endsWith(".mp4")) {
+      this.isVideo = true;
+    }
+    else if(this.url?.endsWith(".jpg")) {
+      this.isVideo = false;
+    }
   }
 
   ngAfterViewInit() {

@@ -14,6 +14,7 @@ export class CanvasComponent {
   context: CanvasRenderingContext2D | null | undefined
   html = document.documentElement;
   frameCount = 67;
+  currFrameIndex = 1;
   img = new Image()
 
   folder = 'jpgs-tiny'
@@ -48,7 +49,7 @@ export class CanvasComponent {
       // graceful animation to load image before fade-in
       setTimeout(()=>{self.updateImage(1); console.log("INITIAL LOAD")}, 500);
       
-      // sometimes it doesn't load though (might be internet or cache???), try again after fade-in animation
+      // sometimes it doesn't load though (might be slow internet or cache???), try again after fade-in animation
       setTimeout(()=>{self.updateImage(1); console.log("SECOND LOAD")}, 1000);
       setTimeout(()=>{self.updateImage(1); console.log("THIRD LOAD")}, 2000);
     }
@@ -60,7 +61,6 @@ export class CanvasComponent {
   }
 
   currentFrame(index: number){
-
     return `assets/${this.folder}/frame_${(Math.max(1, index-1)).toString()}.jpg`
   }
   
@@ -100,9 +100,14 @@ export class CanvasComponent {
         Math.ceil(scrollFraction * this.frameCount)
       );
 
-      requestAnimationFrame(() => this.updateImage(frameIndex + 1))
+      if(frameIndex == this.currFrameIndex){
+        // TRY THIS FOR OPTIMIZING
+      }
+      else {
+        this.currFrameIndex = frameIndex+1;
+        requestAnimationFrame(() => this.updateImage(frameIndex+1));
+      } 
     }
-
   }
 
   updateImage(index: number) {
@@ -112,7 +117,7 @@ export class CanvasComponent {
     }
   }
 
-  preloadImages() {
+  preloadImages() { // i hope this actually works
     for (let i = 1; i < this.frameCount; i++) {
       const img = new Image();
       img.src = this.currentFrame(i);
@@ -126,7 +131,7 @@ export class CanvasComponent {
       const h = window.innerWidth * imgRatio
       this.context?.drawImage(img, 0, (window.innerHeight - h) / 2, window.innerWidth, h)
     }
-    if (imgRatio < winRatio) {
+    else if (imgRatio < winRatio) {
       const w = window.innerWidth * winRatio / imgRatio
       this.context?.drawImage(img, (window.innerWidth - w) / 2, 0, w, window.innerHeight)
     }
