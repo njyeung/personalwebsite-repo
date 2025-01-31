@@ -160,12 +160,4 @@ export class HomeComponent {
       this.backgroundStyle['opacity'] = 0
     }
   }
-
-  getHeaderStyle() {
-    return this.headerStyle
-  }
-
-  getBackgroundStyle() {
-    return this.backgroundStyle
-  }
 }

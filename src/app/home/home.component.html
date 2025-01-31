@@ -1,20 +1,23 @@
 <div #screen id="top" class="draggable">
-    <div [ngStyle]="getBackgroundStyle()" class="background">
+    <div [ngStyle]="backgroundStyle" class="background">
         <app-canvas></app-canvas>
     </div>
     <div class="header">
-        <h1 [ngStyle]="getHeaderStyle()">hi,&nbsp;i'm&nbsp;nick</h1>
+        <h1 [ngStyle]="headerStyle">hi,&nbsp;i'm&nbsp;nick</h1>
     </div>
     <div class="body">
         <div class="body-1">
-            <h2 #fadein class="hidden">aspiring&nbsp;programmer</h2>
-            <p #fadein class="hidden">proficient in Angular, React, & React Native, see my <a href="javascript:void(0); //THIS WORKS HAHAHHAHAH" (click)="nav('projects')">projects</a></p>
+            <div class="text1">
+                <h2 #fadein class="hidden">aspiring&nbsp;programmer</h2>
+                <p #fadein class="hidden">frontend developer proficient in <b>Angular</b>, <b>React</b>, & <b>React Native</b>, see my <a href="javascript:void(0); //THIS WORKS HAHAHHAHAH" (click)="nav('projects')">projects</a></p>
+            </div>
         </div>
         <div class="body-2">
-            <h2 #fadein class="hidden">education</h2>
-            <p #fadein class="hidden">junior in computer science at UW Madison, see my <a href="javascript:void(0);" (click)="nav('resume')">resume</a></p>
+            <div class="text2">
+                <h2 #fadein class="hidden">education</h2>
+                <p #fadein class="hidden">junior in <b>computer science</b> at UW Madison, see my <a href="javascript:void(0);" (click)="nav('resume')">resume</a></p>
+            </div>
         </div>
-
     </div>
     <video #keyboard #fadein class="video-container hidden" playsinline autoplay muted="muted" loop>
         <source src={{keyboardSrc}} type="video/mp4">
