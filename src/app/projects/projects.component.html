@@ -1,6 +1,6 @@
 <div class="cover"></div>
 <img class="desk-layer" src={{deskLayerSrc}}>
-<div *ngIf="inspectcard!=null">
+<div class="inspect-container" *ngIf="inspectcard!=null">
     <app-card class="showcard" [data]="inspectcard.data" [hideiframe]="false" [inspectcard]="true"></app-card>
     <div (click)="release()" class="showcard-background"></div>
 </div>

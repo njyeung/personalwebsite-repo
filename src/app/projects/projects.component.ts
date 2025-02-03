@@ -80,7 +80,7 @@ export class ProjectsComponent {
 
       let prev = card.getBoundingClientRect();
 
-      card.addEventListener('mousedown', (event: MouseEvent) => {
+      card.addEventListener('pointerdown', (event: MouseEvent) => {
         event.preventDefault();
         this.hideiframe = true;
 
@@ -98,14 +98,14 @@ export class ProjectsComponent {
         card.style.cursor = 'grabbing'; 
       });
 
-      document.addEventListener('mousemove', (event: MouseEvent) => {
+      document.addEventListener('pointermove', (event: MouseEvent) => {
       if (isDragging == true) {
         this.moveCard(card,event.clientX, event.clientY, offsetX, offsetY);
         card.firstChild.classList.add('shadow-float')
       }
     });
 
-      document.addEventListener('mouseup', () => {
+      document.addEventListener('pointerup', () => {
         if(isDragging == true) {
           if(card.getBoundingClientRect().x == prev.x && card.getBoundingClientRect().y == prev.y) {
             // This gets the title of the clicked card... sorry
