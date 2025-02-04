@@ -190,8 +190,20 @@ export class ProjectsComponent {
   }
 
   hardcoded = {
+    "Card 5": {
+      "id": 5,
+      "name": "3D Game Engine",
+      "url": "assets/3dengine.mp4",
+      "date" : "December 2024",
+      "h1": "Rasterization",
+      "p1": "Reads obj and texture files, creates triangles, and projects them on the screen through a series of matrix transformations",
+      "h2": "Links",
+      "p2": "Github repo: https://github.com/njyeung/3d-engine.git (Currently only works for MacOS)",
+      "bg" : "assets/card-textures/green-texture.png",
+      "frameworks": ["GLFW", "C++"]
+    },
     "Card 4": {
-        "id" :4,
+        "id" : 4,
         "name" : "CS2 Nade Guide",
         "url" : "assets/nadeguide-video.mp4",
         "date" : "November 2024",
