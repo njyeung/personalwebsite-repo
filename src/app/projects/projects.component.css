@@ -136,6 +136,9 @@
 .card:nth-child(8) {
     animation-delay: 1700ms;
 }
+.card:nth-child(9) {
+    animation-delay: 1800ms;
+}
 @keyframes cardsFadeIn {
     0% {
         opacity: 0;
