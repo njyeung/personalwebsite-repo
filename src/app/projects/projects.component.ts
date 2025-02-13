@@ -80,7 +80,7 @@ export class ProjectsComponent {
 
       let prev = card.getBoundingClientRect();
 
-      card.addEventListener('pointerdown', (event: MouseEvent) => {
+      card.addEventListener('pointerdown', (event: PointerEvent) => {
         event.preventDefault();
         this.hideiframe = true;
 
@@ -98,12 +98,12 @@ export class ProjectsComponent {
         card.style.cursor = 'grabbing'; 
       });
 
-      document.addEventListener('pointermove', (event: MouseEvent) => {
-      if (isDragging == true) {
-        this.moveCard(card,event.clientX, event.clientY, offsetX, offsetY);
-        card.firstChild.classList.add('shadow-float')
-      }
-    });
+      document.addEventListener('pointermove', (event: PointerEvent) => {
+        if (isDragging == true) {
+          this.moveCard(card,event.clientX, event.clientY, offsetX, offsetY);
+          card.firstChild.classList.add('shadow-float')
+        }
+      }, {passive: false});
 
       document.addEventListener('pointerup', () => {
         if(isDragging == true) {
@@ -113,7 +113,6 @@ export class ProjectsComponent {
 
             this.cardComponents.forEach((component)=> {
               if(component.name == title) {
-                
                 card.firstChild.classList.add('lead-in')
                 setTimeout(()=>{this.inspectcard = component}, 200);
               }

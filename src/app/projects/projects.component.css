@@ -81,6 +81,7 @@
     opacity: 0;
     transition: transform 0.5s;
     animation: cardsFadeIn 200ms ease forwards;
+    touch-action: none;
 }
 
 @media(max-width: 1700px) {
