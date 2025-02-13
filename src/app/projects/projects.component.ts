@@ -192,7 +192,7 @@ export class ProjectsComponent {
   hardcoded = {
     "Card 5": {
       "id": 5,
-      "name": "3D Game Engine",
+      "name": "3D Engine",
       "url": "assets/3d-engine.mp4",
       "date" : "December 2024",
       "h1": "Rasterization",
