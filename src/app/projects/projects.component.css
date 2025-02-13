@@ -14,6 +14,7 @@
     left: 50%;
     z-index: 500;
     transform: translate(-50%, -50%);
+    perspective: 152cm;
 }
 .inspect-container {
     z-index: 599;
@@ -21,7 +22,6 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    perspective: 200cm; /* for when card is being inspected */
 }
 .showcard-background {
     position: absolute;
