@@ -84,7 +84,7 @@ export class ProjectsComponent {
         event.preventDefault();
         this.hideiframe = true;
 
-        // z index shift
+        // z index shift so each card ends up on top
         zIndexList.splice(zIndexList.indexOf(card),1)
         zIndexList.push(card)
         for(let i=0;i<zIndexList.length;i++) {
