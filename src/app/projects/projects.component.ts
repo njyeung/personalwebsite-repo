@@ -189,6 +189,19 @@ export class ProjectsComponent {
   }
 
   hardcoded = {
+    
+    "Card 6" : {
+        "id" : 6,
+        "name" : "Music Player",
+        "url" : "assets/musicplayer.jpg",
+        "date" : "January 2024",
+        "h1" : "Simple .Wav File Player",
+        "p1" : "Builds upon <b>Java</b>'s Clip class, providing <b>playlists</b>, <b>albums</b>, and a structured library for the user through a simple command line interface. Use youtube-dl to download audio files from youtube, or place your own wav files into the /music directory.",
+        "h2" : "Repository",
+        "p2" : "Github: <a href='http://github.com/njyeung/Music-Player'>http://github.com/njyeung/Music-Player</a>",
+        "bg": "assets/card-textures/blue-texture.png",
+        "frameworks" : ["Java", "PowerShell"]
+    },
     "Card 5": {
       "id": 5,
       "name": "3D Engine",
@@ -197,7 +210,7 @@ export class ProjectsComponent {
       "h1": "Rasterization",
       "p1": "Reads obj and texture files, creates triangles, and projects them on the screen through a series of matrix transformations",
       "h2": "Links",
-      "p2": "Github repo: https://github.com/njyeung/3d-engine.git (Currently only works for MacOS)",
+      "p2": "Github repo: <a href='https://github.com/njyeung/3d-engine.git'>https://github.com/njyeung/3d-engine.git</a> (Currently only works for MacOS)",
       "bg" : "assets/card-textures/green-texture.png",
       "frameworks": ["GLFW", "C++"]
     },
@@ -209,8 +222,8 @@ export class ProjectsComponent {
         "h1" : "A Tool For Creators",
         "p1" : "Frontend GUI for creating annotation maps in Counter Strike 2. Includes an editor that parses Valve's proprietary KV3 format into JSON, allows users to edit the annotations using a GUI, and converts back to a KV3 file to be loaded into the game.",
         "h2" : "Links",
-        "p2" : "Github repo: <a href='https://github.com/njyeung/cs2-nade-guide'>https://github.com/njyeung/cs2-nade-guide</a>, website: <a href='https://njyeung.github.io/cs2-nade-guide/'>https://njyeung.github.io/cs2-nade-guide/</a>",
-        "bg": "assets/card-textures/purple-texture.png",
+        "p2" : "Github repo: <a href='https://github.com/njyeung/cs2-nade-guide'>https://github.com/njyeung/cs2-nade-guide</a> | Live website: <a href='https://njyeung.github.io/cs2-nade-guide/'>https://njyeung.github.io/cs2-nade-guide/</a>",
+        "bg": "assets/card-textures/orange-texture.png",
         "frameworks" : ["React", "Github Pages", "React Bootstrap", "KV3"]
     },
     "Card 3" : {
@@ -221,21 +234,21 @@ export class ProjectsComponent {
         "h1" : "About Me",
         "p1" : "Showcases my <b>projects</b>, <b>resume</b>, and <b>github</b> all condensed in an aesthetic and fun layout. (p.s. you are here!)",
         "h2" : "Links",
-        "p2" : "Github repo: <a href='https://github.com/njyeung/personalwebsite-repo'>https://github.com/njyeung/personalwebsite-repo</a>, live website: <a href='https://njyeung.github.io/personalwebsite/'>https://njyeung.github.io/personalwebsite/</a>",
+        "p2" : "Github repo: <a href='https://github.com/njyeung/personalwebsite-repo'>https://github.com/njyeung/personalwebsite-repo</a> | Live website: <a href='https://njyeung.github.io/personalwebsite/'>https://njyeung.github.io/personalwebsite/</a>",
         "bg": "assets/card-textures/yellow-texture.png",
         "frameworks" : ["Angular", "Github Pages", "Photoshop", "Premiere Pro"]
     },
-    "Card 2" : {
-        "id" : 2,
-        "name" : "Music Player",
-        "url" : "assets/musicplayer.jpg",
-        "date" : "January 2024",
-        "h1" : "Simple .Wav File Player",
-        "p1" : "Builds upon <b>Java</b>'s Clip class, providing <b>playlists</b>, <b>albums</b>, and a structured library for the user through a simple command line interface. Use youtube-dl to download audio files from youtube, or place your own wav files into the /music directory.",
-        "h2" : "Repository",
-        "p2" : "Github: <a href='http://github.com/njyeung/Music-Player'>http://github.com/njyeung/Music-Player</a>",
-        "bg": "assets/card-textures/blue-texture.png",
-        "frameworks" : ["Java", "PowerShell"]
+    "Card 2": {
+      "id": 2,
+      "name": "PresentLy",
+      "url": "https://presently-eight.vercel.app",
+      "date": "March 2025",
+      "h1": "AI Personalized Gift Finder",
+      "p1": "A gift recommendation platform that matches presents to a recipient’s interests. After selecting an occasion and filling out a short survey, the app curates gift ideas using a dataset of over 26,000 best-selling Amazon items.",
+      "h2": "Links",
+      "p2": "Devpost submission: <a href='https://devpost.com/software/presently'>https://devpost.com/software/presently</a> | Github repo: <a href='https://github.com/VishnuR121/presently'>https://github.com/VishnuR121/presently</a> | Live website: <a href='https://presently-eight.vercel.app'>https://presently-eight.vercel.app</a> backend: down",
+      "bg": "assets/card-textures/purple-texture.png",
+      "frameworks": ["Next.js", "OpenAI API", "Tailwind", "Framer Motion", "Supabase", "AWS Lambda", "Vercel"]
     },
     "Card 1" : {
         "id" : 1,
@@ -245,7 +258,7 @@ export class ProjectsComponent {
         "h1" : "Online Menu",
         "p1" : "Responsive online menu designed to facilitate placing pickup orders and displaying relevant information for the family restaurant. <b>Angular</b> frontend hosted on <b>GitHub Pages</b> and <b>.NET</b> backend hosted on <b>Azure</b>.",
         "h2" : "Links",
-        "p2" : "Github repo for frontend: <a href='https://github.com/njyeung/Sakura-Repo'>https://github.com/njyeung/Sakura-Repo</a>, live website: <a href='https://eatsakura.com'>https://eatsakura.com</a>, backend: undisclosed",
+        "p2" : "Github repo for frontend: <a href='https://github.com/njyeung/Sakura-Repo'>https://github.com/njyeung/Sakura-Repo</a> | Live website: <a href='https://eatsakura.com'>https://eatsakura.com</a>, backend: undisclosed",
         "bg": "assets/card-textures/pink-texture.png",
         "frameworks" : ["Angular", ".NET", "Github Pages", "Bootstrap", "Twilio", "SQLite", "Azure"]
     }
