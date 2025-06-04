@@ -127,11 +127,11 @@ export class HomeComponent {
     });
   }
 
-  ngOnInit() {
-    setTimeout(()=>{
-      window.scrollTo(0,0)
-    }, 1000)
-  }
+  // ngOnInit() {
+  //   setTimeout(()=>{
+  //     window.scrollTo(0,0)
+  //   }, 1000)
+  // }
 
   ngAfterViewInit() {
     this.fadein.toArray().forEach((el:any)=>{this.observer.observe(el.nativeElement)})

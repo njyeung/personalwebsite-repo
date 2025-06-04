@@ -12,29 +12,20 @@ export class CanvasComponent {
   @ViewChild('main') main: any
   @ViewChild('canvas') canvas: any
   context: CanvasRenderingContext2D | null | undefined
+
   html = document.documentElement;
   frameCount = 67;
   currFrameIndex = 1;
   img = new Image()
 
+  // Caches images
+  loadedImages: Map<number, HTMLImageElement> = new Map();
+  
   folder = 'jpgs-tiny'
 
   ngAfterViewInit() {
     this.context = this.canvas?.nativeElement.getContext('2d')
     this.canvas = this.canvas?.nativeElement
-    
-    // if(this.folder == 'jpgs-mobile') {
-    //   this.canvas.width = 1080
-    //   this.canvas.height = 1920
-    // }
-    // else if(this.folder == 'jpgs-tiny') {
-    //   this.canvas.width = 1920
-    //   this.canvas.height = 1080
-    // }
-    // else {
-    //   this.canvas.width = 2560
-    //   this.canvas.height = 1440
-    // }
     
     // yeah this works better for some reason
     this.canvas.height = 8000
@@ -81,7 +72,7 @@ export class CanvasComponent {
     }
 
     document.addEventListener('scroll', () => {
-      this.play();
+      requestIdleCallback(() => this.play(), { timeout: 50 });
     })
 
     this.preloadImages()
@@ -111,17 +102,50 @@ export class CanvasComponent {
   }
 
   updateImage(index: number) {
-    this.img.src = this.currentFrame(index);
-    if(this.context) {
+    if(this.loadedImages.has(index)) {
+      this.img = this.loadedImages.get(index)!;
       this.coverWindow(this.img)
+    }
+    else {
+      const newImg = new Image();
+      newImg.src = this.currentFrame(index);
+      newImg.onload = () => {
+        this.loadedImages.set(index, newImg);
+        this.coverWindow(this.img);
+      }
+
     }
   }
 
-  preloadImages() { // i hope this actually works
-    for (let i = 1; i < this.frameCount; i++) {
-      const img = new Image();
-      img.src = this.currentFrame(i);
+  preloadImages() {
+    const priorityRange = 10;
+
+    // Load first few frames immediately
+    for (let i = 2; i <= priorityRange; i++) {
+      this.loadImage(i);
     }
+
+    // Slowly load the rest
+    let delay = 0;
+    for (let i = priorityRange + 1; i <= this.frameCount; i++) {
+      setTimeout(() => {
+        this.loadImage(i);
+      }, delay);
+      delay += 100;
+    }
+  }
+
+  loadImage(index: number) {
+    if (this.loadedImages.has(index)) return;
+
+    const img = new Image();
+    img.src = this.currentFrame(index);
+    img.onload = () => {
+      this.loadedImages.set(index, img);
+    };
+    img.onerror = () => {
+      console.warn(`Failed to load frame ${index}`);
+    };
   }
 
   coverWindow(img: any) {
