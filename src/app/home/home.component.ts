@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, ViewChildren } from '@angular/core';
 import { CanvasComponent } from "../canvas/canvas.component";
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router'
@@ -16,6 +16,34 @@ export class HomeComponent {
   @ViewChild('madison') madison: any
   @ViewChildren('fadein') fadein : any
 
+  @ViewChild('textWrapper', { static: true }) textWrapper!: ElementRef;
+  @ViewChild('scrollTrigger', { static: true }) scrollTrigger!: ElementRef;
+  @ViewChild('body', { static: true }) body!: ElementRef;
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    this.animation();
+
+    // wait until user interacts with site to save cpu use
+    if(this.videoPlaying == false) {
+      this.videoPlaying = true;
+      this.keyboard.nativeElement.muted = true // you need this line cuz angular is weird
+      this.madison.nativeElement.muted = true
+      this.keyboard.nativeElement.play();
+      this.madison.nativeElement.play();
+    }
+
+    // for card animation
+    const triggerY = this.scrollTrigger.nativeElement.getBoundingClientRect().top;
+    const viewportCenter = window.innerHeight / 2;
+
+    if (triggerY <= viewportCenter) {
+      this.textWrapper.nativeElement.classList.add('active');
+      this.body.nativeElement.classList.add('cta-active');
+    } else {
+      this.textWrapper.nativeElement.classList.remove('active');
+      this.body.nativeElement.classList.remove('cta-active');
+    }
+  }
   keyboardSrc = 'assets/keyboard-tiny.mp4'
   madisonSrc = 'assets/madison-tiny.mp4'
 
@@ -49,6 +77,8 @@ export class HomeComponent {
     }
   }
 
+  
+
   constructor(private router: Router) {
     // mobile
     if(window.innerHeight>window.innerWidth) {
@@ -67,64 +97,7 @@ export class HomeComponent {
       }
     }
 
-    document.addEventListener('scroll', () => {
-      this.animation();
-
-      // wait until user interacts with site to save cpu use
-      if(this.videoPlaying == false) {
-        this.videoPlaying = true;
-        this.keyboard.nativeElement.muted = true // you need this line cuz angular is weird
-        this.madison.nativeElement.muted = true
-        this.keyboard.nativeElement.play();
-        this.madison.nativeElement.play();
-      }
-    })
-
-    document.addEventListener('DOMContentLoaded', () => {
-
-      let dragging: any;
-      let startY: number;
-      let scrollDown: number;
-
-      document.addEventListener('mousedown', (e:any)=> {
-        e.preventDefault();
-        dragging = true;
-        startY = e.pageY
-        scrollDown = this.html.scrollTop
-      })
-
-      document.addEventListener('mouseup', ()=> {
-        dragging = false;
-      })
-
-      document.addEventListener('mouseleave', ()=> {
-        dragging = false;
-      })
-
-      document.addEventListener('mousemove', (e:any)=> {
-        if(dragging == true) {
-          e.preventDefault();
-
-          const y = e.pageY
-          const walk = y - startY
-
-          if(walk > 0) {
-            window.scrollBy(0,-10)
-          }
-          else{
-            window.scrollBy(0,10)
-          }
-
-          if(this.html.scrollTop < 0) {
-            this.html.scrollTop = 0
-          }
-          if(this.html.scrollTop > document.body.scrollHeight) {
-            this.html.scrollTop = document.body.scrollHeight
-          }
-        }
-      })
-
-    });
+    
   }
 
   // ngOnInit() {
@@ -133,8 +106,48 @@ export class HomeComponent {
   //   }, 1000)
   // }
 
+  dragging = false;
+  startY = 0;
+  lastY = 0;
+  onMouseMove = (e: any) => {
+    if (this.dragging) {
+      e.preventDefault();
+      const currentY = e.clientY;
+
+      const deltaY = currentY - this.lastY;
+
+      console.log(`scrolling by ${-deltaY * 1.5}`);
+      window.scrollBy(0, -deltaY * 1.5);
+
+      this.lastY = currentY;
+    }
+  };
+
+  onMouseDown(e:any) {
+    e.preventDefault();
+    this.dragging = true;
+    this.startY = e.clientY;
+    this.lastY = e.clientY;
+    document.addEventListener('mousemove', this.onMouseMove);
+  }
+  
+  onMouseUp() {
+    this.dragging = false;
+    document.removeEventListener('mousemove', this.onMouseMove);
+  }
+
+  onMouseLeave() {
+    this.dragging = false;
+    document.removeEventListener('mousemove', this.onMouseMove);
+  }
+
   ngAfterViewInit() {
     this.fadein.toArray().forEach((el:any)=>{this.observer.observe(el.nativeElement)})
+
+    document.addEventListener('mousedown', this.onMouseDown.bind(this));
+    document.addEventListener('mouseup', this.onMouseUp.bind(this));
+    document.addEventListener('mouseleave', this.onMouseUp.bind(this));
+    
   }
 
   animation() {

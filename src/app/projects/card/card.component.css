@@ -118,7 +118,7 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-.card video {
+.card img, video {
     width: 100%;
     box-sizing: border-box;
     height: 300px;
@@ -210,4 +210,12 @@
     width: 100%;
     border-radius: 30px;
     pointer-events: none;
+}
+.placeholder-image {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border: silver 5px solid;
+    border-radius: 5px 5px 0px 0px;
 }

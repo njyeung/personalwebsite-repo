@@ -1,15 +1,17 @@
 <div #screen id="top" class="draggable">
+    <div #scrollTrigger style="position: absolute; top: 285vh; height: 1px;"></div>
+    
     <div [ngStyle]="backgroundStyle" class="background">
         <app-canvas></app-canvas>
     </div>
     <div class="header">
         <h1 [ngStyle]="headerStyle">hi,&nbsp;i'm&nbsp;nick</h1>
     </div>
-    <div class="body">
+    <div class="body" #body>
         <div class="body-1">
             <div class="text1">
                 <div class="card-container">
-                    <div class="text-wrapper">
+                    <div class="text-wrapper-1" #textWrapper>
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" 
                         alt="TS Icon" class="language-icon ts-icon" />
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
@@ -22,11 +24,11 @@
                         alt="C Icon" class="language-icon c-icon" />
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" 
                         alt="GO Icon" class="language-icon go-icon" />
-
+                        
                         <div class="text-background-blur">
                             <div class="card-content">
-                                <h2 #fadein class="hidden">i&nbsp;build&nbsp;things</h2>
-                                <p #fadein class="hidden">frontend developer making the browser feel alive with <b>Angular</b>, <b>React</b>, & <b>React Native</b> — <a href="javascript:void(0); //THIS WORKS HAHAHHAHAH" (click)="nav('projects')">see my projects!</a></p>
+                                <h2 #fadein class="hidden">aspiring&nbsp;programmer</h2>
+                                <p #fadein class="hidden">frontend developer making the browser feel alive with <b>Angular</b>, <b>React</b>, & <b>React Native</b> — <a class="call-to-action" href="javascript:void(0); //THIS WORKS HAHAHHAHAH" (click)="nav('projects')">see my projects!</a></p>
                             </div>
                         </div>
                     </div>
@@ -38,12 +40,11 @@
                                 </div>
                                 <div style="padding:1.5rem;">
                                     <h2 class="hidden">i&nbsp;build&nbsp;things</h2>
-                                    <p class="hidden">frontend developer making the browser feel alive with <b>Angular</b>, <b>React</b>, & <b>React Native</b> — <a style="font-size:2rem;" href="javascript:void(0); //THIS WORKS HAHAHHAHAH" (click)="nav('projects')">see my projects!</a></p>
+                                    <p class="hidden">frontend developer making the browser feel alive with <b>Angular</b>, <b>React</b>, & <b>React Native</b> — <a class="call-to-action" href="javascript:void(0); //THIS WORKS HAHAHHAHAH" (click)="nav('projects')">see my projects!</a></p>
                                 </div>
                             </div>
                         </div>
                     </div> 
-                    
                     <div class="teaser-card teaser-card-2">
                         <div class="text-background-blur">
                             <div class="teaser-content">
@@ -52,7 +53,7 @@
                                 </div>
                                 <div style="padding:1.5rem;">
                                     <h2 class="hidden">i&nbsp;build&nbsp;things</h2>
-                                    <p class="hidden">frontend developer making the browser feel alive with <b>Angular</b>, <b>React</b>, & <b>React Native</b> — <a style="font-size:2rem;" href="javascript:void(0); //THIS WORKS HAHAHHAHAH" (click)="nav('projects')">see my projects!</a></p>
+                                    <p class="hidden">frontend developer making the browser feel alive with <b>Angular</b>, <b>React</b>, & <b>React Native</b> — <a class="call-to-action" href="javascript:void(0); //THIS WORKS HAHAHHAHAH" (click)="nav('projects')">see my projects!</a></p>
                                 </div>
                             </div>
                         </div>
@@ -62,22 +63,39 @@
         </div>
         <div class="body-2">
             <div class="text2">
-                <div class="text2-container">
+                <div class="text-container">
                     <div class="text-background-blur">
-                        <div style="padding:2rem;">
+                        <div class="card-content">
                             <h2 #fadein class="hidden">education</h2>
-                            <p #fadein class="hidden">senior in <b>computer science</b> at UW Madison, see my <a href="javascript:void(0);" (click)="nav('resume')">resume</a></p>
+                            <p #fadein class="hidden">undergraduate <b>computer science</b> student at UW Madison, see my <a href="javascript:void(0);" (click)="nav('resume')">resume</a></p>
 
-                            
-                            <h2 #fadein class="hidden">interests</h2>
+                            <h2 #fadein class="hidden">currently exploring</h2>
+                            <p #fadein class="hidden">MCP servers, GO language, Arch Linux, retreival augmented generation, learning more about python beyond using it for leetcode</p>
+
+                            <h2 #fadein class="hidden">contact</h2>
                             <p #fadein class="hidden">
-                                exploring human–AI collaboration, building playful interfaces (even when no one asks), custom mechanical keyboards.
+                                You can email me at <a href="mailto:nickjyeung@gmail.com">nickjyeung&#64;gmail.com</a>.
                             </p>
                         </div>
+                        
+                        <!-- <div class="card-content">
+                            <h2 #fadein class="hidden">education</h2>
+                            <p #fadein class="hidden">undergraduate <b>computer science</b> student at UW Madison, see my <a href="javascript:void(0);" (click)="nav('resume')">resume</a></p>
+
+                            <h2 #fadein class="hidden">currently exploring</h2>
+                            <p #fadein class="hidden">MCP servers, GO language, Arch Linux, retreival augmented generation, learning more about python beyond using it for leetcode</p>
+
+                            <h2 #fadein class="hidden">contact</h2>
+                            <p #fadein class="hidden">
+                                You can email me at <a href="mailto:nickjyeung@gmail.com">nickjyeung&#64;gmail.com</a>.
+                            </p>
+                        </div> -->
+                        
                     </div>
                 </div>
                 
                 
+                    
             </div>
         </div>
     </div>
@@ -89,6 +107,7 @@
     </video>
 
 </div>
+
 <div class="footer">
     <p>Socials: <a href="https://www.youtube.com/@yourhomiesushi" target="_blank">Youtube</a>&nbsp;|&nbsp;<a href="https://www.linkedin.com/in/nick-yeung-1ab6972a9/" target="_blank">LinkedIn</a>&nbsp;|&nbsp;<a href="https://www.instagram.com/nickisapotato/">Instagram</a></p>
     <div class="back-to-top">

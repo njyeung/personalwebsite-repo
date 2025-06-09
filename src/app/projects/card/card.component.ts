@@ -11,7 +11,6 @@ import { CommonModule, UpperCasePipe } from '@angular/common';
 })
 export class CardComponent {
   @ViewChild('card') card?: ElementRef
-  @ViewChild('frame') frame? : ElementRef
   @ViewChild('backface') backface? : ElementRef
   @ViewChild('glare') glare? : ElementRef
   @Input() hideiframe: boolean = false;
@@ -19,7 +18,7 @@ export class CardComponent {
   @Input() floatShadow: boolean = false;
   @Input() inspectcard: boolean = false;
 
-  isVideo = false;
+  urlType: "iframe" | "video" | "image" = "iframe";
 
   id?: string
   name?: string
@@ -60,10 +59,13 @@ export class CardComponent {
     this.backgroundUrl = `url(${this.bg})`
 
     if(this.url?.endsWith(".mp4")) {
-      this.isVideo = true;
+      this.urlType = "video";
     }
-    else if(this.url?.endsWith(".jpg")) {
-      this.isVideo = false;
+    else if(this.url?.endsWith(".jpg") || this.url?.endsWith(".png") || this.url?.endsWith(".jpeg")) {
+      this.urlType = "image";
+    }
+    else {
+      this.urlType = "iframe"
     }
   }
 

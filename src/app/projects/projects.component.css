@@ -16,6 +16,11 @@
     transform: translate(-50%, -50%);
     perspective: 152cm;
 }
+@media(max-width: 800px) {
+    .container, .showcard {
+        perspective: 80cm;
+    }
+}
 .inspect-container {
     z-index: 599;
     position: absolute;
@@ -52,6 +57,7 @@
     opacity: 100%;
     transform: rotateX(42deg) rotateY(0deg) rotateZ(-32deg);
 }
+
 .cover {
     position: absolute;
     width: 100vw;
@@ -80,8 +86,10 @@
     cursor: grab;
     opacity: 0;
     transition: transform 0.5s;
-    animation: cardsFadeIn 200ms ease forwards;
+    animation: cardsFadeIn 300ms ease forwards;
     touch-action: none;
+
+    will-change: transform, opacity;
 }
 
 @media(max-width: 1700px) {
@@ -99,7 +107,7 @@
 }
 @media(max-width: 800px) {
     .card {
-        transform: scale(30%) translate(-110%, -100%);
+        transform: scale(30%) translate(-130%, -100%);
     }
     .showcard {
         transform: translate(-50%, -50%) scale(70%);
@@ -107,7 +115,15 @@
 }
 @media(max-width: 500px) {
     .card {
-        transform: scale(30%) translate(-110%, -100%);
+        transform: scale(30%) translate(-130%, -100%);
+    }
+    .showcard {
+        transform: translate(-50%, -50%) scale(50%);
+    }
+}
+@media(max-width: 400px) {
+    .card {
+        transform: scale(25%) translate(-200%, -100%);
     }
     .showcard {
         transform: translate(-50%, -50%) scale(50%);

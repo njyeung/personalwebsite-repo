@@ -14,6 +14,24 @@ export class ProjectsComponent {
   deskSrc : string = 'assets/desk/desk-light.jpg'
   deskLayerSrc : string = 'assets/desk/desk-light-layer.png'
   
+
+  updateDeskSrc() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    const aspectRatio = window.innerWidth / window.innerHeight;
+
+    if (aspectRatio <= (9/16)) {
+      this.deskSrc = 'assets/desk/desk-light-mobile.jpg';
+    } else if (w < 1920) {
+      this.deskSrc = 'assets/desk/desk-light-small.jpg';
+    } else {
+      this.deskSrc = 'assets/desk/desk-light.jpg';
+    }
+  }
+
+  resizeListener = () => this.updateDeskSrc();
+
   inspectcard : CardComponent | null = null
 
   @ViewChildren(CardComponent, {read: ElementRef}) cards!: QueryList<ElementRef>;
@@ -33,6 +51,9 @@ export class ProjectsComponent {
   }
 
   ngOnInit() {
+    this.updateDeskSrc();
+    window.addEventListener('resize', this.resizeListener);
+
     var values = Object.values(this.hardcoded)
 
     values.forEach((value:any)=> {
@@ -55,6 +76,12 @@ export class ProjectsComponent {
     })
   }
 
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.resizeListener);
+  }
+
+  animationFrameId: number | null = null;
+
   ngAfterViewInit() {
     var initialTop = '40%';
     var initialLeft = '50%';
@@ -74,7 +101,8 @@ export class ProjectsComponent {
       initialLeft = `${(Number(initialLeft.split("%")[0]) + 0.2)}%`
       
       let isDragging = false;
-
+      let pointerDownTime = 0;
+      
       let offsetX = 0;
       let offsetY = 0;
 
@@ -83,6 +111,8 @@ export class ProjectsComponent {
       card.addEventListener('pointerdown', (event: PointerEvent) => {
         event.preventDefault();
         this.hideiframe = true;
+
+        pointerDownTime = Date.now();
 
         // z index shift so each card ends up on top
         zIndexList.splice(zIndexList.indexOf(card),1)
@@ -100,14 +130,19 @@ export class ProjectsComponent {
 
       document.addEventListener('pointermove', (event: PointerEvent) => {
         if (isDragging == true) {
-          this.moveCard(card,event.clientX, event.clientY, offsetX, offsetY);
-          card.firstChild.classList.add('shadow-float')
+          if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
+          this.animationFrameId = requestAnimationFrame(() => {
+            this.moveCard(card, event.clientX, event.clientY, offsetX, offsetY);
+          });
         }
       }, {passive: false});
 
       document.addEventListener('pointerup', () => {
         if(isDragging == true) {
-          if(card.getBoundingClientRect().x == prev.x && card.getBoundingClientRect().y == prev.y) {
+
+          const elapsed = Date.now() - pointerDownTime;
+
+          if(card.getBoundingClientRect().x == prev.x && card.getBoundingClientRect().y == prev.y || elapsed < 100) {
             // This gets the title of the clicked card... sorry
             var title = card.firstChild.firstChild.firstChild.innerText
 
@@ -190,22 +225,24 @@ export class ProjectsComponent {
 
   hardcoded = {
     
-    "Card 6" : {
-        "id" : 6,
+    "Card 8" : {
+        "id" : 8,
         "name" : "Music Player",
         "url" : "assets/musicplayer.jpg",
+        "thumbnail": "",
         "date" : "January 2024",
         "h1" : "Simple .Wav File Player",
         "p1" : "Builds upon <b>Java</b>'s Clip class, providing <b>playlists</b>, <b>albums</b>, and a structured library for the user through a simple command line interface. Use youtube-dl to download audio files from youtube, or place your own wav files into the /music directory.",
         "h2" : "Repository",
         "p2" : "Github: <a href='http://github.com/njyeung/Music-Player'>http://github.com/njyeung/Music-Player</a>",
         "bg": "assets/card-textures/blue-texture.png",
-        "frameworks" : ["Java", "PowerShell"]
+        "frameworks" : ["Java", "PowerShell", "FFMPEG"]
     },
-    "Card 5": {
-      "id": 5,
+    "Card 7": {
+      "id": 7,
       "name": "3D Engine",
       "url": "assets/3d-engine.mp4",
+      "thumbnail": "",
       "date" : "December 2024",
       "h1": "Rasterization",
       "p1": "Reads obj and texture files, creates triangles, and projects them on the screen through a series of matrix transformations",
@@ -214,10 +251,11 @@ export class ProjectsComponent {
       "bg" : "assets/card-textures/green-texture.png",
       "frameworks": ["GLFW", "C++"]
     },
-    "Card 4": {
-        "id" : 4,
+    "Card 6": {
+        "id" : 6,
         "name" : "CS2 Nade Guide",
         "url" : "assets/nadeguide-video.mp4",
+        "thumbnail": "",
         "date" : "November 2024",
         "h1" : "A Tool For Creators",
         "p1" : "Frontend GUI for creating annotation maps in Counter Strike 2. Includes an editor that parses Valve's proprietary KV3 format into JSON, allows users to edit the annotations using a GUI, and converts back to a KV3 file to be loaded into the game.",
@@ -226,10 +264,11 @@ export class ProjectsComponent {
         "bg": "assets/card-textures/orange-texture.png",
         "frameworks" : ["React", "Github Pages", "React Bootstrap", "KV3"]
     },
-    "Card 3" : {
-        "id" : 3,
+    "Card 5" : {
+        "id" : 5,
         "name" : "Personal Website",
         "url" : "https://njyeung.github.io/personalwebsite/",
+        "thumbnail": "",
         "date" : "October 2024",
         "h1" : "About Me",
         "p1" : "Showcases my <b>projects</b>, <b>resume</b>, and <b>github</b> all condensed in an aesthetic and fun layout. (p.s. you are here!)",
@@ -238,29 +277,58 @@ export class ProjectsComponent {
         "bg": "assets/card-textures/yellow-texture.png",
         "frameworks" : ["Angular", "Github Pages", "Photoshop", "Premiere Pro"]
     },
-    "Card 2": {
-      "id": 2,
+    "Card 4": {
+      "id": 4,
       "name": "PresentLy",
       "url": "https://presently-eight.vercel.app",
+      "thumbnail": "",
       "date": "March 2025",
       "h1": "AI Personalized Gift Finder",
       "p1": "A gift recommendation platform that matches presents to a recipient’s interests. After selecting an occasion and filling out a short survey, the app curates gift ideas using a dataset of over 26,000 best-selling Amazon items.",
       "h2": "Links",
-      "p2": "Devpost submission: <a href='https://devpost.com/software/presently'>https://devpost.com/software/presently</a> | Github repo: <a href='https://github.com/VishnuR121/presently'>https://github.com/VishnuR121/presently</a> | Live website: <a href='https://presently-eight.vercel.app'>https://presently-eight.vercel.app</a> backend: down",
+      "p2": "Devpost submission: <a href='https://devpost.com/software/presently'>https://devpost.com/software/presently</a> | Github repo: <a href='https://github.com/VishnuR121/presently'>https://github.com/VishnuR121/presently</a> | Live website: <a href='https://presently-eight.vercel.app'>https://presently-eight.vercel.app</a> (backend down)",
       "bg": "assets/card-textures/purple-texture.png",
       "frameworks": ["Next.js", "OpenAI API", "Tailwind", "Framer Motion", "Supabase", "AWS Lambda", "Vercel"]
     },
-    "Card 1" : {
-        "id" : 1,
+    "Card 3" : {
+        "id" : 3,
         "name" : "Sakura Sushi & Grill",
         "url" : "https://eatsakura.com",
+        "thumbnail": "",
         "date" : "May 2024",
         "h1" : "Online Menu",
         "p1" : "Responsive online menu designed to facilitate placing pickup orders and displaying relevant information for the family restaurant. <b>Angular</b> frontend hosted on <b>GitHub Pages</b> and <b>.NET</b> backend hosted on <b>Azure</b>.",
         "h2" : "Links",
-        "p2" : "Github repo for frontend: <a href='https://github.com/njyeung/Sakura-Repo'>https://github.com/njyeung/Sakura-Repo</a> | Live website: <a href='https://eatsakura.com'>https://eatsakura.com</a>, backend: undisclosed",
+        "p2" : "Github repo for frontend: <a href='https://github.com/njyeung/Sakura-Repo'>https://github.com/njyeung/Sakura-Repo</a> | Live website: <a href='https://eatsakura.com'>https://eatsakura.com</a>, (backend source undisclosed)",
         "bg": "assets/card-textures/pink-texture.png",
         "frameworks" : ["Angular", ".NET", "Github Pages", "Bootstrap", "Twilio", "SQLite", "Azure"]
+    },
+    "Card 2": {
+      "id": 2,
+      "name": "Buddy",
+      "url": "assets/buddy.png",
+      "thumbnail": "",
+      "date": "May 2025",
+      "h1": "Personal AI Agent",
+      "p1": "Connects a <b>Python backend</b> with a <b>React + Webview</b> frontend through a custom <b>C bridge</b> using pipes and threads. Supports <b>persistent chat history</b>, <b>Retrieval-Augmented Generation</b> across projects, <b>user profiles</b>, <b>sliding window summarization</b>, and a flexible <b>tool system</b> for autonomous agent behavior. Extensive writeup available in the README of the repo.",
+      "h2": "Links",
+      "p2": "Github repo: <a href='https://github.com/njyeung/Buddy'>https://github.com/njyeung/Buddy</a>",
+      "bg": "assets/card-textures/blue-texture.png",
+      "frameworks": ["Python", "C", "Webview", "React", "Tailwind", "SQLite", "GPT API", "OpenAI Tools"]
+    },
+    "Card 1": {
+      "id": 1,
+      "name": "Splitudio",
+      "url": "https://splitudio-iota.vercel.app/",
+      "thumbnail": "",
+      "date": "April 2025",
+      "h1": "AI-Powered Music Processing",
+      "p1": "Web app that separates user-uploaded audio into individual instrument stems using <b>Demucs</b> and transcribes them to <b>MIDI</b> with <b>Basic Pitch</b>. Features <b>GPU-accelerated</b> cloud processing and an interactive <b>NextJS</b> UI for waveform visualization, MIDI play-along, and track control.",
+      "h2": "Links",
+      "p2": "Website: <a href='https://splitudio-iota.vercel.app/'>https://splitudio-iota.vercel.app</a> (backend down) | Github repo: <a href='https://github.com/ach968/Splitudio'>https://github.com/ach968/Splitudio</a>",
+      "bg": "assets/card-textures/white-texture.png",
+      "frameworks": ["Next.js", "Shadcn", "Tailwind", "Firebase Functions & Firestore", "GCR ", "Python", "Stripe"]
     }
+    
   }
 }
