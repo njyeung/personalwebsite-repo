@@ -104,7 +104,6 @@ export class CardComponent {
           this.glare?.nativeElement.setAttribute('style', `background: radial-gradient(circle at ${(1-pX)*100}% ${(1-pY)*100+10}%, rgba(255,255,255,0.2) 30%, transparent 70%)`)
         })
       }, 1000)
-
     }
   }
 

@@ -76,7 +76,6 @@ export class HomeComponent {
       this.router.navigate([route])
     }
   }
-
   
 
   constructor(private router: Router) {
