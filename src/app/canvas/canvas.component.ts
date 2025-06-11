@@ -71,8 +71,11 @@ export class CanvasComponent {
       }
     }
 
+    const requestIdleFallback = window.requestIdleCallback || function (cb: any) {
+      return setTimeout(cb, 1);
+    };
     document.addEventListener('scroll', () => {
-      requestIdleCallback(() => this.play(), { timeout: 50 });
+      requestIdleFallback(() => this.play(), { timeout: 50 });
     })
 
     this.preloadImages()

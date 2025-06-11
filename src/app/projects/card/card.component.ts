@@ -23,6 +23,7 @@ export class CardComponent {
   id?: string
   name?: string
   url?: string
+  thumbnail?: string
   date?: string
   h1?: string
   p1?: string
@@ -48,6 +49,7 @@ export class CardComponent {
     this.id = String(this.data?.id).padStart(3, '0')
     this.name = this.data?.name
     this.url = this.data?.url
+    this.thumbnail = this.data?.thumbnail
     this.date = this.data?.date
     this.h1 = this.data?.h1
     this.p1 = this.data?.p1
@@ -77,6 +79,18 @@ export class CardComponent {
       this.card?.nativeElement.classList.add('animation')
     }
 
+    this.card?.nativeElement.addEventListener('transitionend', () => {
+      if (this.inspectcard) {
+        this.card?.nativeElement.querySelectorAll('iframe, video, img').forEach((el: HTMLElement) => {
+          el.style.visibility = 'visible';
+        });
+      } else {
+        this.card?.nativeElement.querySelectorAll('iframe, video, img').forEach((el: HTMLElement) => {
+          el.style.visibility = 'hidden';
+        });
+      }
+    });
+    
     if(this.inspectcard == true) {
 
       // make backface invisible after peekin animation
