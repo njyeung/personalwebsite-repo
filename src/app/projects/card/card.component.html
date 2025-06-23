@@ -5,9 +5,9 @@
         <div class="frame" *ngIf="inspectcard == true">
             <div [hidden]="!hideiframe" #cover class="cover"></div>
             <div class="media-wrapper">
-                <img [hidden]="urlType != 'image'" [src]="url | safe:'resourceUrl'">
-                <video [hidden]="urlType != 'video'" play loop="true" [autoplay]="inspectcard" muted loop plays-inline [src]="url | safe:'resourceUrl'"></video>
-                <iframe [hidden]="urlType != 'iframe'" [src]="url | safe:'resourceUrl'" frameborder="0"></iframe>
+                <img (click)="goFullscreen($event)" [hidden]="urlType != 'image'" [src]="url | safe:'resourceUrl'">
+                <video (click)="goFullscreen($event)" [hidden]="urlType != 'video'" play loop="true" [autoplay]="inspectcard" muted loop plays-inline [src]="url | safe:'resourceUrl'"></video>
+                <iframe (click)="goFullscreen($event)" [hidden]="urlType != 'iframe'" [src]="url | safe:'resourceUrl'" frameborder="0"></iframe>
             </div>
         </div>
         <div class="frame" *ngIf="inspectcard == false">

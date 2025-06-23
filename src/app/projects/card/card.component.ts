@@ -10,6 +10,7 @@ import { CommonModule, UpperCasePipe } from '@angular/common';
   styleUrl: './card.component.css'
 })
 export class CardComponent {
+
   @ViewChild('card') card?: ElementRef
   @ViewChild('backface') backface? : ElementRef
   @ViewChild('glare') glare? : ElementRef
@@ -34,6 +35,20 @@ export class CardComponent {
 
   backgroundUrl : string = ""
 
+  goFullscreen(event: MouseEvent) {
+    const elem = event.target as HTMLElement;
+
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if ((elem as any).webkitRequestFullscreen) {
+      (elem as any).webkitRequestFullscreen();
+    } else if ((elem as any).mozRequestFullScreen) {
+      (elem as any).mozRequestFullScreen();
+    } else if ((elem as any).msRequestFullscreen) {
+      (elem as any).msRequestFullscreen();
+    }
+  }
+
   ngOnChanges() {
     if(this.inspectcard == false) {
       if(this.floatShadow==true) {
@@ -50,6 +65,9 @@ export class CardComponent {
     this.name = this.data?.name
     this.url = this.data?.url
     this.thumbnail = this.data?.thumbnail
+
+    console.log(this.thumbnail)
+
     this.date = this.data?.date
     this.h1 = this.data?.h1
     this.p1 = this.data?.p1
@@ -115,7 +133,7 @@ export class CardComponent {
 
           this.card?.nativeElement.setAttribute('style', `transform: rotateX(${-transY}deg) rotateY(${transX}deg);
             background: ${edgeGradient}, linear-gradient(135deg, rgba(192,192,192,1) 10%, rgba(235,235,235,1) 30%, rgba(192,192,192,1) 50%, rgba(218,218,218,1) 78%, rgba(192,192,192,1) 95%)`)
-          this.glare?.nativeElement.setAttribute('style', `background: radial-gradient(circle at ${(1-pX)*100}% ${(1-pY)*100+10}%, rgba(255,255,255,0.2) 30%, transparent 70%)`)
+          this.glare?.nativeElement.setAttribute('style', `background: radial-gradient(circle at ${(1-pX)*100}% ${(1-pY)*100+10}%, rgba(255,255,255,0.1) 20%, transparent 70%)`)
         })
       }, 1000)
     }
