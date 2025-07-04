@@ -28,6 +28,10 @@ export class HomeComponent {
       this.videoPlaying = true;
       this.keyboard.nativeElement.muted = true // you need this line cuz angular is weird
       this.madison.nativeElement.muted = true
+
+      this.keyboard.nativeElement.playbackRate = 0.9
+      this.madison.nativeElement.playbackRate = 0.9
+
       this.keyboard.nativeElement.play();
       this.madison.nativeElement.play();
     }
