@@ -174,9 +174,10 @@ a:visited {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 0.7rem;
-    z-index: -1;
+    z-index: 2;
     width: 100%;
     transition: background-color 1s ease 0s, border 0.4s ease 0.7s, backdrop-filter 0.4s ease 0.7s;
+    pointer-events: all;
 }
 .card-content {
     position: relative;
@@ -215,7 +216,6 @@ a:visited {
     backdrop-filter: blur(5px);
     border: 2px solid rgba(255, 255, 255, 0.856)
 }
-
 .cta-active .call-to-action {
   font-size: 2.3rem;
 }
