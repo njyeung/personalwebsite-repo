@@ -225,22 +225,8 @@ export class ProjectsComponent {
   }
 
   hardcoded = {
-    
-    "Card 8" : {
-        "id" : 8,
-        "name" : "Music Player",
-        "url" : "assets/card-assets/musicplayer.jpg",
-        "thumbnail": "assets/card-assets/musicplayer.jpg",
-        "date" : "January 2024",
-        "h1" : "Simple .Wav File Player",
-        "p1" : "Builds upon <b>Java</b>'s Clip class, providing <b>playlists</b>, <b>albums</b>, and a structured library for the user through a simple command line interface. Use youtube-dl to download audio files from youtube, or place your own wav files into the /music directory.",
-        "h2" : "Repository",
-        "p2" : "Github: <a href='http://github.com/njyeung/Music-Player'>http://github.com/njyeung/Music-Player</a>",
-        "bg": "assets/card-textures/yellow-texture.png",
-        "frameworks" : ["Java", "PowerShell", "FFMPEG"]
-    },
-    "Card 7": {
-      "id": 7,
+    "Card 10": {
+      "id": 10,
       "name": "3D Engine",
       "url": "assets/card-assets/3d-engine.mp4",
       "thumbnail": "assets/card-thumbnails/3d-engine.jpg",
@@ -252,34 +238,34 @@ export class ProjectsComponent {
       "bg" : "assets/card-textures/green-texture.png",
       "frameworks": ["GLFW", "C++"]
     },
-    "Card 6": {
-        "id" : 6,
-        "name" : "CS2 Nade Guide",
-        "url" : "assets/card-assets/nadeguide-video.mp4",
-        "thumbnail": "assets/card-thumbnails/nade-guide.jpg",
-        "date" : "November 2024",
-        "h1" : "A Tool For Creators",
-        "p1" : "Frontend GUI for creating annotation maps in Counter Strike 2. Includes an editor that parses Valve's proprietary KV3 format into JSON, allows users to edit the annotations using a GUI, and converts back to a KV3 file to be loaded into the game.",
-        "h2" : "Links",
-        "p2" : "Github repo: <a href='https://github.com/njyeung/cs2-nade-guide'>https://github.com/njyeung/cs2-nade-guide</a> | Live website: <a href='https://njyeung.github.io/cs2-nade-guide/'>https://njyeung.github.io/cs2-nade-guide/</a>",
-        "bg": "assets/card-textures/orange-texture.png",
-        "frameworks" : ["React", "Github Pages", "React Bootstrap", "KV3"]
+    "Card 9": {
+      "id": 9,
+      "name": "Perp",
+      "url": "assets/card-assets/3d-engine.mp4",
+      "thumbnail": "assets/card-thumbnails/3d-engine.jpg",
+      "date" : "November 2025",
+      "h1": "Never miss a meeting",
+      "p1": "Perp is a meeting bot that everyone can chat with during a meeting to stay on the same page the entire time. We fully integrated it into your workflows, it simply works with existing tools like Notion, Slack, Zoom, Google Meets, and Microsoft Outlook.",
+      "h2": "Y Combinator Agent Jam 25 Winner!",
+      "p2": "Hackathon submission: <a href='https://drive.google.com/file/d/1ODcaGTL4Pwpajh7hrChk8HOtIbSu_5qO/view?usp=drive_link'>Video Demo</a>",
+      "bg" : "assets/card-textures/purple-texture.png",
+      "frameworks": ["GLFW", "C++"]
     },
-    "Card 4": {
-      "id": 4,
-      "name": "PresentLy",
-      "url": "assets/card-assets/presently.mp4",
-      "thumbnail": "assets/card-thumbnails/presently.jpg",
-      "date": "March 2025",
-      "h1": "AI Personalized Gift Finder",
-      "p1": "A gift recommendation platform that matches presents to a recipient’s interests. After selecting an occasion and filling out a short survey, the app curates gift ideas using a dataset of over 26,000 best-selling Amazon items.",
+    "Card 8": {
+      "id": 8,
+      "name": "Map Reduce",
+      "url": "assets/card-assets/3d-engine.mp4",
+      "thumbnail": "assets/card-thumbnails/3d-engine.jpg",
+      "date" : "December 2024",
+      "h1": "Rasterization",
+      "p1": "Reads obj and texture files, creates triangles, and projects them on the screen through a series of matrix transformations",
       "h2": "Links",
-      "p2": "Devpost submission: <a href='https://devpost.com/software/presently'>https://devpost.com/software/presently</a> | Github repo: <a href='https://github.com/VishnuR121/presently'>https://github.com/VishnuR121/presently</a> | Live website: <a href='https://presently-eight.vercel.app'>https://presently-eight.vercel.app</a> (backend down)",
-      "bg": "assets/card-textures/purple-texture.png",
-      "frameworks": ["Next.js", "OpenAI API", "Tailwind", "Framer Motion", "Supabase", "AWS Lambda", "Vercel"]
+      "p2": "Github repo: <a href='https://github.com/njyeung/3d-engine.git'>https://github.com/njyeung/3d-engine.git</a> (Currently only works for MacOS)",
+      "bg" : "assets/card-textures/yellow-texture.png",
+      "frameworks": ["GLFW", "C++"]
     },
-    "Card 3" : {
-        "id" : 3,
+    "Card 7" : {
+        "id" : 7,
         "name" : "Sakura Sushi & Grill",
         "url" : "https://eatsakura.com",
         "thumbnail": "assets/card-thumbnails/sakura.jpg",
@@ -291,8 +277,8 @@ export class ProjectsComponent {
         "bg": "assets/card-textures/pink-texture.png",
         "frameworks" : ["Angular", ".NET", "Github Pages", "Bootstrap", "Twilio", "SQLite", "Azure"]
     },
-    "Card 2": {
-      "id": 2,
+    "Card 6": {
+      "id": 6,
       "name": "Buddy",
       "url": "assets/card-assets/buddy.mp4",
       "thumbnail": "assets/card-thumbnails/buddy.jpg",
@@ -304,8 +290,21 @@ export class ProjectsComponent {
       "bg": "assets/card-textures/blue-texture.png",
       "frameworks": ["Python", "C", "Webview", "React", "Tailwind", "SQLite", "GPT API", "OpenAI Tools"]
     },
-    "Card 1": {
-      "id": 1,
+    "Card 5": {
+      "id": 5,
+      "name": "Oriyon",
+      "url": "assets/card-assets/splitudio.mp4",
+      "thumbnail": "assets/splitudio.jpg",
+      "date": "April 2025",
+      "h1": "Text to CAD",
+      "p1": "AI chatbot powered by a Random Forest Regression model that predicts aerodynamic performance with MAE of 0.06. Reduced parametric CAD model generation time by 94% by using CadQuery to automate geometry creation ans STL meshing, facilitating instant part downloads",
+      "h2": "Links",
+      "p2": "Website (try now!): <a href='https://oriyon.tech'>https://oriyon.tech</a>",
+      "bg": "assets/card-textures/metal-texture.png",
+      "frameworks": ["Python", "Typescript", "FastAPI", "AWS", "Docker", "Redis", "AWS"]
+    },
+    "Card 4": {
+      "id": 4,
       "name": "Splitudio",
       "url": "assets/card-assets/splitudio.mp4",
       "thumbnail": "assets/splitudio.jpg",
@@ -315,8 +314,46 @@ export class ProjectsComponent {
       "h2": "Links",
       "p2": "Website: <a href='https://splitudio-iota.vercel.app/'>https://splitudio-iota.vercel.app</a> (backend down) | Github repo: <a href='https://github.com/ach968/Splitudio'>https://github.com/ach968/Splitudio</a>",
       "bg": "assets/card-textures/white-texture.png",
-      "frameworks": ["Next.js", "Shadcn", "Tailwind", "Firebase Functions & Firestore", "GCR ", "Python", "Stripe"]
+      "frameworks": ["Next.js", "Shadcn", "Tailwind", "Firebase Functions & Firestore", "GCR", "Python", "Stripe"]
+    },
+    "Card 3": {
+      "id": 3,
+      "name": "3Docs",
+      "url": "assets/card-assets/splitudio.mp4",
+      "thumbnail": "assets/splitudio.jpg",
+      "date": "November 2025",
+      "h1": "Generate interactive 3D repair guides",
+      "p1": "3Docs is a platform that transforms boring old PDF manuals into interactive 3D manuals complete with voice guidance and PDF references for each step of a process.",
+      "h2": "1st Place @ Madhacks 2025!",
+      "p2": "Devpost: <a href='https://devpost.com/software/3docs'>https://devpost.com/software/3docs</a> | Github repo: <a href='https://github.com/r-thak/3Docs-MadHacks2025-Winner'>https://github.com/r-thak/3Docs-MadHacks2025-Winner</a>",
+      "bg": "assets/card-textures/blue-texture.png",
+      "frameworks": ["Next.js", "Python", "Fish Audio", "Gemini", "GCR ", "Sqlite", "Tripo AI"]
+    },
+    "Card 2": {
+      "id": 2,
+      "name": "HoppyShare",
+      "url": "assets/card-assets/splitudio.mp4",
+      "thumbnail": "assets/splitudio.jpg",
+      "date": "July 2025",
+      "h1": "One clipboard, all your devices.",
+      "p1": "Syncs your clipboard across ALL your devices, whether you're connected to the internet or not. Windows, MacOS, Linux, and Android supported. Powered by MQTT and BLE, with a cute mascot that sits in your systray.",
+      "h2": "Links",
+      "p2": "Website (try now!): <a href='https://www.hoppyshare.com/'>https://www.hoppyshare.com/</a> | Github repo: <a href='https://github.com/njyeung/hoppyshare'>https://github.com/njyeung/hoppyshare</a>",
+      "bg": "assets/card-textures/orange-texture.png",
+      "frameworks": ["MQTT", "Next.js", "Docker", "Go", "Supabase", "Python", "AWS", "Kotlin"]
+    },
+    "Card 1": {
+      "id": 1,
+      "name": "Piazza Bot",
+      "url": "assets/card-assets/splitudio.mp4",
+      "thumbnail": "assets/splitudio.jpg",
+      "date": "December 2025",
+      "h1": "Piazza posts and lecture transcriptions",
+      "p1": "Distributed system with Kaltury Gallery scrapers, local models (embedding & llm), and RAG pipeline. Answers Piazza posts with citations and timestamps directly from lecture transcripts. Supports user defined parsers for each class.",
+      "h2": "Links",
+      "p2": "Github repo: <a href='https://github.com/njyeung/piazza-bot'>https://github.com/njyeung/piazza-bot</a> | Writeup: <a href='https://github.com/njyeung/piazza-bot/blob/main/Piazza%20Bot.pdf'>Piazza_Bot.pdf</a>",
+      "bg": "assets/card-textures/purple-texture.png",
+      "frameworks": ["Cassandra", "Redis", "Kafka", "Docker", "RAG", "Go", "Python"]
     }
-    
   }
 }
