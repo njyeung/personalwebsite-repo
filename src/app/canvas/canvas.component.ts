@@ -20,16 +20,18 @@ export class CanvasComponent {
 
   // Caches images
   loadedImages: Map<number, HTMLImageElement> = new Map();
+
+  // Scroll throttling
+  private scrollPending = false;
   
   folder = 'jpgs-tiny'
 
   ngAfterViewInit() {
     this.context = this.canvas?.nativeElement.getContext('2d')
     this.canvas = this.canvas?.nativeElement
-    
-    // yeah this works better for some reason
-    this.canvas.height = 8000
-    this.canvas.width = 8000
+
+    this.canvas.width = window.innerWidth
+    this.canvas.height = window.innerHeight
 
     const img = new Image();
     img.src = this.currentFrame(1);
@@ -48,6 +50,9 @@ export class CanvasComponent {
   
   @HostListener('window:resize', ['$event'])
   onResize(event:any) {
+    // Update canvas dimensions on resize
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
     this.coverWindow(this.img);
   }
 
@@ -71,12 +76,16 @@ export class CanvasComponent {
       }
     }
 
-    const requestIdleFallback = window.requestIdleCallback || function (cb: any) {
-      return setTimeout(cb, 1);
-    };
+    // Throttle scroll events with requestAnimationFrame for better performance?
     document.addEventListener('scroll', () => {
-      requestIdleFallback(() => this.play(), { timeout: 50 });
-    })
+      if (!this.scrollPending) {
+        this.scrollPending = true;
+        requestAnimationFrame(() => {
+          this.play();
+          this.scrollPending = false;
+        });
+      }
+    }, { passive: true })
 
     this.preloadImages()
   }
@@ -100,6 +109,9 @@ export class CanvasComponent {
       else {
         this.currFrameIndex = frameIndex+1;
         requestAnimationFrame(() => this.updateImage(frameIndex+1));
+
+        // Preload nearby frames as user scrolls
+        this.preloadNearbyFrames(frameIndex+1);
       } 
     }
   }
@@ -114,27 +126,25 @@ export class CanvasComponent {
       newImg.src = this.currentFrame(index);
       newImg.onload = () => {
         this.loadedImages.set(index, newImg);
-        this.coverWindow(this.img);
+        this.coverWindow(newImg);
       }
 
     }
   }
 
   preloadImages() {
-    const priorityRange = 10;
-
-    // Load first few frames immediately
-    for (let i = 2; i <= priorityRange; i++) {
+    // Initial load: just load first few frames
+    for (let i = 1; i <= 10; i++) {
       this.loadImage(i);
     }
+  }
 
-    // Slowly load the rest
-    let delay = 0;
-    for (let i = priorityRange + 1; i <= this.frameCount; i++) {
-      setTimeout(() => {
-        this.loadImage(i);
-      }, delay);
-      delay += 100;
+  preloadNearbyFrames(currentFrame: number) {
+    const startFrame = Math.max(1, currentFrame - 10);
+    const endFrame = Math.min(this.frameCount, currentFrame + 10);
+
+    for (let i = startFrame; i <= endFrame; i++) {
+      this.loadImage(i);
     }
   }
 
@@ -152,15 +162,22 @@ export class CanvasComponent {
   }
 
   coverWindow(img: any) {
+    // Clear canvas before drawing optimization
+    this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Cache dimensions to avoid repeated property access
+    const canvasWidth = this.canvas.width;
+    const canvasHeight = this.canvas.height;
+
     const imgRatio = img.height / img.width
-    const winRatio = window.innerHeight / window.innerWidth
+    const winRatio = canvasHeight / canvasWidth
     if (imgRatio > winRatio) {
-      const h = window.innerWidth * imgRatio
-      this.context?.drawImage(img, 0, (window.innerHeight - h) / 2, window.innerWidth, h)
+      const h = canvasWidth * imgRatio
+      this.context?.drawImage(img, 0, (canvasHeight - h) / 2, canvasWidth, h)
     }
     else if (imgRatio < winRatio) {
-      const w = window.innerWidth * winRatio / imgRatio
-      this.context?.drawImage(img, (window.innerWidth - w) / 2, 0, w, window.innerHeight)
+      const w = canvasWidth * winRatio / imgRatio
+      this.context?.drawImage(img, (canvasWidth - w) / 2, 0, w, canvasHeight)
     }
   }
 }

@@ -385,24 +385,3 @@ a:visited {
     filter: blur(0px);
     opacity: 1;
 }
-
-
-/* custom cursor */
-.draggable:hover {
-    cursor: url("https://cdn.custom-cursor.com/128/assets/arrows/32/Translucent_Pixel_Cursor.png"), auto;
-}
-.draggable:active {
-    cursor: url("https://cdn.custom-cursor.com/128/assets/pointers/32/Translucent_Pixel_Cursor.png"), auto;
-}
-
-a:hover {
-    cursor: url("https://cdn.custom-cursor.com/128/assets/pointers/32/Translucent_Pixel_Cursor.png"), auto;
-}
-
-/* prevent flashing back to default cursor */
-.draggable {
-    cursor:none;
-}
-a {
-    cursor: none;
-}
