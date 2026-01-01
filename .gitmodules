@@ -1,6 +1,3 @@
-[submodule "personalwebsite"]
-	path = personalwebsite
-	url = git@github.com:njyeung/personalwebsite.git
 [submodule "dist/personalwebsite-repo/browser"]
 	path = dist/personalwebsite-repo/browser
 	url = git@github.com:njyeung/personalwebsite.git

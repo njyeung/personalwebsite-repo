@@ -1,7 +1,10 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/dist
+/dist/*
+!/dist/personalwebsite-repo
+/dist/personalwebsite-repo/*
+!/dist/personalwebsite-repo/browser
 /tmp
 /out-tsc
 /bazel-out
