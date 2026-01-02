@@ -16,10 +16,10 @@ export class CanvasComponent {
   html = document.documentElement;
   frameCount = 67;
   currFrameIndex = 1;
-  img = new Image()
+  img: ImageBitmap | null = null
 
   // Caches images
-  loadedImages: Map<number, HTMLImageElement> = new Map();
+  loadedImages: Map<number, ImageBitmap> = new Map();
 
   // Scroll throttling
   private scrollPending = false;
@@ -33,19 +33,7 @@ export class CanvasComponent {
     this.canvas.width = window.innerWidth
     this.canvas.height = window.innerHeight
 
-    const img = new Image();
-    img.src = this.currentFrame(1);
-
-    //this is cooked
-    let self = this
-    img.onload = function() {
-      // graceful animation to load image before fade-in
-      setTimeout(()=>{self.updateImage(1); console.log("INITIAL LOAD")}, 500);
-      
-      // sometimes it doesn't load though (might be slow internet or cache???), try again after fade-in animation
-      setTimeout(()=>{self.updateImage(1); console.log("SECOND LOAD")}, 1000);
-      setTimeout(()=>{self.updateImage(1); console.log("THIRD LOAD")}, 2000);
-    }
+    this.updateImage(1)
   }
   
   @HostListener('window:resize', ['$event'])
@@ -53,7 +41,9 @@ export class CanvasComponent {
     // Update canvas dimensions on resize
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
-    this.coverWindow(this.img);
+    if(this.img) {
+      this.coverWindow(this.img);
+    }
   }
 
   currentFrame(index: number){
@@ -103,62 +93,35 @@ export class CanvasComponent {
         Math.ceil(scrollFraction * this.frameCount)
       );
 
-      if(frameIndex == this.currFrameIndex){
-        // TRY THIS FOR OPTIMIZING
-      }
-      else {
-        this.currFrameIndex = frameIndex+1;
-        requestAnimationFrame(() => this.updateImage(frameIndex+1));
-
-        // Preload nearby frames as user scrolls
-        this.preloadNearbyFrames(frameIndex+1);
-      } 
+      this.currFrameIndex = frameIndex+1;
+      requestAnimationFrame(() => this.updateImage(frameIndex+1));
     }
   }
 
-  updateImage(index: number) {
-    if(this.loadedImages.has(index)) {
-      this.img = this.loadedImages.get(index)!;
-      this.coverWindow(this.img)
+  async updateImage(index: number) {
+    if(!this.loadedImages.has(index)) {
+      await this.loadImage(index)
     }
-    else {
-      const newImg = new Image();
-      newImg.src = this.currentFrame(index);
-      newImg.onload = () => {
-        this.loadedImages.set(index, newImg);
-        this.coverWindow(newImg);
-      }
 
+    const bitmap = this.loadedImages.get(index)
+    if(bitmap) {
+      this.img = bitmap;
+      this.coverWindow(bitmap);
     }
   }
 
   preloadImages() {
-    // Initial load: just load first few frames
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= this.frameCount; i++) {
       this.loadImage(i);
     }
   }
 
-  preloadNearbyFrames(currentFrame: number) {
-    const startFrame = Math.max(1, currentFrame - 10);
-    const endFrame = Math.min(this.frameCount, currentFrame + 10);
-
-    for (let i = startFrame; i <= endFrame; i++) {
-      this.loadImage(i);
-    }
-  }
-
-  loadImage(index: number) {
+  async loadImage(index: number) {
     if (this.loadedImages.has(index)) return;
-
-    const img = new Image();
-    img.src = this.currentFrame(index);
-    img.onload = () => {
-      this.loadedImages.set(index, img);
-    };
-    img.onerror = () => {
-      console.warn(`Failed to load frame ${index}`);
-    };
+    
+    const resp = await fetch(this.currentFrame(index))
+    const bitmap = await createImageBitmap(await resp.blob())
+    this.loadedImages.set(index, bitmap);
   }
 
   coverWindow(img: any) {
