@@ -22,7 +22,7 @@ export class NavbarComponent {
         break;
       case 'resume':
         // popup resume
-        window.open('https://docs.google.com/document/d/1ckMpXpyVCMkE-bBncIgqxDaanaWUCT9zNp8I4VvG92A/edit?usp=sharing')
+        window.open('https://nickjyeung.dev/assets/Nicholas_Yeung_Resume.pdf')
         break;
       case 'github':
         // popup github
