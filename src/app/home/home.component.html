@@ -93,7 +93,7 @@
 </div>
 
 <div class="spotify-toast" *ngIf="toastVisible" [class.slide-out]="toastSlideOut">
-    <p>♫ <span class="currently-playing">Currently Playing</span>&nbsp;&nbsp;{{ spotify!.song }} — {{ spotify!.artist.split(';')[0].trim() }}</p>
+    <p>♫ <span class="currently-playing">Currently Playing</span>&nbsp;&nbsp;{{ spotify!.song }} — {{ spotify!.artist.split(';').join(",") }}</p>
 </div>
 
 <div class="footer">
