@@ -1,12 +1,12 @@
 import { Component, ElementRef, HostListener, ViewChild, ViewChildren } from '@angular/core';
 import { CanvasComponent } from "../canvas/canvas.component";
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router'
+import { Router, RouterLink } from '@angular/router'
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CanvasComponent, CommonModule],
+  imports: [CanvasComponent, CommonModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
