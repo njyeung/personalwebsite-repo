@@ -2,9 +2,6 @@
 
 # Compiled output
 */dist/*
-!/dist/personalwebsite-repo
-/dist/personalwebsite-repo/*
-!/dist/personalwebsite-repo/browser
 /tmp
 /out-tsc
 /bazel-out
