@@ -83,10 +83,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   
 
-  spotify: { song: string; artist: string; album_art_url: string } | null = null;
+  spotify: { song: string; artist: string; album_art_url: string; track_id: string } | null = null;
   toastVisible = false;
   toastSlideOut = false;
-  private toastTimeout: any;
+  textScrolling = false;
+  private toastTimeout: number = 0;
 
   ngOnInit() {
     setTimeout(() => this.fetchLanyard(), 5000);
@@ -96,20 +97,35 @@ export class HomeComponent implements OnInit, OnDestroy {
     clearTimeout(this.toastTimeout);
   }
 
-  showToast() {
-    this.toastSlideOut = false;
-    this.toastVisible = true;
-    this.toastTimeout = setTimeout(() => {
-      this.toastSlideOut = true;
-      setTimeout(() => { this.toastVisible = false; }, 500);
-    }, 5000);
-  }
-
   fetchLanyard() {
     this.http.get<any>('https://api.lanyard.rest/v1/users/256141285264588801').subscribe({
       next: (res) => {
         this.spotify = res.data.spotify ?? null;
-        if (this.spotify) this.showToast();
+        if (this.spotify) {
+          this.toastSlideOut = false;
+          this.textScrolling = false;
+          this.toastVisible = true;
+
+          setTimeout(() => {
+            const container = document.querySelector('.toast-text-container') as HTMLElement;
+            const text = document.querySelector('.toast-text') as HTMLElement;
+            if (container && text) {
+              const overflow = text.scrollWidth - container.clientWidth;
+              if (overflow > 0) {
+                text.style.setProperty('--scroll-offset', `-${overflow}px`);
+                this.textScrolling = true;
+              }
+            }
+          }, 50);
+
+          this.toastTimeout = setTimeout(() => {
+            this.toastSlideOut = true;
+            setTimeout(() => { 
+              this.toastVisible = false; 
+            }, 500);
+          
+          }, 10000);
+        }
       },
       error: () => {
         this.spotify = null;
@@ -117,6 +133,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  onMouseOver() {
+    clearTimeout(this.toastTimeout);
+  }
+
+  onMouseOut() {
+    this.toastTimeout = setTimeout(() => {
+      this.toastSlideOut = true;
+      setTimeout(() => { 
+        this.toastVisible = false; 
+      }, 500);
+    }, 10000);
+  }
   constructor(private router: Router, private http: HttpClient) {
     // mobile
     if(window.innerHeight>window.innerWidth) {
@@ -134,8 +162,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.madisonSrc = 'assets/madison-tiny.mp4'
       }
     }
-
-    
   }
 
   // ngOnInit() {
@@ -154,7 +180,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       const deltaY = currentY - this.lastY;
 
-      console.log(`scrolling by ${-deltaY * 1.5}`);
       window.scrollBy(0, -deltaY * 1.5);
 
       this.lastY = currentY;

@@ -93,7 +93,15 @@
 </div>
 
 <div class="spotify-toast" *ngIf="toastVisible" [class.slide-out]="toastSlideOut">
-    <p>♫ <span class="currently-playing">Currently Playing</span>&nbsp;&nbsp;{{ spotify!.song }} — {{ spotify!.artist.split(';').join(",") }}</p>
+    <a (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" href="https://open.spotify.com/track/{{ spotify!.track_id }}" target="_blank"> 
+        <img class="spotify-album-icon" *ngIf="spotify?.album_art_url" src={{spotify?.album_art_url}} alt={{spotify?.album_art_url}}>
+        <div class="toast-text-container">
+            <span class="toast-text" [class.marquee]="textScrolling">
+                {{ spotify!.song }} - {{ spotify!.artist.split(';').join(', ') }}
+                <img class="vinyl-icon" src="assets/vinyl.svg" alt="vinyl"> 
+            </span>
+        </div>
+    </a>
 </div>
 
 <div class="footer">
