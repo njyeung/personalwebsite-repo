@@ -1,7 +1,8 @@
-import { Component, ElementRef, HostListener, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { CanvasComponent } from "../canvas/canvas.component";
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router'
+import { HttpClient } from '@angular/common/http'
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { Router, RouterLink } from '@angular/router'
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
 
   @ViewChild('keyboard') keyboard : any
   @ViewChild('madison') madison: any
@@ -82,7 +83,41 @@ export class HomeComponent {
   }
   
 
-  constructor(private router: Router) {
+  spotify: { song: string; artist: string; album_art_url: string } | null = null;
+  toastVisible = false;
+  toastSlideOut = false;
+  private toastTimeout: any;
+
+  ngOnInit() {
+    setTimeout(() => this.fetchLanyard(), 5000);
+  }
+
+  ngOnDestroy() {
+    clearTimeout(this.toastTimeout);
+  }
+
+  showToast() {
+    this.toastSlideOut = false;
+    this.toastVisible = true;
+    this.toastTimeout = setTimeout(() => {
+      this.toastSlideOut = true;
+      setTimeout(() => { this.toastVisible = false; }, 500);
+    }, 5000);
+  }
+
+  fetchLanyard() {
+    this.http.get<any>('https://api.lanyard.rest/v1/users/256141285264588801').subscribe({
+      next: (res) => {
+        this.spotify = res.data.spotify ?? null;
+        if (this.spotify) this.showToast();
+      },
+      error: () => {
+        this.spotify = null;
+      }
+    });
+  }
+
+  constructor(private router: Router, private http: HttpClient) {
     // mobile
     if(window.innerHeight>window.innerWidth) {
       this.keyboardSrc = 'assets/keyboard-tiny.mp4'

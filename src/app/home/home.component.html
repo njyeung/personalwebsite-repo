@@ -70,7 +70,7 @@
                             <p #fadein class="hidden">undergraduate <b>computer science</b> student at UW Madison currently in my senior year, see my <a href="assets/Nicholas_Yeung_Resume.pdf" target="_blank">resume</a></p>
 
                             <h2 #fadein class="hidden">currently playing with</h2>
-                            <p #fadein class="hidden">Distributed systems, Go language, Arch Linux, and Pop!_OS</p>
+                            <p #fadein class="hidden">Distributed systems, Go language, Arch Linux</p>
 
                             <h2 #fadein class="hidden">contact</h2>
                             <p #fadein class="hidden">
@@ -90,6 +90,10 @@
         <source src={{madisonSrc}} type="video/mp4">
     </video>
 
+</div>
+
+<div class="spotify-toast" *ngIf="toastVisible" [class.slide-out]="toastSlideOut">
+    <p>♫ <span class="currently-playing">Currently Playing</span>&nbsp;&nbsp;{{ spotify!.song }} — {{ spotify!.artist.split(';')[0].trim() }}</p>
 </div>
 
 <div class="footer">
