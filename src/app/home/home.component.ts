@@ -104,7 +104,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.spotify) {
           this.toastSlideOut = false;
           this.textScrolling = false;
-          this.toastVisible = true;
+
+          // prefetch album art
+          const img = new Image();
+          img.src = this.spotify.album_art_url;
+          img.onload = () => { this.toastVisible = true; };
 
           setTimeout(() => {
             const container = document.querySelector('.toast-text-container') as HTMLElement;

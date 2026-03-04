@@ -52,6 +52,7 @@
     animation: vinyl-spin 5s linear infinite;
     transform-box: fill-box;
     transform-origin: center;
+    will-change: transform;
 }
 @keyframes vinyl-spin {
     from { transform: rotate(0deg); }
