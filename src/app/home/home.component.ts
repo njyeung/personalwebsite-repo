@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   toastVisible = false;
   toastSlideOut = false;
   textScrolling = false;
-  private toastTimeout: number = 0;
+  private toastTimeout: any;
 
   ngOnInit() {
     setTimeout(() => this.fetchLanyard(), 5000);
