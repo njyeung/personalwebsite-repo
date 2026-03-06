@@ -238,34 +238,21 @@ export class ProjectsComponent {
   }
 
   hardcoded = {
-    "Card 10": {
-      "id": 10,
-      "name": "3D Engine",
-      "url": "assets/card-assets/3d-engine.mp4",
-      "thumbnail": "assets/card-thumbnails/3d-engine.jpg",
-      "date" : "December 2024",
-      "h1": "Rasterization",
-      "p1": "Reads obj and texture files, creates triangles, and projects them on the screen through a series of matrix transformations",
+    "Card 7": {
+      "id": 7,
+      "name": "Oriyon",
+      "url": "https://oriyon.tech",
+      "thumbnail": "assets/card-thumbnails/oriyon.png",
+      "date": "April 2025",
+      "h1": "Text to CAD",
+      "p1": "AI chatbot powered by a random forest regression model that predicts aerodynamic performance with an MAE of 0.06. Reduced parametric CAD model generation time by >93% by using CadQuery to automate geometry creation and STL meshing, facilitating instant part downloads",
       "h2": "Links",
-      "p2": "Github repo: <a href='https://github.com/njyeung/3d-engine.git'>https://github.com/njyeung/3d-engine.git</a> (Currently only works for MacOS)",
-      "bg" : "assets/card-textures/green-texture.png",
-      "frameworks": ["GLFW", "C++"]
+      "p2": "Website (try now!): <a href='https://oriyon.tech'>https://oriyon.tech</a>",
+      "bg": "assets/card-textures/metal-texture.png",
+      "frameworks": ["Python", "Typescript", "FastAPI", "AWS", "Docker", "Redis"]
     },
-    "Card 9": {
-      "id": 9,
-      "name": "Perp",
-      "url": "assets/card-assets/perp.mp4",
-      "thumbnail": "assets/card-thumbnails/perp.png",
-      "date" : "November 2025",
-      "h1": "Never Miss A Meeting",
-      "p1": "Perp is a meeting bot that everyone can chat with during a meeting to stay on the same page the entire time. To fully integrated into workflows, it simply works with existing tools like Notion, Slack, Zoom, Google Meets, and Microsoft Outlook.",
-      "h2": "Y Combinator Agent Jam 25 Winner!",
-      "p2": "Hackathon submission: <a href='https://drive.google.com/file/d/1ODcaGTL4Pwpajh7hrChk8HOtIbSu_5qO/view?usp=drive_link'>Video Demo</a>",
-      "bg" : "assets/card-textures/purple-texture.png",
-      "frameworks": ["Typescript", "Slack", "Zoom", "Notion"]
-    },
-    "Card 8": {
-      "id": 8,
+    "Card 6": {
+      "id": 6,
       "name": "Map Reduce",
       "url": "assets/card-assets/map-reduce.png",
       "thumbnail": "assets/card-thumbnails/map-reduce.png",
@@ -277,60 +264,21 @@ export class ProjectsComponent {
       "bg" : "assets/card-textures/yellow-texture.png",
       "frameworks": ["Docker", "Go", "Python", "Typescript"]
     },
-    "Card 7" : {
-        "id" : 7,
-        "name" : "Sakura Sushi & Grill",
-        "url" : "https://eatsakura.com",
-        "thumbnail": "assets/card-thumbnails/sakura.jpg",
-        "date" : "May 2024",
-        "h1" : "Online Menu",
-        "p1" : "Responsive online menu designed to facilitate placing pickup orders and displaying relevant information for the family restaurant. <b>Angular</b> frontend hosted on <b>GitHub Pages</b> and <b>.NET</b> backend hosted on <b>Azure</b>.",
-        "h2" : "Links",
-        "p2" : "Github repo for frontend: <a href='https://github.com/njyeung/Sakura-Repo'>https://github.com/njyeung/Sakura-Repo</a> | Live website: <a href='https://eatsakura.com'>https://eatsakura.com</a>, (backend source undisclosed)",
-        "bg": "assets/card-textures/pink-texture.png",
-        "frameworks" : ["Angular", ".NET", "Github Pages", "Bootstrap", "Twilio", "SQLite", "Azure"]
-    },
-    "Card 6": {
-      "id": 6,
-      "name": "Buddy",
-      "url": "assets/card-assets/buddy.mp4",
-      "thumbnail": "assets/card-thumbnails/buddy.jpg",
-      "date": "May 2025",
-      "h1": "Personal AI Agent",
-      "p1": "Connects a Python backend with a React + Webview frontend through a custom C bridge using pipes and threads. Supports persistent chat history, RAG across projects, user profiles, sliding window summarization, and a flexible user-defined tool system for autonomous agent behavior. <a href='https://github.com/njyeung/Buddy/blob/main/README.md'>Writeup</a>.",
-      "h2": "Links",
-      "p2": "Github repo: <a href='https://github.com/njyeung/Buddy'>https://github.com/njyeung/Buddy</a>",
-      "bg": "assets/card-textures/blue-texture.png",
-      "frameworks": ["Python", "C", "Webview", "React", "Tailwind", "SQLite", "GPT API", "OpenAI Tools"]
-    },
     "Card 5": {
       "id": 5,
-      "name": "Oriyon",
-      "url": "https://oriyon.tech",
-      "thumbnail": "assets/card-thumbnails/oriyon.png",
-      "date": "April 2025",
-      "h1": "Text to CAD",
-      "p1": "AI chatbot powered by a random forest regression model that predicts aerodynamic performance with an MAE of 0.06. Reduced parametric CAD model generation time by >93% by using CadQuery to automate geometry creation and STL meshing, facilitating instant part downloads",
+      "name": "Piazza Bot",
+      "url": "https://cdn.jsdelivr.net/gh/njyeung/piazza-bot@main/Piazza%20Bot.pdf",
+      "thumbnail": "assets/card-thumbnails/piazza-bot.png",
+      "date": "December 2025",
+      "h1": "Answering Piazza Posts",
+      "p1": "Distributed system with Kaltury Gallery scrapers, local models (embedding & llm), and RAG pipeline. Answers Piazza posts with citations and timestamps directly from lecture transcripts. Supports user defined parsers for each class.",
       "h2": "Links",
-      "p2": "Website (try now!): <a href='https://oriyon.tech'>https://oriyon.tech</a>",
-      "bg": "assets/card-textures/metal-texture.png",
-      "frameworks": ["Python", "Typescript", "FastAPI", "AWS", "Docker", "Redis", "AWS"]
+      "p2": "Github repo: <a href='https://github.com/njyeung/piazza-bot'>https://github.com/njyeung/piazza-bot</a> | Writeup: <a href='https://github.com/njyeung/piazza-bot/blob/main/Piazza%20Bot.pdf'>Piazza_Bot.pdf</a>",
+      "bg": "assets/card-textures/blue-texture.png",
+      "frameworks": ["Cassandra", "Redis", "Kafka", "Docker", "RAG", "Go", "Python"]
     },
     "Card 4": {
       "id": 4,
-      "name": "Splitudio",
-      "url": "assets/card-assets/splitudio.mp4",
-      "thumbnail": "assets/splitudio.jpg",
-      "date": "April 2025",
-      "h1": "AI-Powered Music Processing",
-      "p1": "Web app that separates user-uploaded audio into individual instrument stems using <b>Demucs</b> and transcribes them to <b>MIDI</b> with <b>Basic Pitch</b>. Features <b>GPU-accelerated</b> cloud processing and an interactive <b>NextJS</b> UI for waveform visualization, MIDI play-along, and track control.",
-      "h2": "Links",
-      "p2": "Website: <a href='https://splitudio-iota.vercel.app/'>https://splitudio-iota.vercel.app</a> (backend down) | Github repo: <a href='https://github.com/ach968/Splitudio'>https://github.com/ach968/Splitudio</a>",
-      "bg": "assets/card-textures/white-texture.png",
-      "frameworks": ["Next.js", "Shadcn", "Tailwind", "Firebase Functions & Firestore", "GCR", "Python", "Stripe"]
-    },
-    "Card 3": {
-      "id": 3,
       "name": "3Docs",
       "url": "assets/card-assets/3docs.mp4",
       "thumbnail": "assets/card-thumbnails/3docs.jpg",
@@ -339,8 +287,21 @@ export class ProjectsComponent {
       "p1": "3Docs is a platform that transforms boring old PDF manuals into interactive 3D manuals complete with voice guidance and PDF references for each step of a process.",
       "h2": "1st Place @ Madhacks 2025!",
       "p2": "Devpost: <a href='https://devpost.com/software/3docs'>https://devpost.com/software/3docs</a> | Github repo: <a href='https://github.com/r-thak/3Docs-MadHacks2025-Winner'>https://github.com/r-thak/3Docs-MadHacks2025-Winner</a>",
-      "bg": "assets/card-textures/purple-texture.png",
-      "frameworks": ["Next.js", "Python", "Fish Audio", "Gemini", "GCR ", "Sqlite", "Tripo AI"]
+      "bg": "assets/card-textures/white-texture.png",
+      "frameworks": ["Next.js", "Python", "Fish Audio", "Gemini", "GCR", "Sqlite", "Tripo AI"]
+    },
+    "Card 3": {
+      "id": 3,
+      "name": "Perp",
+      "url": "assets/card-assets/perp.mp4",
+      "thumbnail": "assets/card-thumbnails/perp.png",
+      "date" : "November 2025",
+      "h1": "Never Miss A Meeting",
+      "p1": "Perp is a meeting bot that everyone can chat with during a meeting to stay on the same page the entire time. To fully integrated into workflows, it simply works with existing tools like Notion, Slack, Zoom, Google Meets, and Microsoft Outlook.",
+      "h2": "Y Combinator Agent Jam 25 Winner!",
+      "p2": "Hackathon submission: <a href='https://drive.google.com/file/d/1ODcaGTL4Pwpajh7hrChk8HOtIbSu_5qO/view?usp=drive_link'>Video Demo</a>",
+      "bg" : "assets/card-textures/purple-texture.png",
+      "frameworks": ["Typescript", "Slack", "Zoom", "Notion"]
     },
     "Card 2": {
       "id": 2,
@@ -357,16 +318,16 @@ export class ProjectsComponent {
     },
     "Card 1": {
       "id": 1,
-      "name": "Piazza Bot",
-      "url": "https://cdn.jsdelivr.net/gh/njyeung/piazza-bot@main/Piazza%20Bot.pdf",
-      "thumbnail": "assets/card-thumbnails/piazza-bot.png",
-      "date": "December 2025",
-      "h1": "Answering Piazza Posts",
-      "p1": "Distributed system with Kaltury Gallery scrapers, local models (embedding & llm), and RAG pipeline. Answers Piazza posts with citations and timestamps directly from lecture transcripts. Supports user defined parsers for each class.",
+      "name": "Reels",
+      "url": "assets/card-assets/reels.mp4",
+      "thumbnail": "assets/card-thumbnails/reels.jpg",
+      "date": "March 2026",
+      "h1": "Instagram Reels in the Terminal",
+      "p1": "TUI app to watch, like, and browse comments on Instagram Reels directly from the command line. Uses Kitty graphics protocol for inline video. Available on npm, Homebrew, and AUR.",
       "h2": "Links",
-      "p2": "Github repo: <a href='https://github.com/njyeung/piazza-bot'>https://github.com/njyeung/piazza-bot</a> | Writeup: <a href='https://github.com/njyeung/piazza-bot/blob/main/Piazza%20Bot.pdf'>Piazza_Bot.pdf</a>",
-      "bg": "assets/card-textures/blue-texture.png",
-      "frameworks": ["Cassandra", "Redis", "Kafka", "Docker", "RAG", "Go", "Python"]
+      "p2": "Github repo: <a href='https://github.com/njyeung/reels'>https://github.com/njyeung/reels</a>",
+      "bg": "assets/card-textures/pink-texture.png",
+      "frameworks": ["Go", "FFmpeg", "Kitty Graphics", "npm", "Homebrew"]
     }
   }
 }
