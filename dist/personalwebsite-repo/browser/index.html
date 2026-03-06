@@ -31,16 +31,117 @@
       "name": "Nick Yeung",
       "url": "https://nickjyeung.dev",
       "jobTitle": "Software Engineer",
-      "description": "Software engineer studying at UW Madison",
+      "description": "Software engineer studying computer science at UW Madison. Builds distributed systems, AI tools, TUI apps, and full-stack products.",
       "alumniOf": {
         "@type": "CollegeOrUniversity",
         "name": "University of Wisconsin-Madison"
       },
-      "knowsAbout": ["TypeScript", "Angular", "React", "React Native", "Python", "C", "Go"],
+      "knowsAbout": ["TypeScript", "Angular", "React", "React Native", "Python", "C", "Go", "Docker", "AWS", "Kafka", "Redis"],
       "sameAs": [
+        "https://github.com/njyeung",
         "https://www.youtube.com/@yourhomiesushi",
         "https://www.linkedin.com/in/nick-yeung-1ab6972a9/",
         "https://www.instagram.com/nickisapotato/"
+      ],
+      "makesOffer": [
+        {
+          "@type": "CreativeWork",
+          "name": "Reels",
+          "description": "TUI app to browse, watch, like, and comment on Instagram Reels directly from the command line. Uses Kitty graphics protocol for inline video, headless Chrome for Instagram interaction, and FFmpeg for video processing. Available on npm, Homebrew, and AUR.",
+          "url": "https://github.com/njyeung/reels",
+          "dateCreated": "2026-03",
+          "keywords": ["Go", "FFmpeg", "Kitty Graphics", "TUI", "npm", "Homebrew"]
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "HoppyShare",
+          "description": "Cross-platform clipboard sync across Windows, MacOS, Linux, and Android. Works online and offline using MQTT and BLE.",
+          "url": "https://www.hoppyshare.com/",
+          "dateCreated": "2025-07",
+          "keywords": ["MQTT", "BLE", "Go", "Kotlin", "Next.js", "Docker", "Supabase", "AWS"]
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Perp",
+          "description": "Meeting bot that participants can chat with during a meeting to stay on the same page. Integrates with Notion, Slack, Zoom, Google Meets, and Microsoft Outlook.",
+          "url": "https://drive.google.com/file/d/1ODcaGTL4Pwpajh7hrChk8HOtIbSu_5qO/view",
+          "dateCreated": "2025-11",
+          "award": "Y Combinator Agent Jam 2025 Winner",
+          "keywords": ["TypeScript", "Slack", "Zoom", "Notion"]
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "3Docs",
+          "description": "Platform that transforms PDF manuals into interactive 3D manuals with voice guidance and step-by-step references.",
+          "url": "https://devpost.com/software/3docs",
+          "dateCreated": "2025-11",
+          "award": "1st Place at MadHacks 2025",
+          "keywords": ["Next.js", "Python", "Fish Audio", "Gemini", "Tripo AI"]
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Piazza Bot",
+          "description": "Distributed system with scrapers, local embedding and LLM models, and RAG pipeline. Answers Piazza posts with citations and timestamps from lecture transcripts.",
+          "url": "https://github.com/njyeung/piazza-bot",
+          "dateCreated": "2025-12",
+          "keywords": ["Cassandra", "Redis", "Kafka", "Docker", "RAG", "Go", "Python"]
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Map Reduce",
+          "description": "Reimplementation of MapReduce based on the Google research paper. Distributed system with a Boss node (Go) and worker nodes (Python). Features a web dashboard for job submission and utilization monitoring.",
+          "url": "https://github.com/parallax9999/MapReduce",
+          "dateCreated": "2024-12",
+          "keywords": ["Docker", "Go", "Python", "TypeScript", "Distributed Systems"]
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Oriyon",
+          "description": "Text-to-CAD AI chatbot powered by a random forest regression model predicting aerodynamic performance (MAE 0.06). Reduced CAD model generation time by over 93%.",
+          "url": "https://oriyon.tech",
+          "dateCreated": "2025-04",
+          "keywords": ["Python", "FastAPI", "AWS", "Docker", "Redis", "CadQuery"]
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "MottoNote",
+          "description": "AI-powered investment management platform for venture capital teams. Centralizes emails, documents, and meeting notes into a single searchable interface with AI-powered queries.",
+          "url": "https://www.mottonote.app",
+          "dateCreated": "2026",
+          "keywords": ["Next.js", "AI", "Gmail", "Slack", "Notion", "Zoom"]
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Buddy",
+          "description": "Personal AI agent connecting a Python backend with a React + Webview frontend through a custom C bridge. Features persistent chat history, RAG, and a user-defined tool system.",
+          "url": "https://github.com/njyeung/Buddy",
+          "dateCreated": "2025-05",
+          "keywords": ["Python", "C", "React", "SQLite", "GPT API", "OpenAI Tools"]
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Splitudio",
+          "description": "Web app that separates audio into instrument stems using Demucs and transcribes to MIDI with Basic Pitch. GPU-accelerated cloud processing with interactive UI.",
+          "url": "https://github.com/ach968/Splitudio",
+          "dateCreated": "2025-04",
+          "keywords": ["Next.js", "Firebase", "Python", "Demucs", "Stripe"]
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "3D Engine",
+          "description": "Software rasterization engine that reads OBJ and texture files, creates triangles, and projects them on screen through matrix transformations.",
+          "url": "https://github.com/njyeung/3d-engine",
+          "dateCreated": "2024-12",
+          "keywords": ["C++", "GLFW", "Rasterization", "Computer Graphics"]
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Sakura Sushi & Grill",
+          "description": "Online menu and ordering system for a family restaurant. Angular frontend with .NET backend.",
+          "url": "https://eatsakura.com",
+          "dateCreated": "2024-05",
+          "keywords": ["Angular", ".NET", "Azure", "Twilio", "SQLite"]
+        }
       ]
     }
     </script>
@@ -55,6 +156,6 @@
   <body>
     <app-root _nghost-ng-c3114029979 ng-version="17.3.12" ng-server-context="ssg"><div _ngcontent-ng-c3114029979 class="container"><app-navbar _ngcontent-ng-c3114029979 class="nav" _nghost-ng-c2316193639><div _ngcontent-ng-c2316193639 class="nav"><div _ngcontent-ng-c2316193639 class="container"><p _ngcontent-ng-c2316193639 class="nav-item link an-1">home</p><p _ngcontent-ng-c2316193639 class="nav-item an-5"> | </p><p _ngcontent-ng-c2316193639 class="nav-item link an-2">projects</p><p _ngcontent-ng-c2316193639 class="nav-item an-6"> | </p><p _ngcontent-ng-c2316193639 class="nav-item link an-3">resume</p><p _ngcontent-ng-c2316193639 class="nav-item an-7"> | </p><p _ngcontent-ng-c2316193639 class="nav-item link an-4">github</p></div></div></app-navbar><router-outlet _ngcontent-ng-c3114029979 class="hide-overflow"></router-outlet><app-home _nghost-ng-c2378216065><div _ngcontent-ng-c2378216065 id="top" class="draggable"><div _ngcontent-ng-c2378216065 style="position: absolute; top: 285vh; height: 1px;"></div><div _ngcontent-ng-c2378216065 class="background" style="opacity: 1;"><app-canvas _ngcontent-ng-c2378216065 _nghost-ng-c3735608395><main _ngcontent-ng-c3735608395 class="main"><canvas _ngcontent-ng-c3735608395></canvas></main></app-canvas></div><div _ngcontent-ng-c2378216065 class="header"><h1 _ngcontent-ng-c2378216065 style="opacity: 1; font-size: 17vw;">hi,&nbsp;i'm&nbsp;nick</h1></div><div _ngcontent-ng-c2378216065 class="body"><div _ngcontent-ng-c2378216065 class="body-1"><div _ngcontent-ng-c2378216065 class="text1"><div _ngcontent-ng-c2378216065 class="card-container"><div _ngcontent-ng-c2378216065 class="text-wrapper-1"><img _ngcontent-ng-c2378216065 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TS Icon" class="language-icon ts-icon"><img _ngcontent-ng-c2378216065 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Icon" class="language-icon react-icon"><img _ngcontent-ng-c2378216065 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular Icon" class="language-icon angular-icon"><img _ngcontent-ng-c2378216065 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Icon" class="language-icon python-icon"><img _ngcontent-ng-c2378216065 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C Icon" class="language-icon c-icon"><img _ngcontent-ng-c2378216065 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="GO Icon" class="language-icon go-icon"><div _ngcontent-ng-c2378216065 class="text-background-blur"><div _ngcontent-ng-c2378216065 class="card-content"><h2 _ngcontent-ng-c2378216065 class="hidden">aspiring&nbsp;programmer</h2><p _ngcontent-ng-c2378216065 class="hidden">frontend developer making the browser feel alive with <b _ngcontent-ng-c2378216065>Angular</b>, <b _ngcontent-ng-c2378216065>React</b>, &amp; <b _ngcontent-ng-c2378216065>React Native</b> — <a _ngcontent-ng-c2378216065 routerlink="/projects" class="call-to-action" href="/projects">see my projects!</a></p></div></div></div><div _ngcontent-ng-c2378216065 class="teaser-card teaser-card-1"><div _ngcontent-ng-c2378216065 class="text-background-blur"><div _ngcontent-ng-c2378216065 class="teaser-content"><div _ngcontent-ng-c2378216065 class="teaser"><img _ngcontent-ng-c2378216065 src="assets/splitudio.jpg" alt="Splitudio Project" class="teaser-image"></div><div _ngcontent-ng-c2378216065 style="padding: 1.5rem;"><h2 _ngcontent-ng-c2378216065 class="hidden">i&nbsp;build&nbsp;things</h2><p _ngcontent-ng-c2378216065 class="hidden">frontend developer making the browser feel alive with <b _ngcontent-ng-c2378216065>Angular</b>, <b _ngcontent-ng-c2378216065>React</b>, &amp; <b _ngcontent-ng-c2378216065>React Native</b> — <a _ngcontent-ng-c2378216065 routerlink="/projects" class="call-to-action" href="/projects">see my projects!</a></p></div></div></div></div><div _ngcontent-ng-c2378216065 class="teaser-card teaser-card-2"><div _ngcontent-ng-c2378216065 class="text-background-blur"><div _ngcontent-ng-c2378216065 class="teaser-content"><div _ngcontent-ng-c2378216065 class="teaser"><img _ngcontent-ng-c2378216065 src="assets/listen-image.jpg" alt="Splitudio Project" class="teaser-image"></div><div _ngcontent-ng-c2378216065 style="padding: 1.5rem;"><h2 _ngcontent-ng-c2378216065 class="hidden">i&nbsp;build&nbsp;things</h2><p _ngcontent-ng-c2378216065 class="hidden">frontend developer making the browser feel alive with <b _ngcontent-ng-c2378216065>Angular</b>, <b _ngcontent-ng-c2378216065>React</b>, &amp; <b _ngcontent-ng-c2378216065>React Native</b> — <a _ngcontent-ng-c2378216065 routerlink="/projects" class="call-to-action" href="/projects">see my projects!</a></p></div></div></div></div></div></div></div><div _ngcontent-ng-c2378216065 class="body-2"><div _ngcontent-ng-c2378216065 class="text2"><div _ngcontent-ng-c2378216065 class="text-container"><div _ngcontent-ng-c2378216065 class="text-background-blur"><div _ngcontent-ng-c2378216065 class="card-content"><h2 _ngcontent-ng-c2378216065 class="hidden">education</h2><p _ngcontent-ng-c2378216065 class="hidden">undergraduate <b _ngcontent-ng-c2378216065>computer science</b> student at UW Madison currently in my senior year, see my <a _ngcontent-ng-c2378216065 href="assets/Nicholas_Yeung_Resume.pdf" target="_blank">resume</a></p><h2 _ngcontent-ng-c2378216065 class="hidden">currently playing with</h2><p _ngcontent-ng-c2378216065 class="hidden">Distributed systems, Go language, Arch Linux</p><h2 _ngcontent-ng-c2378216065 class="hidden">contact</h2><p _ngcontent-ng-c2378216065 class="hidden"> You can email me at <a _ngcontent-ng-c2378216065 href="mailto:nickjyeung@gmail.com">nickjyeung@gmail.com</a>. </p></div></div></div></div></div></div><video _ngcontent-ng-c2378216065 playsinline autoplay muted="muted" loop class="video-container hidden"><source _ngcontent-ng-c2378216065 type="video/mp4" src="assets/keyboard-tiny.mp4"></video><video _ngcontent-ng-c2378216065 playsinline autoplay muted="muted" loop class="video-container hidden"><source _ngcontent-ng-c2378216065 type="video/mp4" src="assets/madison-tiny.mp4"></video></div><!----><div _ngcontent-ng-c2378216065 class="footer"><p _ngcontent-ng-c2378216065>Socials: <a _ngcontent-ng-c2378216065 href="https://www.youtube.com/@yourhomiesushi" target="_blank">Youtube</a>&nbsp;|&nbsp;<a _ngcontent-ng-c2378216065 href="https://www.linkedin.com/in/nick-yeung-1ab6972a9/" target="_blank">LinkedIn</a>&nbsp;|&nbsp;<a _ngcontent-ng-c2378216065 href="https://www.instagram.com/nickisapotato/">Instagram</a></p><div _ngcontent-ng-c2378216065 class="back-to-top"><a _ngcontent-ng-c2378216065 href=".">↑&nbsp;back&nbsp;to&nbsp;top</a></div></div></app-home><!----></div></app-root>
     <noscript>Please enable JavaScript to continue using this application.</noscript>
-<script src="polyfills-SCHOHYNV.js" type="module"></script><script src="main-4M435VUO.js" type="module"></script>
+<script src="polyfills-SCHOHYNV.js" type="module"></script><script src="main-MTE6MCEI.js" type="module"></script>
 
 </body></html>
