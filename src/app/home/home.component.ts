@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild, ViewChildren } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { CanvasComponent } from "../canvas/canvas.component";
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router'
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   @ViewChild('body', { static: true }) body!: ElementRef;
   @HostListener('window:scroll', [])
   onScroll(): void {
+    if (!this.isBrowser) return;
     this.animation();
 
     // wait until user interacts with site to save cpu use
@@ -52,19 +54,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   keyboardSrc = 'assets/keyboard-tiny.mp4'
   madisonSrc = 'assets/madison-tiny.mp4'
 
-  observer = new IntersectionObserver((entries)=> {
-    entries.forEach((entry=> {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('show');
-      } else {
-        entry.target.classList.remove('show')
-      }
-    }))
-  })
+  observer: IntersectionObserver | null = null;
 
   videoPlaying = false;
 
-  html = document.documentElement;
+  html: HTMLElement | null = null;
   headerStyle = {
     'opacity': 1,
     'font-size': '17vw'
@@ -73,15 +67,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     'opacity' : 1
   }
 
+  private isBrowser: boolean;
+
   nav(route: string) {
     if(route == 'resume') {
-      window.open('https://docs.google.com/document/d/1ckMpXpyVCMkE-bBncIgqxDaanaWUCT9zNp8I4VvG92A/edit?usp=sharing')
+      if (this.isBrowser) {
+        window.open('https://docs.google.com/document/d/1ckMpXpyVCMkE-bBncIgqxDaanaWUCT9zNp8I4VvG92A/edit?usp=sharing')
+      }
     }
     else {
       this.router.navigate([route])
     }
   }
-  
+
 
   spotify: { song: string; artist: string; album_art_url: string; track_id: string } | null = null;
   toastVisible = false;
@@ -90,7 +88,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   private toastTimeout: any;
 
   ngOnInit() {
-    setTimeout(() => this.fetchLanyard(), 5000);
+    if (this.isBrowser) {
+      setTimeout(() => this.fetchLanyard(), 5000);
+    }
   }
 
   ngOnDestroy() {
@@ -124,10 +124,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
           this.toastTimeout = setTimeout(() => {
             this.toastSlideOut = true;
-            setTimeout(() => { 
-              this.toastVisible = false; 
+            setTimeout(() => {
+              this.toastVisible = false;
             }, 500);
-          
+
           }, 10000);
         }
       },
@@ -144,26 +144,42 @@ export class HomeComponent implements OnInit, OnDestroy {
   onMouseOut() {
     this.toastTimeout = setTimeout(() => {
       this.toastSlideOut = true;
-      setTimeout(() => { 
-        this.toastVisible = false; 
+      setTimeout(() => {
+        this.toastVisible = false;
       }, 500);
     }, 10000);
   }
-  constructor(private router: Router, private http: HttpClient) {
-    // mobile
-    if(window.innerHeight>window.innerWidth) {
-      this.keyboardSrc = 'assets/keyboard-tiny.mp4'
-      this.madisonSrc = 'assets/madison-tiny.mp4'
-    }
-    // desktop
-    else if(window.innerHeight<=window.innerWidth) {
-      if(window.innerWidth > 1920 + 20) {
-        this.keyboardSrc = 'assets/keyboard-small.mp4'
-        this.madisonSrc = 'assets/madison-small.mp4'
-      }
-      else {
+  constructor(private router: Router, private http: HttpClient, @Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+
+    if (this.isBrowser) {
+      this.html = document.documentElement;
+
+      this.observer = new IntersectionObserver((entries)=> {
+        entries.forEach((entry=> {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('show');
+          } else {
+            entry.target.classList.remove('show')
+          }
+        }))
+      });
+
+      // mobile
+      if(window.innerHeight>window.innerWidth) {
         this.keyboardSrc = 'assets/keyboard-tiny.mp4'
         this.madisonSrc = 'assets/madison-tiny.mp4'
+      }
+      // desktop
+      else if(window.innerHeight<=window.innerWidth) {
+        if(window.innerWidth > 1920 + 20) {
+          this.keyboardSrc = 'assets/keyboard-small.mp4'
+          this.madisonSrc = 'assets/madison-small.mp4'
+        }
+        else {
+          this.keyboardSrc = 'assets/keyboard-tiny.mp4'
+          this.madisonSrc = 'assets/madison-tiny.mp4'
+        }
       }
     }
   }
@@ -197,7 +213,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.lastY = e.clientY;
     document.addEventListener('mousemove', this.onMouseMove);
   }
-  
+
   onMouseUp() {
     this.dragging = false;
     document.removeEventListener('mousemove', this.onMouseMove);
@@ -209,15 +225,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.fadein.toArray().forEach((el:any)=>{this.observer.observe(el.nativeElement)})
+    if (!this.isBrowser) return;
+    this.fadein.toArray().forEach((el:any)=>{this.observer?.observe(el.nativeElement)})
 
     document.addEventListener('mousedown', this.onMouseDown.bind(this));
     document.addEventListener('mouseup', this.onMouseUp.bind(this));
     document.addEventListener('mouseleave', this.onMouseUp.bind(this));
-    
+
   }
 
   animation() {
+    if (!this.html) return;
     const height = window.innerHeight * 2.5 // yes im hard coding this
     const scrollTop = this.html.scrollTop;
     const maxScrollTop = height - window.innerHeight;

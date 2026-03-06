@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Output, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 declare var anime: any;
 
 @Component({
@@ -12,6 +13,12 @@ export class NavbarComponent {
 
   @Output() page = new EventEmitter<String>
 
+  private isBrowser: boolean;
+
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
   tab(goTo:string) {
     switch(goTo) {
       case 'home':
@@ -22,11 +29,15 @@ export class NavbarComponent {
         break;
       case 'resume':
         // popup resume
-        window.open('https://nickjyeung.dev/assets/Nicholas_Yeung_Resume.pdf')
+        if (this.isBrowser) {
+          window.open('https://nickjyeung.dev/assets/Nicholas_Yeung_Resume.pdf')
+        }
         break;
       case 'github':
         // popup github
-        window.open('https://github.com/njyeung')
+        if (this.isBrowser) {
+          window.open('https://github.com/njyeung')
+        }
         break;
       default:
         this.page.emit('')
@@ -35,6 +46,8 @@ export class NavbarComponent {
   }
 
   ngAfterViewInit() {
+    if (!this.isBrowser) return;
+
     // wrap everything in spans
     const textWrapper1 = document.querySelector('.an-1');
     textWrapper1!.innerHTML = textWrapper1!.textContent!.replace(/\S/g, "<span class='letter'>$&</span>");

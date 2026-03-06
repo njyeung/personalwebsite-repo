@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -13,7 +14,7 @@ export class CanvasComponent {
   @ViewChild('canvas') canvas: any
   context: CanvasRenderingContext2D | null | undefined
 
-  html = document.documentElement;
+  html: HTMLElement | null = null;
   frameCount = 67;
   currFrameIndex = 1;
   img: ImageBitmap | null = null
@@ -23,10 +24,13 @@ export class CanvasComponent {
 
   // Scroll throttling
   private scrollPending = false;
-  
+
   folder = 'jpgs-tiny'
 
+  private isBrowser: boolean;
+
   ngAfterViewInit() {
+    if (!this.isBrowser) return;
     this.context = this.canvas?.nativeElement.getContext('2d')
     this.canvas = this.canvas?.nativeElement
 
@@ -35,9 +39,10 @@ export class CanvasComponent {
 
     this.updateImage(1)
   }
-  
+
   @HostListener('window:resize', ['$event'])
   onResize(event:any) {
+    if (!this.isBrowser) return;
     // Update canvas dimensions on resize
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
@@ -49,42 +54,49 @@ export class CanvasComponent {
   currentFrame(index: number){
     return `assets/${this.folder}/frame_${(Math.max(1, index-1)).toString()}.jpg`
   }
-  
-  constructor() {
-    // check which folder to use
-    if(window.innerHeight>window.innerWidth) {
-      // mobile
-      this.folder = 'jpgs-mobile'
-    }
-    if(window.innerHeight<=window.innerWidth) {
-      // desktop
-      if(window.innerWidth > 1920 + 20) {
-        this.folder = 'jpgs-small'
-      }
-      else {
-        this.folder = 'jpgs-tiny'
-      }
-    }
 
-    // Throttle scroll events with requestAnimationFrame for better performance?
-    document.addEventListener('scroll', () => {
-      if (!this.scrollPending) {
-        this.scrollPending = true;
-        requestAnimationFrame(() => {
-          this.play();
-          this.scrollPending = false;
-        });
-      }
-    }, { passive: true })
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
 
-    this.preloadImages()
+    if (this.isBrowser) {
+      this.html = document.documentElement;
+
+      // check which folder to use
+      if(window.innerHeight>window.innerWidth) {
+        // mobile
+        this.folder = 'jpgs-mobile'
+      }
+      if(window.innerHeight<=window.innerWidth) {
+        // desktop
+        if(window.innerWidth > 1920 + 20) {
+          this.folder = 'jpgs-small'
+        }
+        else {
+          this.folder = 'jpgs-tiny'
+        }
+      }
+
+      // Throttle scroll events with requestAnimationFrame for better performance?
+      document.addEventListener('scroll', () => {
+        if (!this.scrollPending) {
+          this.scrollPending = true;
+          requestAnimationFrame(() => {
+            this.play();
+            this.scrollPending = false;
+          });
+        }
+      }, { passive: true })
+
+      this.preloadImages()
+    }
   }
 
   play() {
+    if (!this.html) return;
     const height = window.innerHeight * 2.5 // yes im hard coding this
     const scrollTop = this.html.scrollTop;
     const maxScrollTop = height - window.innerHeight;
-    
+
 
     if(scrollTop <= maxScrollTop) {
       const scrollFraction = scrollTop / maxScrollTop;
@@ -118,7 +130,7 @@ export class CanvasComponent {
 
   async loadImage(index: number) {
     if (this.loadedImages.has(index)) return;
-    
+
     const resp = await fetch(this.currentFrame(index))
     const bitmap = await createImageBitmap(await resp.blob())
     this.loadedImages.set(index, bitmap);
@@ -144,4 +156,3 @@ export class CanvasComponent {
     }
   }
 }
-

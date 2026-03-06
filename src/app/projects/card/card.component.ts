@@ -1,7 +1,8 @@
-import { Component, ElementRef, Input, NgModule, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, Input, PLATFORM_ID, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { CardData } from '../CardData';
 import { SafePipe } from '../../safe.pipe';
-import { CommonModule, UpperCasePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-card',
   standalone: true,
@@ -34,6 +35,12 @@ export class CardComponent {
   frameworks?: string
 
   backgroundUrl : string = ""
+
+  private isBrowser: boolean;
+
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   goFullscreen(event: MouseEvent) {
     const elem = event.target as HTMLElement;
@@ -90,6 +97,8 @@ export class CardComponent {
   }
 
   ngAfterViewInit() {
+    if (!this.isBrowser) return;
+
     if(this.inspectcard == false) {
       this.card?.nativeElement.classList.add('static-shadow')
     }
@@ -108,7 +117,7 @@ export class CardComponent {
         });
       }
     });
-    
+
     if(this.inspectcard == true) {
 
       // make backface invisible after peekin animation

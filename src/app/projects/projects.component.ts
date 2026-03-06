@@ -1,4 +1,5 @@
-import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Inject, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { CardData } from './CardData';
 import { CommonModule, NgFor } from '@angular/common';
@@ -13,9 +14,11 @@ import { CommonModule, NgFor } from '@angular/common';
 export class ProjectsComponent {
   deskSrc : string = 'assets/desk/desk-light.jpg'
   deskLayerSrc : string = 'assets/desk/desk-light-layer.png'
-  
+
+  private isBrowser: boolean;
 
   updateDeskSrc() {
+    if (!this.isBrowser) return;
     const w = window.innerWidth;
     const h = window.innerHeight;
 
@@ -50,9 +53,15 @@ export class ProjectsComponent {
     this.inspectcard=null;
   }
 
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
   ngOnInit() {
     this.updateDeskSrc();
-    window.addEventListener('resize', this.resizeListener);
+    if (this.isBrowser) {
+      window.addEventListener('resize', this.resizeListener);
+    }
 
     var values = Object.values(this.hardcoded)
 
@@ -78,19 +87,23 @@ export class ProjectsComponent {
   }
 
   ngOnDestroy() {
-    window.removeEventListener('resize', this.resizeListener);
+    if (this.isBrowser) {
+      window.removeEventListener('resize', this.resizeListener);
+    }
   }
 
   animationFrameId: number | null = null;
 
   ngAfterViewInit() {
+    if (!this.isBrowser) return;
+
     var initialTop = '40%';
     var initialLeft = '50%';
     var zIndexList : any = []
 
     this.cards.forEach((element)=> {
       var card = element.nativeElement;
-     
+
       // z index management
       card.style.zIndex = String(zIndexList.indexOf(card) + 10);
       zIndexList.push(card)
@@ -100,10 +113,10 @@ export class ProjectsComponent {
       card.style.left = initialLeft;
       initialTop = `${Number(initialTop.split("%")[0]) - 0.5}%`
       initialLeft = `${(Number(initialLeft.split("%")[0]) + 0.2)}%`
-      
+
       let isDragging = false;
       let pointerDownTime = 0;
-      
+
       let offsetX = 0;
       let offsetY = 0;
 
@@ -121,12 +134,12 @@ export class ProjectsComponent {
         for(let i=0;i<zIndexList.length;i++) {
           zIndexList[i].style.zIndex = String(i + 10)
         }
-        
+
         isDragging = true;
         prev = card.getBoundingClientRect();
         offsetX = event.clientX - card.getBoundingClientRect().left;
         offsetY = event.clientY - card.getBoundingClientRect().top;
-        card.style.cursor = 'grabbing'; 
+        card.style.cursor = 'grabbing';
       });
 
       document.addEventListener('pointermove', (event: PointerEvent) => {
@@ -162,7 +175,7 @@ export class ProjectsComponent {
       });
     });
   }
-  
+
   moveCard(card: any, mouseX: number, mouseY: number, offsetX: number, offsetY: number) {
     const { x, y } = this.getTransformedCoordinates(mouseX, mouseY);
 
@@ -170,7 +183,7 @@ export class ProjectsComponent {
     var left = x/2560<2/5
     var top = y/1440<1/6
     if(left && top) {
-      
+
     }
     else if(!left && top) {
       card.style.left = `${(x - offsetX)}px`;
@@ -182,7 +195,7 @@ export class ProjectsComponent {
       card.style.left = `${(x - offsetX)}px`;
       card.style.top = `${(y - offsetY)}px`;
     }
-    
+
   }
 
   getTransformedCoordinates(mouseX: number, mouseY: number) {
@@ -194,13 +207,13 @@ export class ProjectsComponent {
     if (matrix === 'none') {
       return { x: mouseX - rect.left, y: mouseY - rect.top };
     }
-    
+
     const matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ').map(Number);
 
     // ????????????????????
 
     // const [a, b, c, d, e, f] = matrixValues
-    
+
     // // Calculate the inverse transformation
     // const determinant = a * d - b * c;
     // const invA = d / determinant;
@@ -209,7 +222,7 @@ export class ProjectsComponent {
     // const invD = a / determinant;
     // const invE = (c * f - e * d) / determinant;
     // const invF = (b * e - a * f) / determinant;
-  
+
     // const localX = invA * (mouseX - rect.left) + invC * (mouseY - rect.top) + invE;
     // const localY = invB * (mouseX - rect.left) + invD * (mouseY - rect.top) + invF;
 
@@ -218,7 +231,7 @@ export class ProjectsComponent {
     // I HAVE NO CLUE HOW THIS WORKS BUT IT KINDA DOES
     const localX = (a * (mouseX - rect.left) + b * (mouseY - rect.top) + c * 0 + d) / (m * (mouseX - rect.left) + n * (mouseY - rect.top) + o * 0 + p);
     const localY = (e * (mouseX - rect.left) + f * (mouseY - rect.top) + g * 0 + h) / (m * (mouseX - rect.left) + n * (mouseY - rect.top) + o * 0 + p);
-    
+
     const xOffset = 450
     const yOffset = -600
     return { x: localX + xOffset, y: localY + yOffset};
