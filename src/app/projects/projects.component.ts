@@ -325,7 +325,7 @@ export class ProjectsComponent {
       "h1": "Instagram Reels in the Terminal",
       "p1": "TUI app to watch, like, and browse comments on Instagram Reels directly from the command line. Uses Kitty graphics protocol for inline video. Available on npm, Homebrew, and AUR.",
       "h2": "Links",
-      "p2": "Github repo: <a href='https://github.com/njyeung/reels'>https://github.com/njyeung/reels</a>",
+      "p2": "Github repo: <a href='https://github.com/njyeung/reels'>https://github.com/njyeung/reels</a> | npm package: <a href='https://npmjs.com/package/@reels/tui'>https://npmjs.com/package/@reels/tui</a>",
       "bg": "assets/card-textures/pink-texture.png",
       "frameworks": ["Go", "FFmpeg", "Kitty Graphics", "npm", "Homebrew"]
     }
