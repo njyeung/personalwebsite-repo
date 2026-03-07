@@ -90,6 +90,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.isBrowser) {
       setTimeout(() => this.fetchLanyard(), 5000);
+
+      setTimeout(()=>{
+        window.scrollTo(0,0)
+      }, 1000)
     }
   }
 
@@ -183,12 +187,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     }
   }
-
-  // ngOnInit() {
-  //   setTimeout(()=>{
-  //     window.scrollTo(0,0)
-  //   }, 1000)
-  // }
 
   dragging = false;
   startY = 0;
