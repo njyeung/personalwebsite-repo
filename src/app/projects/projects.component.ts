@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { CardData } from './CardData';
 import { CommonModule, NgFor } from '@angular/common';
+import { HttpClient } from '@angular/common/http'
 
 @Component({
   selector: 'app-projects',
@@ -43,6 +44,7 @@ export class ProjectsComponent {
   hideiframe: boolean = false;
 
   data: CardData[] = []
+  projects: any
 
   release() {
     this.cards.forEach((card)=> {
@@ -53,7 +55,7 @@ export class ProjectsComponent {
     this.inspectcard=null;
   }
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) platformId: Object, private http: HttpClient) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
@@ -63,7 +65,7 @@ export class ProjectsComponent {
       window.addEventListener('resize', this.resizeListener);
     }
 
-    var values = Object.values(this.hardcoded)
+    var values = Object.values(this.projects)
 
     values.forEach((value:any)=> {
       // tricks github pages into appending /personalwebsite/ onto the link
@@ -237,97 +239,15 @@ export class ProjectsComponent {
     return { x: localX + xOffset, y: localY + yOffset};
   }
 
-  hardcoded = {
-    "Card 7": {
-      "id": 7,
-      "name": "Oriyon",
-      "url": "https://oriyon.tech",
-      "thumbnail": "assets/card-thumbnails/oriyon.png",
-      "date": "April 2025",
-      "h1": "Text to CAD",
-      "p1": "AI chatbot powered by a random forest regression model that predicts aerodynamic performance with an MAE of 0.06. Reduced parametric CAD model generation time by >93% by using CadQuery to automate geometry creation and STL meshing, facilitating instant part downloads",
-      "h2": "Links",
-      "p2": "Website (try now!): <a href='https://oriyon.tech'>https://oriyon.tech</a>",
-      "bg": "assets/card-textures/metal-texture.png",
-      "frameworks": ["Python", "Typescript", "FastAPI", "AWS", "Docker", "Redis"]
-    },
-    "Card 6": {
-      "id": 6,
-      "name": "Map Reduce",
-      "url": "assets/card-assets/map-reduce.png",
-      "thumbnail": "assets/card-thumbnails/map-reduce.png",
-      "date" : "December 2024",
-      "h1": "Large Scale Data Processing",
-      "p1": "Reimplementation of MapReduce based on the <a href='https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf'>google research paper</a>. Distributed system with a Boss (Go), and worker nodes (Python). Features a web dashboard for submitting jobs and viewing utilization/progress. Demos include counting large (10GB) csv files and a 2-job \"chained\" ridge regression.",
-      "h2": "Links",
-      "p2": "Github repo: <a href='https://github.com/parallax9999/MapReduce'>https://github.com/parallax9999/MapReduce</a>",
-      "bg" : "assets/card-textures/yellow-texture.png",
-      "frameworks": ["Docker", "Go", "Python", "Typescript"]
-    },
-    "Card 5": {
-      "id": 5,
-      "name": "Piazza Bot",
-      "url": "https://cdn.jsdelivr.net/gh/njyeung/piazza-bot@main/Piazza%20Bot.pdf",
-      "thumbnail": "assets/card-thumbnails/piazza-bot.png",
-      "date": "December 2025",
-      "h1": "Answering Piazza Posts",
-      "p1": "Distributed system with Kaltury Gallery scrapers, local models (embedding & llm), and RAG pipeline. Answers Piazza posts with citations and timestamps directly from lecture transcripts. Supports user defined parsers for each class.",
-      "h2": "Links",
-      "p2": "Github repo: <a href='https://github.com/njyeung/piazza-bot'>https://github.com/njyeung/piazza-bot</a> | Writeup: <a href='https://github.com/njyeung/piazza-bot/blob/main/Piazza%20Bot.pdf'>Piazza_Bot.pdf</a>",
-      "bg": "assets/card-textures/blue-texture.png",
-      "frameworks": ["Cassandra", "Redis", "Kafka", "Docker", "RAG", "Go", "Python"]
-    },
-    "Card 4": {
-      "id": 4,
-      "name": "3Docs",
-      "url": "assets/card-assets/3docs.mp4",
-      "thumbnail": "assets/card-thumbnails/3docs.jpg",
-      "date": "November 2025",
-      "h1": "Generate Interactive 3D Repair Guides",
-      "p1": "3Docs is a platform that transforms boring old PDF manuals into interactive 3D manuals complete with voice guidance and PDF references for each step of a process.",
-      "h2": "1st Place @ Madhacks 2025!",
-      "p2": "Devpost: <a href='https://devpost.com/software/3docs'>https://devpost.com/software/3docs</a> | Github repo: <a href='https://github.com/r-thak/3Docs-MadHacks2025-Winner'>https://github.com/r-thak/3Docs-MadHacks2025-Winner</a>",
-      "bg": "assets/card-textures/white-texture.png",
-      "frameworks": ["Next.js", "Python", "Fish Audio", "Gemini", "GCR", "Sqlite", "Tripo AI"]
-    },
-    "Card 3": {
-      "id": 3,
-      "name": "Perp",
-      "url": "assets/card-assets/perp.mp4",
-      "thumbnail": "assets/card-thumbnails/perp.png",
-      "date" : "November 2025",
-      "h1": "Never Miss A Meeting",
-      "p1": "Perp is a meeting bot that everyone can chat with during a meeting to stay on the same page the entire time. To fully integrated into workflows, it simply works with existing tools like Notion, Slack, Zoom, Google Meets, and Microsoft Outlook.",
-      "h2": "Y Combinator Agent Jam 25 Winner!",
-      "p2": "Hackathon submission: <a href='https://drive.google.com/file/d/1ODcaGTL4Pwpajh7hrChk8HOtIbSu_5qO/view?usp=drive_link'>Video Demo</a>",
-      "bg" : "assets/card-textures/purple-texture.png",
-      "frameworks": ["Typescript", "Slack", "Zoom", "Notion"]
-    },
-    "Card 2": {
-      "id": 2,
-      "name": "HoppyShare",
-      "url": "https://www.hoppyshare.com/",
-      "thumbnail": "assets/card-thumbnails/hoppyshare.png",
-      "date": "July 2025",
-      "h1": "One Clipboard, All Your Devices.",
-      "p1": "Syncs your clipboard across ALL your devices, whether you're connected to the internet or not. Windows, MacOS, Linux, and Android supported. Powered by MQTT and BLE, with a cute mascot that sits in your systray.",
-      "h2": "Links",
-      "p2": "Website (try now!): <a href='https://www.hoppyshare.com/'>https://www.hoppyshare.com/</a> | Github repo: <a href='https://github.com/njyeung/hoppyshare'>https://github.com/njyeung/hoppyshare</a>",
-      "bg": "assets/card-textures/orange-texture.png",
-      "frameworks": ["MQTT", "Next.js", "Docker", "Go", "Supabase", "Python", "AWS", "Kotlin"]
-    },
-    "Card 1": {
-      "id": 1,
-      "name": "Reels",
-      "url": "assets/card-assets/reels.mp4",
-      "thumbnail": "assets/card-thumbnails/reels.jpg",
-      "date": "March 2026",
-      "h1": "Instagram Reels in the Terminal",
-      "p1": "TUI app to watch, like, and browse comments on Instagram Reels directly from the command line. Uses Kitty graphics protocol for inline video. Available on npm, Homebrew, and AUR.",
-      "h2": "Links",
-      "p2": "Github repo: <a href='https://github.com/njyeung/reels'>https://github.com/njyeung/reels</a> | npm package: <a href='https://npmjs.com/package/@reels/tui'>https://npmjs.com/package/@reels/tui</a>",
-      "bg": "assets/card-textures/pink-texture.png",
-      "frameworks": ["Go", "FFmpeg", "Kitty Graphics", "npm", "Homebrew"]
-    }
+  fetchProjects() {
+    this.http.get<any>('https://raw.githubusercontent.com/njyeung/personalwebsite-repo/projects.json').subscribe({
+      next: (res) => {
+        this.projects = res
+      },
+      error: () => {
+        this.projects = {}
+      }
+    })
   }
+
 }
