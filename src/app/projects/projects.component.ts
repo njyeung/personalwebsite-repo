@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { CardData } from './CardData';
 import { CommonModule, NgFor } from '@angular/common';
-import { HttpClient } from '@angular/common/http'
+import projectsData from '../../../projects.json';
 
 @Component({
   selector: 'app-projects',
@@ -44,7 +44,6 @@ export class ProjectsComponent {
   hideiframe: boolean = false;
 
   data: CardData[] = []
-  projects: any = {}
 
   release() {
     this.cards.forEach((card)=> {
@@ -55,7 +54,7 @@ export class ProjectsComponent {
     this.inspectcard=null;
   }
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object, private http: HttpClient) {
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
@@ -65,7 +64,27 @@ export class ProjectsComponent {
       window.addEventListener('resize', this.resizeListener);
     }
 
-    this.fetchProjects();
+    var values = Object.values(projectsData)
+
+    values.forEach((value:any)=> {
+      // tricks github pages into appending /personalwebsite/ onto the link
+      var thismightwork = value.bg
+
+      var card: CardData = {
+        id: value.id,
+        name: value.name,
+        url: value.url,
+        date: value.date,
+        thumbnail: value.thumbnail,
+        h1: value.h1,
+        p1: value.p1,
+        h2: value.h2,
+        p2: value.p2,
+        bg: thismightwork,
+        frameworks: value.frameworks
+      }
+      this.data.push(card)
+    })
   }
 
   ngOnDestroy() {
@@ -79,11 +98,6 @@ export class ProjectsComponent {
   ngAfterViewInit() {
     if (!this.isBrowser) return;
 
-    this.cards.changes.subscribe(() => this.setupCards());
-    if (this.cards.length > 0) this.setupCards();
-  }
-
-  setupCards() {
     var initialTop = '40%';
     var initialLeft = '50%';
     var zIndexList : any = []
@@ -223,31 +237,4 @@ export class ProjectsComponent {
     const yOffset = -600
     return { x: localX + xOffset, y: localY + yOffset};
   }
-
-  fetchProjects() {
-    this.http.get<any>('https://raw.githubusercontent.com/njyeung/personalwebsite-repo/main/projects.json').subscribe({
-      next: (res) => {
-        Object.values(res).forEach((value: any) => {
-          const card: CardData = {
-            id: value.id,
-            name: value.name,
-            url: value.url,
-            date: value.date,
-            thumbnail: value.thumbnail,
-            h1: value.h1,
-            p1: value.p1,
-            h2: value.h2,
-            p2: value.p2,
-            bg: value.bg,
-            frameworks: value.frameworks
-          }
-          this.data.push(card)
-        })
-      },
-      error: (err) => {
-        console.error('Failed to fetch projects:', err)
-      }
-    })
-  }
-
 }
