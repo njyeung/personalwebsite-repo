@@ -1,10 +1,11 @@
-import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
-import { RouterOutlet, Routes } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { Router } from '@angular/router'
 import { HomeComponent } from './home/home.component';
 import { CanvasComponent } from "./canvas/canvas.component";
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,12 +21,12 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    if (this.updates.isEnabled) {
-      this.updates.versionUpdates.subscribe(async ()=> {
-        await this.updates.activateUpdate();
-        document.location.reload()
-      })
-    }
+    this.updates.versionUpdates
+    .pipe(filter((e): e is VersionReadyEvent => e.type === 'VERSION_READY'))
+    .subscribe(async ()=> {
+      await this.updates.activateUpdate();
+      document.location.reload()
+    })
   }
 
   title = "Hi, I'm Nick";
